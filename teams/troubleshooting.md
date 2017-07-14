@@ -34,8 +34,12 @@ Common problems with the settings object:
 * `settings.contentUrl` is missing. This field is required.
 * `settings.contentUrl` or the optional `settings.removeUrl`, or `settings.websiteUrl` are provided but not valid. The urls must be https urls and also must either be the same domain as the settings page or specified in the manifest's `validDomains` list.
 
-### Can't authorize the user in your tab
-Unless you are doing silent authentication, you must follow the authentication process provided by the [Microsoft Teams Tab Library](jslibrary.md).  For more information about authentication, please see [Authenticating a user in your Microsoft Teams pages](auth.md).
+### Can't authorize the user or display your auth provider in your tab
+Unless you are doing silent authentication, you must follow the authentication process provided by the [Microsoft Teams Tab Library](jslibrary.md).  
+
+Also note: due to changes introduced in July, we require all auth flow to start and end on your domain, which must be whitelisted in the `validDomains` object in your manifest.
+
+For more information about authentication, please see [Authenticating a user in your Microsoft Teams pages](auth.md).
 
 ### Static tabs not showing up
 There is a known issue where updating an existing bot app with a new or updated static tab will not show that tab change when accessing the app from a 1:1 bot conversation.  To see the change, you should test on a new user or test instance, or access the bot from the Apps flyout.
@@ -65,14 +69,15 @@ Since bots in channels only receive messages when they are @mentioned, all  mess
 
 ### Error while reading manifest.json
 
-With the [new sideloading process](sideload.md), the transparent .png icons that you reference in the manifest must now be smaller than ~1.5KB.  Alternatively, you can reference the icon using a URL on a publicly accessible server, instead of a local path to icons inside the zip package: the size limit does not apply in this case.
-
-Most other manifest errors will provide a hint at what specific field is missing or invalid. However, if the json file cannot be read as json at all, this generic error message is used.
+Most  manifest errors will provide a hint at what specific field is missing or invalid. However, if the json file cannot be read as json at all, this generic error message is used.
 
 Common reasons for manifest read errors:
 
 * Invalid json. Use an IDE such as [Visual Studio Code](https://code.visualstudio.com) or [Visual Studio](https://www.visualstudio.com/vs/) that automatically validates the json syntax.
 * Encoding issues. Use UTF-8 for the manifest.json file. Other encodings, specifically with the BOM, may not be readable.
+* Malformed Zip package.  The manifest.json must be at the top level of the zip file.  Note that default Mac file compression may place the manifest.json in a subdirectory, which will not properly load in Microsoft Teams.
+
+>Note: there is a current issue with [Description.Long field in the manifest](schema.md#developer) that causes a loading error with a string longer than 256 character.
 
 ### Another extension with same id "&lt;id&gt;" exists
 If you're attempting to re-upload an updated package with the same id, use the 'Replace' icon at the end of the tab's table row rather than the 'Upload' button again.

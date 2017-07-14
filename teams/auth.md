@@ -1,10 +1,10 @@
 # Authenticating a user in your Microsoft Teams pages
 
->**NOTE: Upcoming breaking change for Tab authentication:**
+>**NOTE: Recent breaking change for Tab authentication:**
 >
-> To address a security concern, we'll be making a breaking change to tabs:
+> To address a security concern, we have made a change that may impact existing tab auth flows:
 >
->Currently, we are incorrectly allowing tabs to pop up auth windows to any arbitrary domain and listening to messages from that window as if they came from the domain of the tab content frame. This will no longer work in the near future.
+>Before our July update, we were incorrectly allowing tabs to pop up auth windows to any arbitrary domain and listening to messages from that window as if they came from the domain of the tab content frame. This is no longer permitted.
 > 
 >We've seen developers commonly use the unintentional behavior to do things like launch an auth popup directly to AAD, redirect back to their tab content's domain, then call notifySuccess. While this is a legitimate scenario, it can also allow a pop-up to a phishing site.
 > 

@@ -5,8 +5,11 @@ This changelog covers what's changed in the Microsoft Teams Developer platform a
 ## July 2017
 |**Category**|**Description**|**Link**|
 |-|-|-|
+|Bots|Bots menus are now in Public.|[Bot Menus](botmenu.md)|
 |Debugging|Added a new page on debugging tools and techniques.|[Running and Debugging](debugging.md)|
 |Samples|Added more information on running samples, and added a new sample for running new Microsoft Teams Graph APIs.|[Sample applications](samples.md)|
+|Sideloading|Add updated troubleshooting guidance for errors when sideloading a package.|[Troubleshooting Microsoft Teams Apps](troubleshooting.md#error-while-reading-manifestjson)|
+|Tabs|Update auth breaking change, now published.|[Authenticating a user in your Microsoft Teams pages](auth.md)| 
 
 ## June 2017
 |**Category**|**Description**|**Link**|
