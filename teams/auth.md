@@ -28,7 +28,7 @@ The tab [configuration](createconfigpage.md) and [content](createcontentpage.md)
 	This launches the pop-up window for the specified identity provider, so the user can sign in. Once the user has completed their authentication, the pop-up window will be redirected to the callback page you specified for your app. 
 5. In your app's callback page, call `microsoftTeams.authentication.notifySuccess()` or `microsoftTeams.authentication.notifyFailure()`.
 	
-	This will result in a callback to the successCallback or failureCallback function that you registered in step two, inside the original configuration or content page.  
+	This will result in a callback to the successCallback or failureCallback function that you registered in step four, inside the original configuration or content page.  
 6. If successful, you can now refresh or reload the page and show the configuration or content relevant to the now-authenticated user. If authentication fails, display an error message.
 7. Your app can set its own session cookie in the usual way so that the user need not sign in again when they return to your tab on the current device.
 
