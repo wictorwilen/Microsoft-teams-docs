@@ -28,7 +28,4 @@ Actionable connectors use the new Actionable Message card type within Microsoft 
 ## Bot message update
 
 Bot messages can be updated after they have been delivered, enabling apps to always show up-to-date state in their messages as new information becomes available. Learn more [here](botsconversation.md#updating-messages).
- 
-## Bot input menus
 
-Bot input menus are a way for bots to declare what commands they accept and help users auto-complete the message as they write it. Learn more [here](botmenu.md).

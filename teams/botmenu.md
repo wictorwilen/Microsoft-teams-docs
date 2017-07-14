@@ -1,8 +1,5 @@
 # Bot menus
 
->Note: bot menus are available in [Public Developer Preview](publicpreview.md) only.  Additionally, many features in this document are under construction, and as such, subject to change.
-
-
 To aid discovery and to help educate users about your bot's functionality, you can now add menus that surface whenever the user interacts with your bot. The menu will show the command text and also provide help text, such as a usage example or description of the command's purpose.
 
 When a user selects a menu item, the command string is inserted into the text box to aid in user completion of the bot message.
