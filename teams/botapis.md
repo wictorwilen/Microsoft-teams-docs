@@ -2,6 +2,8 @@
 
 Your bot can access additional context about the team or chat, such as user profile.  This information can be used to enrich your bot's functionality and provide a more personalized experience.
 
+> Please note:  these Microsoft Teams-specific bot APIs are best accessed through our Bot Builder Extension.  For C#/.NET, download our [NuGet package](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams).  For Node.js development, you can install the [`botbuilder-teams` NPM package](https://www.npmjs.com/package/botbuilder-teams).  
+
 
 ## Fetching the team roster
 
@@ -14,7 +16,12 @@ Your bot can query for the list of team members and their basic profile, which i
 You can directly issue a GET request to [`/conversations/{teamId}/members/`](https://docs.botframework.com/en-us/restapi/connector/#!/Conversations/Conversations_GetConversationMembers) resource using the `teamId` as the parameter in the API call.
 
 ```json
+<<<<<<< HEAD
 GET /v3/conversations/19:ja0cu120i1jod12j@skype.net/members
+=======
+GET /v3/conversations/19%3Aja0cu120i1jod12j%40skype.net/members
+X-MsTeamsTenantId: 72f988bf-86f1-41af-91ab-2d7cd011db47
+>>>>>>> 72ae189127d757318c491e8d7598adfed9fef181
 
 Response body
 [{
@@ -43,7 +50,7 @@ Response body
 
 #### .NET SDK sample
 
-With the new Teams .NET SDK, call `GetTeamsConversationMembersAsync()` using `Team.Id` obtained from `channelData` to return a list of user Ids.
+Call `GetTeamsConversationMembersAsync()` using `Team.Id` obtained from `channelData` to return a list of user Ids.
 
 ```csharp
 // Fetch the members in the current conversation
@@ -73,7 +80,7 @@ Note: this sample uses [the new Microsoft Teams Node.js SDK](https://www.npmjs.c
 
 ```js
 var conversationId = session.message.address.conversation.id;
-  connector.fetchMemberList(
+  connector.fetchMembers(
     (<builder.IChatConnectorAddress>session.message.address).serviceUrl,
     conversationId,
     (err, result) => {
@@ -95,19 +102,18 @@ The API call and SDK methods are identical to fetching team roster, as is the re
 
 ## Fetching the list of channels in a team
 
-Your bot can query the list of channels in a team. Note: right now the `General` channel is returned with `null` as the name, as this default channel allows for localization.
+Your bot can query the list of channels in a team. Note: right now the `General` channel is returned with `null` as the name, as this default channel allows for localization.  Also note: the `General` channel id always matchs the team Id.
 
 #### REST API sample
 
 You can directly issue a GET request to `/teams/{teamId}/conversations/` resource.
 
 ```json
-GET /v3/teams/19:ja0cu120i1jod12j@skype.net/conversations
+GET /v3/teams/19%3A033451497ea84fcc83d17ed7fb08a1b6%40thread.skype/conversations
 
 Response body
 {
     "conversations": [{
-    {
         "id": "19:033451497ea84fcc83d17ed7fb08a1b6@thread.skype",
         "name": null
     }, {
@@ -125,7 +131,7 @@ Response body
 
 #### .NET SDK sample
 
-Note: This sample uses the [new Microsoft Teams .NET SDK](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
+Note: This sample uses the [new Microsoft Teams .NET SDK `FetchChannelList` call](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
 
 ```csharp
  ConversationList channels = client.GetTeamsConnectorClient().Teams.FetchChannelList(activity.GetChannelData<TeamsChannelData>().Team.Id);
@@ -133,16 +139,16 @@ Note: This sample uses the [new Microsoft Teams .NET SDK](https://www.nuget.org/
 
 #### Node SDK sample
 
-Note: this sample uses [the new Microsoft Teams Node.js SDK](https://www.npmjs.com/package/botbuilder-teams):
+Note: this sample uses [the new Microsoft Teams Node.js SDK `fetchChannelList` call](https://www.npmjs.com/package/botbuilder-teams):
 
 ```javascript
 var teamId = session.message.sourceEvent.team.id;
   connector.fetchChannelList(
-    (<builder.IChatConnectorAddress>session.message.address).serviceUrl,
+    (session.message.address).serviceUrl,
     teamId,
     (err, result) => {
       if (err) {
-        session.endDialog('There is some error');
+        session.endDialog('There is an error');
       }
       else {
         session.endDialog('%s', JSON.stringify(result));
