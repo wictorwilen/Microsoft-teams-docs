@@ -437,7 +437,7 @@ public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
             // This helper method gets the query as an object.
             var query = activity.GetComposeExtensionQueryData();
 
-            if (query.CommandId == null && query.Parameters == null && query.Parameters.Count > 0)
+            if (query.CommandId != null && query.Parameters != null && query.Parameters.Count > 0)
             {
                 // query.Parameters has the parameters sent by client
                 var results = new ComposeExtensionResult()
