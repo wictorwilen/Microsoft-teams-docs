@@ -16,12 +16,7 @@ Your bot can query for the list of team members and their basic profile, which i
 You can directly issue a GET request to [`/conversations/{teamId}/members/`](https://docs.botframework.com/en-us/restapi/connector/#!/Conversations/Conversations_GetConversationMembers) resource using the `teamId` as the parameter in the API call.
 
 ```json
-<<<<<<< HEAD
 GET /v3/conversations/19:ja0cu120i1jod12j@skype.net/members
-=======
-GET /v3/conversations/19%3Aja0cu120i1jod12j%40skype.net/members
-X-MsTeamsTenantId: 72f988bf-86f1-41af-91ab-2d7cd011db47
->>>>>>> 72ae189127d757318c491e8d7598adfed9fef181
 
 Response body
 [{
