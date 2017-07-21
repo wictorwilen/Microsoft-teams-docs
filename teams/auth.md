@@ -25,7 +25,7 @@ The tab [configuration](createconfigpage.md) and [content](createcontentpage.md)
 
 4. When the user selects to sign in, call `microsoftTeams.authentication.authenticate({url: <auth URL>, width: <width>, height: <height>, successCallback: <successCallback>, failureCallback: <failureCallback>})`.
 	
-	This launches the pop-up window for the specified identity provider, so the user can sign in. Once the user has completed their authentication, the pop-up window will be redirected to the callback page you specified for your app. 
+	This launches the pop-up window in which the authorization should take place. This page should be hosted on your domain, and listed in the [`validDomains`](schema.md#validdomains) section of the manifest. Within this authorization page, you should redirect to your identity provider, so the user can sign in. Once the user has completed their authentication, the pop-up window will be redirected to the callback page you specified for your app. 
 5. In your app's callback page, call `microsoftTeams.authentication.notifySuccess()` or `microsoftTeams.authentication.notifyFailure()`.
 	
 	This will result in a callback to the successCallback or failureCallback function that you registered in step four, inside the original configuration or content page.  
