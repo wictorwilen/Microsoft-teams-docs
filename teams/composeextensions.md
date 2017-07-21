@@ -432,7 +432,7 @@ public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         if (activity.IsComposeExtensionQuery())
         {
             // This is the response object that will get sent back to the compose extension request.
-            ComposeExtensionResponse response = null;
+            ComposeExtensionResponse invokeResponse = null;
 
             // This helper method gets the query as an object.
             var query = activity.GetComposeExtensionQueryData();
@@ -446,6 +446,7 @@ public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
                     Type = "result",
                     Attachments = new List<ComposeExtensionAttachment>(),
                 };
+                invokeResponse.ComposeExtension = results;
             }
 
             // Return the response
