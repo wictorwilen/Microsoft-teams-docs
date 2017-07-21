@@ -5,6 +5,7 @@ This changelog covers what's changed in the Microsoft Teams Developer platform a
 ## July 2017
 |**Category**|**Description**|**Link**|
 |-|-|-|
+|Bot APIs|The Fetch Roster command no longer requires tenant ID in the X-MsTeamsTenantId HTTP request header.  New helper function in Teams Extension SDK.|[Bot APIs](botapis.md#fetching-the-team-roster)|
 |Bots|Bots menus are now in Public.|[Bot Menus](botmenu.md)|
 |Debugging|Added a new page on debugging tools and techniques.|[Running and Debugging](debugging.md)|
 |Samples|Added more information on running samples, and added a new sample for running new Microsoft Teams Graph APIs.|[Sample applications](samples.md)|
