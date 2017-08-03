@@ -6,7 +6,7 @@ A Teams app package is a zip file containing:
 * A manifest file named "manifest.json", which specifies attributes of your app and points to required resources for your experience, such the location of its tab configuration page or the Microsoft app ID for its bot.
 * A transparent "outline" icon and a full "color" icon.  See [below](#icons) for more information.
 
->**Tip:** Download our [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started.  These sample packages contain a manifest and sample icons suitable for sideloading.
+>**Tip:** Download our [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started.  These sample packages contain a template manifest with fake data and sample icons suitable for sideloading. Note that these will not load as is.
 
 ## Creating a manifest
 
