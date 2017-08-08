@@ -14,7 +14,7 @@ Most messages to and from your bot are of type `message`.  Your bot can send ric
 | Format | From user to bot  | From bot to user |  Notes |                                                           
 |:-------|:-------|:------------|:-------|
 | Rich text | ✔ | ✔ |  |  
-| Pictures | ✔ | ✔ | PNG, JPEG or GIF up to 20Mb |
+| Pictures | ✔ | ✔ | at most 1024x1024 and 1MB in size in PNG, JPEG, or GIF format (animated GIF not officially supported) |
 | Cards | ✘ | ✔ | Teams currently support Hero, Thumbnail, and O365 Connector cards  |
 | Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (e.g. U+1F600 for grinning face)  |
 
@@ -35,7 +35,7 @@ Microsoft Teams supports the following formatting options:
 
 Pictures are sent by adding attachments to a message.  You can find more information on attachments in the [Bot Framework documentation.](https://docs.botframework.com/en-us/core-concepts/attachments/) 
 
-Pictures can be PNG, JPEG or GIF up to 20Mb.
+Pictures can be at most 1024x1024 and 1MB in size in PNG, JPEG, or GIF format (animated GIF not officially supported).
 
 ## Cards 
 
@@ -66,7 +66,7 @@ Your card can contain inline images by including a link to the image content hos
 
 Images are scaled up or down in size while maintaining the aspect ratio to cover the image area, and then cropped from center to achieve the image aspect ratio for the card.
 
-Images must be at most 1024x1024 and 1MB in size, and in either PNG or JPEG format.
+Images must be at most 1024x1024 and 1MB in size in PNG, JPEG, or GIF format (animated GIF not officially supported).
 
 | Property | Type  | Description |                                                           
 |:-------|:-------|:------------|
