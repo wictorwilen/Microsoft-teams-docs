@@ -1,4 +1,4 @@
-# Messages, Cards, and Actions
+# Messages, cards, and actions
 
 A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel that they're communicating on posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly. 
 
@@ -12,9 +12,10 @@ Most messages to and from your bot are of type `message`.  Your bot can send ric
 | Format | From user to bot  | From bot to user |  Notes |                                                           
 |:-------|:-------|:------------|:-------|
 | Rich text | ✔ | ✔ |  |  
-| Pictures | ✔ | ✔ | PNG, JPEG or GIF up to 20Mb |
-| Cards | ✘ | ✔ | Teams currently support Hero, Thumbnail, and Office 365 Connector cards  |
-| Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (e.g., U+1F600 for grinning face)  |
+
+| Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
+| Cards | ✘ | ✔ | Teams currently supports Hero, Thumbnail, and Office 365 Connector cards  |
+| Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face)  |
 
 ### Message format
 You can set the optional [TextFormat](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html) property to control how your message's text content will be rendered.
@@ -33,7 +34,7 @@ Microsoft Teams supports the following formatting options:
 
 Pictures are sent by adding attachments to a message.  You can find more information on attachments in the [Bot Framework documentation](https://docs.botframework.com/en-us/core-concepts/attachments/).
 
-Pictures can be PNG, JPEG, or GIF up to 20 MB.
+Pictures can be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
 
 ### Cards 
 
@@ -64,7 +65,7 @@ Your card can contain inline images by including a link to the image content hos
 
 Images are scaled up or down in size while maintaining the aspect ratio to cover the image area, and then cropped from center to achieve the image aspect ratio for the card.
 
-Images must be at most 1024×1024 and 1 MB in size, and in either PNG or JPEG format.
+Images must be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
 
 | Property | Type  | Description |                                                           
 |:-------|:-------|:------------|
