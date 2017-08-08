@@ -1,6 +1,6 @@
-﻿# Overview of Microsoft Teams Developer Platform
+# Overview of Microsoft Teams Developer Platform
 
-Microsoft Teams is a chat-based workspace in Office 365 that integrates with the apps and services teams use to get work done together.  The Microsoft Teams Developer platform makes it easy for you to integrate your own service, whether you develop custom apps for your enterprise or SaaS applications for teams around the world.
+Microsoft Teams is a chat-based workspace in Office 365 that integrates with the apps and services teams use to get work done together.  The Microsoft Teams developer platform makes it easy for you to integrate your own service, whether you develop custom apps for your enterprise or SaaS applications for teams around the world.
 
 For the best and most extensible option for adding your service into Teams, create a Microsoft Teams app.  A Microsoft Teams app is a package of services that you host, that can be distributed through the Teams product or sideloaded by teams.
 
@@ -8,12 +8,11 @@ For quick one-off integration of your existing webhook, you can take advantage o
 
 > Don't have Microsoft Teams? Get a free Office 365 developer subscription or activate it for your existing Office 365 account. [Here's how](setup.md).
 
-
 ## Apps in Microsoft Teams
 
 Apps in Microsoft Teams allow you to make your service available to users within Teams in contexts that make sense, all through one Teams app package that users can acquire through our in-product app gallery, via the Office Store, or sideloaded directly by your team.  Via this single package, your app can assist users:
-* via multiple **app scopes**: such as in team channels or personally via the user's "app bar".
-* via multiple **app capabilities**: such as bots in conversation or tabs in rich web views
+* via multiple **app scopes**, such as in team channels or personally via the user's "app bar"
+* via multiple **app capabilities**, such as bots in conversation or tabs in rich web views
 
 <!-- TODO: table of capabilities, screenshots of personal scope -->
 
@@ -23,27 +22,27 @@ Here are the capabilities your app can leverage today.  You can offer all of the
 
 ### Tabs
 
-Tabs allow team members to access your service on a dedicated canvas, within a channel or in user's personal app space. You can leverage your existing web app to create a great tab experience within Teams.  Examples of tabs include dashboards and data visualization, documents, notes, task managers and design canvases.
+Tabs allow team members to access your service on a dedicated canvas, within a channel or in a user's personal app space. You can leverage your existing web app to create a great tab experience within Teams.  Examples of tabs include dashboards and data visualization, documents, notes, task managers, and design canvases.
 
-Tabs in team channels allow teams to work together with the tools and data you provide, in the channel's context, and to have conversations about them.
+Tabs in team channels allow teams to work together with the tools and data you provide, in the channel's context,and to have conversations about them.
 
 Personal tabs allow individual users to work privately with your tools and data, in their own dedicated app space.  Use these tabs to surface information catering to the individual such as personal task lists or dashboards, or provide help and support information.
 
 [Get started with tabs.](tabs.md)
 
-!["Example of a tab showing data, alongside a conversation about the tab data"](images/tab_example.png)
+![Example of a tab showing data, alongside a conversation about the tab data](images/tab_example.png)
 
 ### Bots
 
-Build and connect intelligent bots to interact with Microsoft Teams users naturally through chat. Bots can answer natural language questions and perform lightweight tasks such as querying bug information or kicking off a build.​ Any bot you've created using the [Microsoft Bot Framework](https://dev.botframework.com/) can easily be made to work in Microsoft Teams.
+Build and connect intelligent bots to interact with Microsoft Teams users naturally through chat. Bots can answer natural-language questions and perform lightweight tasks such as querying bug information or kicking off a build.​ Any bot you've created using the [Microsoft Bot Framework](https://dev.botframework.com/) can easily be made to work in Microsoft Teams.
 
-While bots can take advantage of the rich natural language processing provided by the Bot Framework, your bot can also act as the command line interface of your experience.  Or you can choose to make a notification-only bot, to push information relevant to your users directly to them in a channel or direct message.
+While bots can take advantage of the rich natural-language processing provided by the Bot Framework, your bot can also act as the command-line interface of your experience.  Or you can choose to make a notification-only bot, which can push information relevant to your users directly to them in a channel or direct message.
 
 [Get started with bots.](bots.md)
 
-!["Example of a bot assisting a user"](images/bot_example.png)
+![Example of a bot assisting a user](images/bot_example.png)
 
-### Compose Extensions
+### Compose extensions
 
 >[Public Developer Preview only](publicpreview.md)
 
@@ -51,7 +50,7 @@ Leverage the power of your web service to provide a quick and easy way for your 
 
 [Get started with compose extensions.](composeextensions.md)
 
-!["Example of a compose extension"](images/ComposeExtension/CEOverviewExample.png)
+![Example of a compose extension](images/ComposeExtension/CEOverviewExample.png)
 
 ### Connectors
 
@@ -63,23 +62,15 @@ You can integrate your service by posting rich Connector cards into custom incom
 
 [Get started with connectors.](connectors.md)
 
-!["Gallery of connectors"](images/connector_example.png)
+![Gallery of connectors](images/connector_example.png)
 <!-- TODO - update image to latest -->
 
-## Custom Bots
+## Custom bots
 
-Custom bots provide a way for you to easily extend your team. You can easily get up and running with a bot that responds to messages within a team. You can use them for custom workflows and commands, such as kicking off a build or checking the latest set of livesite issues. Custom bots are an easy way of creating interactive bots without having to go through the full process of creating a bot via the Microsoft Bot Framework.  
+Custom bots provide a convenient way for you to extend your team. You can easily get up and running with a bot that responds to messages within a team. You can use them for custom workflows and commands, such as kicking off a build or checking the latest set of live-site issues. Custom bots are an easy way of creating interactive bots without having to go through the full process of creating a bot via the Microsoft Bot Framework.  
 
 [Get started with custom bots.](custombot.md)
 
 ## Submit your questions, bugs, feature requests, and contributions
 
 We listen to the developer community across [several channels](feedback.md).
-
-
-	
-	
-
-
-
-
