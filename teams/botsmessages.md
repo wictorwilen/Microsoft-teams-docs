@@ -212,7 +212,7 @@ The `value` property can be either a serialized JSON string or a JSON object.
       "name":"John Smith"
    },
    "conversation":{
-      "id":"19:dljaocuaje108182ojo@thread.skype;messageid=1498171086622"
+      "id":"19:malejcou081i20ojmlcau0@thread.skype;messageid=1498171086622"
    },
    "recipient":{
       "id":"28:76096e45-119f-4736-859c-6dfff54395f7",
