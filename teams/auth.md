@@ -1,10 +1,10 @@
 # Authenticating a user in your Microsoft Teams pages
 
->**NOTE: Upcoming breaking change for Tab authentication:**
+>**NOTE: Recent breaking change for Tab authentication:**
 >
-> To address a security concern, we'll be making a breaking change to tabs:
+> To address a security concern, we have made a change that may impact existing tab auth flows:
 >
->Currently, we are incorrectly allowing tabs to pop up auth windows to any arbitrary domain and listening to messages from that window as if they came from the domain of the tab content frame. This will no longer work in the near future.
+>Before our July update, we were incorrectly allowing tabs to pop up auth windows to any arbitrary domain and listening to messages from that window as if they came from the domain of the tab content frame. This is no longer permitted.
 > 
 >We've seen developers commonly use the unintentional behavior to do things like launch an auth popup directly to AAD, redirect back to their tab content's domain, then call notifySuccess. While this is a legitimate scenario, it can also allow a pop-up to a phishing site.
 > 
@@ -25,10 +25,10 @@ The tab [configuration](createconfigpage.md) and [content](createcontentpage.md)
 
 4. When the user selects to sign in, call `microsoftTeams.authentication.authenticate({url: <auth URL>, width: <width>, height: <height>, successCallback: <successCallback>, failureCallback: <failureCallback>})`.
 	
-	This launches the pop-up window for the specified identity provider, so the user can sign in. Once the user has completed their authentication, the pop-up window will be redirected to the callback page you specified for your app. 
+	This launches the pop-up window in which the authorization should take place. This page should be hosted on your domain, and listed in the [`validDomains`](schema.md#validdomains) section of the manifest. Within this authorization page, you should redirect to your identity provider, so the user can sign in. Once the user has completed their authentication, the pop-up window will be redirected to the callback page you specified for your app. 
 5. In your app's callback page, call `microsoftTeams.authentication.notifySuccess()` or `microsoftTeams.authentication.notifyFailure()`.
 	
-	This will result in a callback to the successCallback or failureCallback function that you registered in step two, inside the original configuration or content page.  
+	This will result in a callback to the successCallback or failureCallback function that you registered in step four, inside the original configuration or content page.  
 6. If successful, you can now refresh or reload the page and show the configuration or content relevant to the now-authenticated user. If authentication fails, display an error message.
 7. Your app can set its own session cookie in the usual way so that the user need not sign in again when they return to your tab on the current device.
 

@@ -47,12 +47,12 @@ For more general information on the Seller Dashboard, see [Use the Seller Dashbo
 
 Teams app approval is a free service provided by the Office Store that validates that your app works as described, contains all appropriate metadata, and provides content that would be valuable to an end user.
 
-In order for your Teams app to be approved:
+For your Teams app to be approved:
 * It must not contain inadmissible or offensive material.
 * It must be stable and functional.
 * Any material that you associate with your experience, such as descriptions and support documentation, must be accurate. Use correct spelling, capitalization, punctuation, and grammar in your descriptions and materials.
-* It must pass all [Office Store validation policies for Teams tabs and bots](https://msdn.microsoft.com/en-us/library/office/jj220035.aspx).  Please note that these policies are subject to change.
-* For tabs, it must provide value in to users outside of what is possible by simply pinning your website into Teams.  This means at minimum, it must remove extraneous chrome and disallow navigating outside the configured context. See [here](https://aka.ms/microsoftteamsdesignguidelines) for more guidance.
+* It must pass all current [Office Store validation policies](https://dev.office.com/officestore/docs/validation-policies) for Teams tabs and bots.  Please note that these policies are subject to change.
+* For tabs, it must provide value in to users outside of what is possible by simply pinning your website into Teams.  This means at minimum, it must remove extraneous chrome and disallow navigating outside the configured context. See the [Microsoft Teams Design Guidelines](https://aka.ms/microsoftteamsdesignguidelines) for more guidance.
 
 When the validation process is complete, you will receive a message to let you know that either your Teams experience is approved, or it fails one of the stated policies.  You can also follow these steps to check the approval status in the Seller Dashboard:
 1. Sign in to the Seller Dashboard.
