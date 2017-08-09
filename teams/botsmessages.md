@@ -136,23 +136,24 @@ Properties are the same as for the hero or thumbnail card.
 
 Buttons are shown stacked at the bottom of the card. Button text is always on a single line and will be truncated if the text exceeds the button width. Any additional buttons beyond the maximum number supported by the card will not be shown.
 
-## Card Actions in Teams
+## Card actions in teams
 
-Teams supports the following [`CardAction`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments#process-events-within-rich-cards) Types:
-| CardAction.Type | CardAction.Value | 
+Teams supports the following activity ([`CardAction`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments#process-events-within-rich-cards)) types.
+
+| Type | Action | 
 | --- | --- |
-| `openUrl` | URL to be opened in the built-in browser |
-| `imBack `| Text of the message to send to the bot (from the user who clicked the button or tapped the card). This message (from user to bot) will be visible to all conversation participants. |
-| `invoke` | Payload of message to send to the bot (from the user who clicked the button or tapped the card).  This message will not be visible. |
+| `openUrl` | Opens a URL in the built-in browser. |
+| `messageBack` | Sends a message and payload to the bot (from the user who clicked the button or tapped the card) and sends a separate message to the chat stream. |
+| `imBack `| Sends a message to the bot (from the user who clicked the button or tapped the card). This message (from user to bot) is visible to all conversation participants. |
+| `invoke` | Sends a message and payload to the bot (from the user who clicked the button or tapped the card). This message is not visible. |
 
->Notes:
->* Teams does not support `postBack`, `signin` or other CardActions.
->* Teams does not support SuggestedActions
-
+>**Notes**
+>* Teams does not support `postBack`, `signin`, or other `CardAction` types.
+>* Teams does not support the `SuggestedActions` property.
 
 ### Action - openUrl
 
-This action type specifies a URL to launch, in the default browser.  Note that your bot does not receive any notice on which button was clicked.
+This action type specifies a URL to launch in the default browser.  Note that your bot does not receive any notice on which button was clicked.
 
 The `value` field must contain a full and properly formed URL.
 
@@ -166,15 +167,18 @@ The `value` field must contain a full and properly formed URL.
 
 ### Action - messageBack
 
->**NEW**
+>**New**
 
-This action type is meant to replace imBack and Invoke. With `messageBack`, you can create a fully customized action with the following properties:
-* The `title` which appears as the button label.
-* The `displayText` that is echoed by the user into the chat stream when the action is performed.
-* The `value` payload that is sent to your bot when the action is performed. This is where you can encode context for the action, such as unique identifiers.
-* The `text` that is sent to your bot when the action is performed. This property can be used to simplify bot development so that your code only has to check a single top-level property to dispatch bot logic.
+This action type replaces `imBack` and `invoke`. With `messageBack`, you can create a fully customized action with the following properties:
 
-MessageBack provides the flexibility such that the action either leave a visible user message in the history or not, depending on your desired experience.
+| Property | Description |
+| --- | --- |
+| `title` | Appears as the button label. |
+| `displayText` | Echoed by the user into the chat stream when the action is performed. |
+| `value` | Sent to your bot when the action is performed. You can encode context for the action, such as unique identifiers. |
+| `text` | Sent to your bot when the action is performed. Use this property to simplify bot development: Your code can check a single top-level property to dispatch bot logic. |
+
+The flexibility of `messageBack` means that your code can choose whether to leave a visible user message in the history, depending on the desired experience.
 
 ```json
 {
@@ -234,12 +238,11 @@ MessageBack provides the flexibility such that the action either leave a visible
       }
    }
 }
-
 ```
 
 ### Action - imBack
 
-> **Note:** it is recommended that you use `messageBack` as the preferred action type.
+> **Note:** We recommend that you use `messageBack` instead of `imBack`.
 
 This action triggers a return message to your bot, as if the user typed it in a normal chat message.  Thus, your user, and all other users if in a channel, will see that button response.
 
@@ -255,7 +258,7 @@ The `value` field should contain the text string echoed in the chat and therefor
 
 ### Action - invoke
 
-> **Note:** it is recommended that you use `messageBack` as the preferred action type.
+> **Note:** We recommend that you use `messageBack` instead of `invoke`.
 
 The `invoke` message type silently sends a JSON payload that you define to your bot.  This is useful if you want to send more detailed information back to your bot without having to send via a simple `imBack` text string.  Note that the user, in 1:1 or in channel, sees no notification as a result of their click.
 
