@@ -1,10 +1,10 @@
 # Messages, cards, and actions
 
-A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel that they're communicating on posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly. 
+A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel on which they're communicating posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly. 
 
-Most content sent between a user and your bot uses `messageType: message`.  For event-style messages, please review [Microsoft Teams bot events](botevents.md).  Note that Speech is currently not supported.
+Most content sent between a user and your bot uses `messageType: message`.  For event-style messages, please review [Microsoft Teams bot events](botevents.md). Note that Speech is currently not supported.
 
-For more information about core messaging functionality of the Bot Framework, please review the [documentation](https://docs.botframework.com/en-us/core-concepts/messages/#navtitle) and see BotBuilder samples [here](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards).
+For more information about core messaging functionality of the Bot Framework, please review [Send and receive messages](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages) in the Bot Framework documentation and see [BotBuilder samples](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards) on GitHub.
 
 ## Messages
 Most messages to and from your bot are of type `message`.  Your bot can send rich text, pictures and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
@@ -192,6 +192,8 @@ The flexibility of `messageBack` means that your code can choose whether to leav
   ]
 }
 ```
+
+The `value` property can be either a serialized JSON string or a JSON object.
 
 #### Inbound message schema example
 ```json
