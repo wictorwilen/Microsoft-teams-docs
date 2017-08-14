@@ -166,6 +166,8 @@ The `value` field must contain a full and properly formed URL.
 ### Action - messageBack
 
 >**New**
+>
+>This feature is available in [Public Developer Preview](publicpreview.md) only.
 
 This action type replaces `imBack` and `invoke`. With `messageBack`, you can create a fully customized action with the following properties:
 
