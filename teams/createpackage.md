@@ -1,16 +1,16 @@
-﻿# Create the package for your Microsoft Teams app
+# Create the package for your Microsoft Teams app
 
-App experiences in Teams are defined by their app manifest, and bundled in an app package for use in sideloading or Store submission.  You'll need an app package to test your experience in Teams, via the sideloading process documented [here](sideload.md).
+App experiences in Teams are defined by their app manifest, and bundled in an app package for use in sideloading or Office Store submission.  You'll need an app package to test your experience in Teams, via the sideloading process documented [here](sideload.md).
 
-A Teams app package is a zip file containing:
+A Teams app package is a .zip file containing:
 * A manifest file named "manifest.json", which specifies attributes of your app and points to required resources for your experience, such the location of its tab configuration page or the Microsoft app ID for its bot.
-* A transparent "outline" icon and a full "color" icon.  See [below](#icons) for more information.
+* A transparent "outline" icon and a full "color" icon.  See [Icons](#icons) later in this topic for more information.
 
->**Tip:** Download our [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started.  These sample packages contain a template manifest with fake data and sample icons suitable for sideloading. Note that these will not load as is.
+>**Tip:** Download our [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started. Each package contains a template manifest with fake data and sample icons suitable for sideloading. These sample packages will not load as-is; you must customize them.
 
 ## Creating a manifest
 
-Your manifest file must be named "manifest.json" and be at the top level of the sideload package.  Note that manifests and packages built previously might support an older version of the schema.  For Teams apps and especially Store submission, you must use the current manifest schema, documented [here](schema.md). 
+Your manifest file must be named "manifest.json" and be at the top level of the sideload package.  Note that manifests and packages built previously might support an older version of the schema.  For Teams apps and especially Store submission, you must use the current [manifest schema](schema.md). 
 
 > **Tip:** Specify the schema at the beginning of your manifest to enable IntelliSense or similar support from your code editor:
 > 
@@ -18,17 +18,17 @@ Your manifest file must be named "manifest.json" and be at the top level of the 
 
 ## Icons
 
-Microsoft Teams requires two icons for your app experience, to be used within the product.  Icons must be included in the package, and referenced via relative path in the manifest.
+Microsoft Teams requires two icons for your app experience, to be used within the product. Icons must be included in the package and referenced via relative paths in the manifest. The maximum length of each path is 2048 bytes.
 
 ### color
 
-The `color` icon is used throughout Microsoft Teams, for example in app and tab galleries, bots, flyouts, etc.  This icon should be 96x96 pixels.  If it has transparency, the `accentColor` will be used as the background.
+The `color` icon is used throughout Microsoft Teams (in app and tab galleries, bots, flyouts, and so on).  This icon should be 96x96 pixels.  If it has transparency, the `accentColor` will be used as the background.
 
 ### outline
 
-The `outline` icon will be used in three specific places:  the App Bar, Pinnned Compose Extensions, and chiclets.  This icon must be 20x20; it needs to be a trace image using white, and use a transparent background.  Here are a few good examples:
+The `outline` icon will be used in three specific places:  the app bar, pinnned compose extensions, and chiclets.  This icon must be 20x20; it needs to be a trace image using white, and use a transparent background.  Here are a few good examples:
 
-!["Sample Outline icons"](images/icons/sample20x20s.png)
+!["Sample outline icons"](images/icons/sample20x20s.png)
 
 For example, say your company is Contoso.  You'd submit two icons:
 
