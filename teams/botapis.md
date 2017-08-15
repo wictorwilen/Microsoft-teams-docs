@@ -1,19 +1,18 @@
-﻿# Bot APIs
+# Bot APIs
 
 Your bot can access additional context about the team or chat, such as user profile.  This information can be used to enrich your bot's functionality and provide a more personalized experience.
 
-> Please note:  these Microsoft Teams-specific bot APIs are best accessed through our Bot Builder Extension.  For C#/.NET, download our [NuGet package](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams).  For Node.js development, you can install the [`botbuilder-teams` NPM package](https://www.npmjs.com/package/botbuilder-teams).  
-
+>**Please note:** These Microsoft Teams–specific bot APIs are best accessed through our Bot Builder Extension.  For C#/.NET, download our [NuGet package](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams).  For Node.js development, you can install the [`botbuilder-teams` NPM package](https://www.npmjs.com/package/botbuilder-teams).  
 
 ## Fetching the team roster
 
->New: with a recent update you no longer need to include the tenant ID in the X-MsTeamsTenantId HTTP request header.
+>**New:** You no longer need to include the tenant ID in the X-MsTeamsTenantId HTTP request header.
 
-Your bot can query for the list of team members and their basic profile, which includes Teams user ID and Azure ActiveDirectory information such as name and objectId. You can use this information to correlate user identities, for example to check if a user logged into a tab through AAD credentials is a member of the team.
+Your bot can query for the list of team members and their basic profiles, which includes Teams user IDs and Azure Active Directory  (Azure AD) information such as name and objectId. You can use this information to correlate user identities; for example, to check whether a user logged into a tab through Azure AD credentials is a member of the team.
 
-#### REST API sample
+#### REST API example
 
-You can directly issue a GET request to [`/conversations/{teamId}/members/`](https://docs.botframework.com/en-us/restapi/connector/#!/Conversations/Conversations_GetConversationMembers) resource using the `teamId` as the parameter in the API call.
+You can directly issue a GET request to [`/conversations/{teamId}/members/`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-api-reference#get-conversation-members) resource using `teamId` as the parameter in the API call.
 
 ```json
 GET /v3/conversations/19:ja0cu120i1jod12j@skype.net/members
@@ -43,9 +42,9 @@ Response body
 }]
 ```
 
-#### .NET SDK sample
+#### .NET example
 
-Call `GetTeamsConversationMembersAsync()` using `Team.Id` obtained from `channelData` to return a list of user Ids.
+Call `GetTeamsConversationMembersAsync()` using `Team.Id` obtained from `channelData` to return a list of user IDs.
 
 ```csharp
 // Fetch the members in the current conversation
@@ -69,9 +68,9 @@ await context.PostAsync($"People in this conversation: {sb.ToString()}");
 
 >Note: GetTeamsConversationMembersAsync(teamId, tenantId) override is now deprecated. You should migrate your code to use GetTeamsConversationMembersAsync(teamId).
 
-#### Node SDK sample
+#### Node.js example
 
-Note: this sample uses [the new Microsoft Teams Node.js SDK](https://www.npmjs.com/package/botbuilder-teams):
+The following example uses the new [Microsoft Bot Builder SDK Teams Extensions](https://www.npmjs.com/package/botbuilder-teams) for Node.js.
 
 ```js
 var conversationId = session.message.address.conversation.id;
@@ -97,11 +96,15 @@ The API call and SDK methods are identical to fetching team roster, as is the re
 
 ## Fetching the list of channels in a team
 
-Your bot can query the list of channels in a team. Note: right now the `General` channel is returned with `null` as the name, as this default channel allows for localization.  Also note: the `General` channel id always matchs the team Id.
+Your bot can query the list of channels in a team.
 
-#### REST API sample
+>Note: Right now, the default General channel is returned with `null` as the name to allow for localization.
+>
+>Also note: The channel ID for General always matchs the team ID.
 
-You can directly issue a GET request to `/teams/{teamId}/conversations/` resource.
+#### REST API example
+
+You can directly issue a GET request to `/teams/{teamId}/conversations/`.
 
 ```json
 GET /v3/teams/19%3A033451497ea84fcc83d17ed7fb08a1b6%40thread.skype/conversations
@@ -124,17 +127,17 @@ Response body
 }
 ```
 
-#### .NET SDK sample
+#### .NET example
 
-Note: This sample uses the [new Microsoft Teams .NET SDK `FetchChannelList` call](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
+The following example uses the `FetchChannelList` call from the new [Microsoft Teams .NET SDK](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
 
 ```csharp
- ConversationList channels = client.GetTeamsConnectorClient().Teams.FetchChannelList(activity.GetChannelData<TeamsChannelData>().Team.Id);
+ConversationList channels = client.GetTeamsConnectorClient().Teams.FetchChannelList(activity.GetChannelData<TeamsChannelData>().Team.Id);
 ```
 
-#### Node SDK sample
+#### Node.js example
 
-Note: this sample uses [the new Microsoft Teams Node.js SDK `fetchChannelList` call](https://www.npmjs.com/package/botbuilder-teams):
+The following example uses `fetchChannelList` call from the new [Microsoft Bot Builder SDK Teams Extensions](https://www.npmjs.com/package/botbuilder-teams) for Node.js.
 
 ```javascript
 var teamId = session.message.sourceEvent.team.id;
