@@ -114,7 +114,9 @@ You can use the O365ConnectorCard class in the Bot Builder SDK Microsoft Teams e
 
 ### Carousel layout
 
-The [carousel layout](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html) can be used to show a carousel of cards, with associated action buttons.
+The [carousel layout](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments) can be used to show a carousel of cards, with associated action buttons.
+
+>**Note:** A carousel can display a maximum of 7 cards per message.
 
 ![Example of a carousel of cards](images/Cards/carousel.png)
 
