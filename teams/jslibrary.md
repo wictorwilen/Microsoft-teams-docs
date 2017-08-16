@@ -1,4 +1,4 @@
-﻿# Microsoft Teams JavaScript Library API reference
+# Microsoft Teams JavaScript library API reference
 
 > Please note: Use of the Microsoft Teams tab SDK is subject to the [Terms of Use](https://aka.ms/bf-terms), [Privacy Statement](https://aka.ms/bf-privacy), and [Code of Conduct](https://aka.ms/bf-conduct) for the Microsoft Bot Framework (Preview).
 
@@ -121,7 +121,7 @@ _Introduced in v0.4_
 The developer-defined unique ID for the entity this content points to.
 
 #### `groupId?: string`
-The O365 group ID for the team with which the content is associated. This field is available only when **needsIdentity** is set in the manifest.
+The O365 group ID for the team with which the content is associated. This field is available only when the **identity** element of the **permissions** property is set in the manifest.
 
 #### `locale: string`
 The current locale that the user has configured for the app, formatted as *languageId*-*countryId* (such as en-us).
@@ -137,10 +137,10 @@ For more information about generating a deep link with a subEntityId, see [`shar
 The current UI theme the user is using.
 
 #### `tid?: string`
-The current user's Azure AD tenant ID. Because a malicious party can host content in a malicious browser, this value should be used only as a hint about the user and never as proof of identity. This field is available only when **needsIdentity** is set in the manifest.
+The current user's Azure AD tenant ID. Because a malicious party can host content in a malicious browser, this value should be used only as a hint about the user and never as proof of identity. This field is available only when the **identity** element of the **permissions** property is set in the manifest.
 
 #### `upn?: string`
-The current user's UPN. Because a malicious party can host content in a malicious browser, this value should be used only as a hint about the user and never as proof of identity. This field is available only when **needsIdentity** is set in the manifest.
+The current user's UPN. Because a malicious party can host content in a malicious browser, this value should be used only as a hint about the user and never as proof of identity. This field is available only when the **identity** element of the **permissions** property is set in the manifest.
 
 ### <a name="DeepLinkParameters"></a>`DeepLinkParameters`
 
