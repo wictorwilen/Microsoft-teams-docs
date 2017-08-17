@@ -9,10 +9,9 @@ For more information about core messaging functionality of the Bot Framework, pl
 ## Messages
 Most messages to and from your bot are of type `message`.  Your bot can send rich text, pictures and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
 
-| Format | From user to bot  | From bot to user |  Notes |                                                           
+| Format | From user to bot  | From bot to user |  Notes |
 |:-------|:-------|:------------|:-------|
-| Rich text | ✔ | ✔ |  |  
-
+| Rich text | ✔ | ✔ |  |
 | Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
 | Cards | ✘ | ✔ | Teams currently supports Hero, Thumbnail, and Office 365 Connector cards  |
 | Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face)  |
