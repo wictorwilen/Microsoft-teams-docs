@@ -24,9 +24,9 @@ You can enable team members to create and share links to items within your tab -
 
 Check out our [sample tabs](samples.md) on GitHub.
 
-## Media format support for content
+## Media format support for audio and video content
 
-Microsoft Teams desktop client only supports the following media formats.
+Microsoft Teams desktop client only supports the following media formats for audio and video content.
 
 * Vorbis - http://www.vorbis.com/ 
 * PCM_U8, PCM_S16LE, PCM_S32LE, PCM_f32LE, PCM_S16BE, PCM_S24BE, PCM_MULAW - https://wiki.multimedia.cx/?title=PCM 
