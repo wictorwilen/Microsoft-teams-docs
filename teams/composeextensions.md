@@ -6,6 +6,8 @@ Compose extensions are a powerful new way for users to engage with your app with
 
 ![Example of compose extension card](images/ComposeExtension/CEExample.png)
 
+Compose extensions appear along the bottom of the compose box. A few are built in, such as Emoji, Giphy, and Sticker. Choose the More Options icon (**&#8943;**) to see other compose extensions, including those that you add from the app gallery or sideload yourself.
+
 How would you use compose extensions? Here are a few possibilities:
 
 * Work items and bugs
@@ -18,13 +20,13 @@ How would you use compose extensions? Here are a few possibilities:
 
 Building a compose extension involves implementing familiar Microsoft Teams developer-platform concepts like bot APIs, rich cards, and tabs.
 
-At its core, a compose extension is a cloud-hosted service that listens to user requests and responds with either structured data (cards) or rich media.  You integrate your service with Microsoft Teams via the Bot Framework APIs, which establishes the protocol for receiving and replying to user requests.
+At its core, a compose extension is a cloud-hosted service that listens to user requests and responds with either structured data (cards) or rich media. You integrate your service with Microsoft Teams via the Bot Framework APIs, which establishes the protocol for receiving and replying to user requests.
 
 ![Compose extension message flow diagram](images/ComposeExtension/CEFlow.png)
 
 ### Register in the Bot Framework
 
-If you haven't done so already, you must first register a bot with the Microsoft Bot Framework. Visit [this link](https://msdn.microsoft.com/en-us/microsoft-teams/botscreate) for instructions.  The Microsoft app ID and callback endpoints for your bot, as defined there, will be used in your compose extension to receive and respond to user requests.  Remember to enable the Microsoft Teams channel for your bot.
+If you haven't done so already, you must first register a bot with the Microsoft Bot Framework. Visit [this link](https://msdn.microsoft.com/en-us/microsoft-teams/botscreate) for instructions. The Microsoft app ID and callback endpoints for your bot, as defined there, will be used in your compose extension to receive and respond to user requests. Remember to enable the Microsoft Teams channel for your bot.
 
 Record your bot's app ID—you will need to supply this value in your app manifest.
 
@@ -41,12 +43,12 @@ The extension definition is an object that has the following structure:
 | Property name | Purpose | Required? |
 |---|---|---|
 | `botId` | The unique Microsoft app ID for the bot as registered with the Bot Framework. This should typically be the same as the ID for your overall Teams app. | Yes |
-| `scopes` | Array declaring whether this extension can be added to `personal` or `team` scopes. | Yes |
+| `scopes` | Array declaring whether this extension can be added to `personal` or `team` scopes (or both). | Yes |
 | `commands` | Array of commands that this compose extension supports. This is currently limited to one command. | Yes |
 
 #### Define commands
 
-Your compose extension should declare one command, which will appear when the user selects your app from the `...` option in the chat window. 
+Your compose extension should declare one command, which will appear when the user selects your app from the `...` option in the compose box. 
 
 ![Compose extension UI pop-up, showing the search option](images/ComposeExtension/CESearch.png)
 
@@ -124,43 +126,42 @@ In the app manifest, your command item is an object with the following structure
  
 ### Test via sideloading
 
-You can test your compose extension by sideloading your app.  To do this, navigate to a team and its Apps dashboard.  Choose the "Sideload an app" link in the bottom right of the page.  Browse to the .zip file containing your apps manifest.
+You can test your compose extension by sideloading your app. To do this, navigate to a team and its Apps dashboard. Choose the "Sideload an app" link in the bottom right of the page. Browse to the .zip file that contains your app manifest and open it.
 
-If the manifest is loaded correctly, your app will appear in the list of that team's installed apps. 
+If the manifest is loaded correctly, your app will appear in the list of installed apps for that team.
 
-To invoke the compose extension, navigate to any of your chats or channels.  Choose the "..." below the message compose box.  Your compose extension’s commands should now appear in the list within the dialog.  Choose any command to bring up the search page.
+To invoke the compose extension, navigate to any of your chats or channels. Choose the More Options (**&#8943;**) icon in the compose box. The commands of your compose extension should now appear in the list within the dialog. Choose any command to open the search page.
 
 >**Note:** Your app appears in channels only if you declare the `team` scope. Similarly, it appears in your chats only if it supports the `personal` scope.
 
 ## Receive and respond to queries
 
-Now that you have your app up and running, it’s time to add some functionality.  Every request to your compose extension is done via an `Activity` that is posted to your callback URL.  The request contains information about the user command, such as ID and parameter values.  The request also supplies metadata about the context in which your extension was invoked, including user and tenant ID, along with chat ID or channel and team IDs.
+Now that you have your app up and running, it’s time to add some functionality. Every request to your compose extension is done via an `Activity` object that is posted to your callback URL. The request contains information about the user command, such as ID and parameter values. The request also supplies metadata about the context in which your extension was invoked, including user and tenant ID, along with chat ID or channel and team IDs.
 
 ### Receiving user requests
 
-When a user performs a query, Microsoft Teams sends your service a standard Bot Framework activity.  It should perform its logic for activity with type `invoke`.
+When a user performs a query, Microsoft Teams sends your service a standard Bot Framework activity. It should perform its logic for activity with type `invoke`.
 
-In addition to the standard bot activity properties, the payload contains the following relevant request metadata:
+In addition to the standard bot activity properties, the payload contains the following request metadata:
 
 |Property name|Purpose|
 |---|---|
-|`type`| Must be `invoke`. |
-|`name`| Type of command that is issued to your service.  For now, the only valid value is `composeExtension/query`. |
+|`type`| Type of request; must be `invoke`. |
+|`name`| Type of command that is issued to your service. Only one value is currently supported: `composeExtension/query` |
 |`from.id`| ID of the user that sent the request. |
 |`from.name`| Name of the user that sent the request. |
 |`channelData.tenant.id`| Azure Active Directory tenant ID. |
 |`channelData.channel.id`| If the request was made in a channel, this is the channel ID. |
 |`channelData.team.id`| If the request was made in a channel, this is the team ID. |
-|`clientInfo`| Additional metadata about the user’s client, such as locale/language and the type of client. |
-
+|`clientInfo`| Additional metadata about the client, such as locale/language and type of client. |
 
 The request parameters itself are found in the value object, which includes the following properties:
 
 | Property name | Purpose |
 |---|---|
-| `commandId` | The name of the command invoked by the user, matching one of declared commands in the app manifest. |
+| `commandId` | The name of the command invoked by the user, matching one of commands declared in the app manifest. |
 | `parameters` | Array of parameters. Each parameter object contains the parameter name, along with the parameter value provided by the user. |
-| `queryOptions` | Pagination parameters:<br>`skip`: skip count for this query<br>`count`: number of elements to return |
+| `queryOptions` | Pagination parameters: <br>`skip`: skip count for this query <br>`count`: number of elements to return |
 
 >**Note:** You should authenticate any request to your service. See [Messages, cards, and actions](https://msdn.microsoft.com/en-us/microsoft-teams/botsmessages) for more detailed documentation on receiving messages from the Bot Framework.
 
@@ -211,16 +212,16 @@ The request parameters itself are found in the value object, which includes the 
 
 ### Responding to user requests
 
-When the user performs a query, Microsoft Teams issues a synchronous HTTP request to your service.  At that point, your code has 5 seconds to provide an HTTP response to the request.  During this time, your service can perform additional lookup, or any other business logic needed to serve the request.
+When the user performs a query, Microsoft Teams issues a synchronous HTTP request to your service. At that point, your code has 5 seconds to provide an HTTP response to the request. During this time, your service can perform additional lookup, or any other business logic needed to serve the request.
 
-Your service should respond with the results matching the user query.  The response must indicate an HTTP status code of `200 OK` and a valid application/json object with the following body:
+Your service should respond with the results matching the user query. The response must indicate an HTTP status code of `200 OK` and a valid application/json object with the following body:
 
 |Property name|Purpose|
 |---|---|
 |`composeExtension`|Top-level response envelope.|
-|`composeExtension.type`|Should be of value `result`.|
-|`composeExtension.attachmentLayout`|`list`: list of card objects containing thumbnail, title, and text fields. This is currently the only supported layout type, with more coming soon.|
-|`composeExtension.attachments`|Array of valid bot attachment objects.  Currently the following types are supported:<br>`application/vnd.microsoft.card.thumbnail` <br>`application/vnd.microsoft.card.hero`<br>`application/vnd/microsoft.teams.card.o365connector`|
+|`composeExtension.type`|Type of response; must be `result`.|
+|`composeExtension.attachmentLayout`|Specifies the layout of the attachments. Only one value is currently supported: <br>`list`: a list of card objects containing thumbnail, title, and text fields|
+|`composeExtension.attachments`|Array of valid bot attachment objects. Currently the following types are supported: <br>`application/vnd.microsoft.card.thumbnail` <br>`application/vnd.microsoft.card.hero` <br>`application/vnd/microsoft.teams.card.o365connector`|
 
 #### Response card types and previews
 
@@ -232,10 +233,10 @@ We support the following attachment types:
 
 For full documentation on the thumbnail and hero card types, see [Messages, cards, and actions](https://msdn.microsoft.com/en-us/microsoft-teams/botsmessages). For additional documentation regarding the Office 365 Connector card, see [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) in the Outlook Dev Center.
 
-The result list is displayed in the Microsoft Teams UI with a preview of each item.  The preview is generated in one of two ways:
+The result list is displayed in the Microsoft Teams UI with a preview of each item. The preview is generated in one of two ways:
 
 * Using the `preview` property within the `attachment` object.
-* Extracted from the basic `title`, `text`, and `image` properties of the attachment.  These are used only if the `preview` property is not set and these properties are available.
+* Extracted from the basic `title`, `text`, and `image` properties of the attachment. These are used only if the `preview` property is not set and these properties are available.
 
 #### Response example
 
@@ -289,7 +290,7 @@ The result list is displayed in the Microsoft Teams UI with a preview of each it
 
 ### Default query
 
-When the user first brings up the compose extension dialog, Microsoft Teams issues a "default" query.  Your service can respond to this query with a set of prepopulated results.  This can be useful for displaying, for instance, recently viewed items, favorites, or any other information that is not dependent on user input.
+When the user first opens the compose extension dialog box, Microsoft Teams issues a "default" query. Your service can respond to this query with a set of prepopulated results. This can be useful for displaying, for instance, recently viewed items, favorites, or any other information that is not dependent on user input.
 
 The default query has the same structure as any regular user query, except with a parameter `initialRun` whose Boolean value is `true`.
 
@@ -327,7 +328,7 @@ Every request to your services includes the obfuscated ID of the user that perfo
 },
 ```
 
-The `id` value is guaranteed to be that of the authenticated Teams user.  It can be used as a key to look up credentials or any cached state in your service. In addition, each request contains the user’s Azure Active Directory tenant ID, which can be used to identify the user’s organization. If applicable, the request also contains the team and channel IDs from which the request originated.
+The `id` value is guaranteed to be that of the authenticated Teams user. It can be used as a key to look up credentials or any cached state in your service. In addition, each request contains the Azure Active Directory tenant ID of the user, which can be used to identify the user’s organization. If applicable, the request also contains the team and channel IDs from which the request originated.
 
 ## Authentication
 
