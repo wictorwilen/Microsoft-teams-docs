@@ -8,6 +8,8 @@ As tabs are web content you build and deploy, you may use any technology you wis
 
 As bots must be built with the Bot Framework, we recommend you use one of the languages supported by the SDKs provided by the framework:  .NET / C# or Node.js.  While the Bot Framework also provides REST APIs usable by any language you choose, the SDKs provide additional functionality and helper functions to make the development process easier.
 
+We also provide [Teams-specific SDKs](sdk.md) that extend the basic Bot Framework functionality to make it easy to integrate with the Teams platform.
+
 ### Where do I sign up to start building Teams apps?
 
 There are no prerequisites or additional development accounts to start building app for Microsoft Teams.  While you must have access to Microsoft Teams via an Office 365 subscription, no other sign-up or program access is required.  You do need to create accounts for the Bot Framework should you build a bot, and create a Dev Center account should you submit your app for publication.

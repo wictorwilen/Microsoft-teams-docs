@@ -23,7 +23,7 @@ Microsoft Teams supports much of the common [Bot Framework](https://dev.botframe
 
 - [Design a great bot](design.md#building-a-great-bot): Microsoft Teams is the place for group and team collaboration.  Consider what functionality your bot can bring to this collaboration environment, via both 1:1 conversations, or when added as part of a channel conversation.  A great bot on Teams will also find ways to leverage the unique Tabs feature, via a [configurable channel tab](tabs.md), or a [static bot tab](statictab.md).
 - [Create and register your bot in the Bot Framework](botscreate.md):  Take advantage of the great tools, documentation, and community provided by the Bot Framework team.
-- [Develop your bot](botsconversation.md): Add basic conversation flow and leverage channel-specific functionality. 
+- [Develop your bot](botsconversation.md): Add basic conversation flow and leverage channel-specific functionality. If you're developing in .NET or Node.js, we provide [extensions](sdk.md) to the basic Bot Framework SDKs to make it easier to build your bot for Teams.
 - Test your bot:  [Add your bot](botsadd.md) for 1:1 or team conversations to see it in action.
 - Publish your bot: Create your Teams package, adding other capabilities, and submit it to the Office Store.
 

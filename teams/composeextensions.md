@@ -18,7 +18,7 @@ Compose extensions are a powerful new way for users to engage with your app with
 # Adding a compose extension to your app
 Building a compose extension involves implementing familiar Microsoft Teams developer platform concepts like bot APIs, rich cards, and tabs.
 
-At its core, a compose extension is a cloud-hosted service that listens to user requests and responds with either structured data (cards) or rich media.  You integrate your service with Microsoft Teams via the bot framework APIs, which establishes the protocol for receiving and replying to user requests.
+At its core, a compose extension is a cloud-hosted service that listens to user requests and responds with either structured data (cards) or rich media.  You integrate your service with Microsoft Teams via the bot framework APIs, which establishes the protocol for receiving and replying to user requests. The Teams [SDKs](sdk.md) for .NET and Node.js also help make it easy to add compose extension functionality to your app.
 
 
 !["Compose extension message flow diagram."](images/ComposeExtension/CEFlow.png)
