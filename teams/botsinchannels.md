@@ -6,7 +6,9 @@ To add a bot to a team, you'll need to follow the [packaging](createpackage.md) 
 
 ## Designing a great bot for channels
 
-Bots added to a team become another team member, who can be @mentioned as part of the conversation.  In fact, bots only receive messages when they are @mentioned, so other conversations on the channel are not sent to the bot.
+Bots added to a team become another team member, who can be @mentioned as part of the conversation. In fact, bots only receive messages when they are @mentioned, so other conversations on the channel are not sent to the bot. 
+
+>Note: For convenience, when replying to bot messages in a channel, the bot name will be prepended automatically.
 
 A bot in a channel should provide information relevant and appropriate for all members of the team.  While your bot can certainly provide any information relevant to the experience, keep in mind conversations with it are visible to all members of the channel.  Therefore, a great bot in a channel should add value to all users on the channel, and certainly not inadvertantly share information that would otherwise be more relevant in a personal context. 
 
