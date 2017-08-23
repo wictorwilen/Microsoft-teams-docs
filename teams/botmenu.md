@@ -1,11 +1,10 @@
 # Bot menus
 
-To aid discovery and to help educate users about your bot's functionality, you can now add menus that surface whenever the user interacts with your bot. The menu will show the command text and also provide help text, such as a usage example or description of the command's purpose.
+To aid discovery and to help educate users about your bot’s functionality, you can now add menus that surface whenever the user interacts with your bot. The menu will show the command text and also provide help text, such as a usage example or description of the command’s purpose.
+
+![Screenshot of bot menu](images/Bot/bot-menus-bot-menu-sample.png)
 
 When a user selects a menu item, the command string is inserted into the text box to aid in user completion of the bot message.
-
-
-![Bot menu example](images/Bot/botmenusmall.png)
 
 ## App manifest
 
@@ -55,7 +54,7 @@ To create a bot menu, add a new [`commandLists`](schema.md#bots-commandlists) ob
 }
 ```
 
-#### Manifest excerpt - separate menu per scope
+### Manifest excerpt - separate menu per scope
 
 ```json
 {
@@ -99,8 +98,8 @@ To create a bot menu, add a new [`commandLists`](schema.md#bots-commandlists) ob
 
 ## Best practices
 
-* Keep it simple: the bot menu is meant to present the key 3-5 capabilities or commands of your bot.
+* Keep it simple: The bot menu is meant to present the key 3&ndash;5 capabilities or commands of your bot.
 
-* Keep it short: menu options shouldn’t be extremely long and complex natural language statements – they should be simple commands.
+* Keep it short: Menu options shouldn’t be extremely long and complex natural language statements&mdash;they should be simple commands.
 
-* Always available: bot menu actions/commands should be always invokable, regardless of what state of the conversation or dialog the bot is in.
+* Always available: Bot menu actions/commands should be always invokable, regardless of the state of the conversation or the dialog the bot is in.
