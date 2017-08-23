@@ -16,13 +16,13 @@ How would you use compose extensions? Here are a few possibilities:
 * Images and media content
 * Sales opportunities and leads
 
-## Adding a compose extension to your app
+## Add a compose extension to your app
 
 Building a compose extension involves implementing familiar Microsoft Teams developer-platform concepts like bot APIs, rich cards, and tabs.
 
 At its core, a compose extension is a cloud-hosted service that listens to user requests and responds with either structured data (cards) or rich media. You integrate your service with Microsoft Teams via the Bot Framework APIs, which establishes the protocol for receiving and replying to user requests.
 
-![Compose extension message flow diagram](images/ComposeExtension/CEFlow.png)
+![Diagram of message flow for compose extensions](images/ComposeExtension/CEFlow.png)
 
 ### Register in the Bot Framework
 
@@ -51,7 +51,7 @@ The extension definition is an object that has the following structure:
 
 Your compose extension should declare one command, which appears when the user selects your app from the **More options** (**&#8943;**) button in the compose box. 
 
-<!-- ![Compose extension UI pop-up, showing the search option](images/ComposeExtension/CESearch.png) -->  
+![Screenshot of list of compose extensions in Teams](images/ComposeExtension/compose-extension-list.png)
 
 In the app manifest, your command item is an object with the following structure:
 
@@ -144,7 +144,7 @@ If you set `canUpdateConfiguration` to `true` in the manifest, you enable the **
 
 >**Important:** Compose extensions that use `canUpdateConfiguration` can't be published in the Office Store at this time.
 
-### Handling onQuery
+### Handle onQuery events
 
 A compose extension receives an `onQuery` event when anything happens in the compose extension window or is sent to the window.
 
@@ -156,15 +156,19 @@ Next, check whether `initialRun` is set; if so, your compose extension should pr
 
 The remainder of your handler for `onQuery` prompts the user for information, displays a list of preview cards, and returns the card selected by the user.
 
-### Handling onQuerySettingsUrl and onSettingsUpdate
+### Handle onQuerySettingsUrl and onSettingsUpdate events
 
-The `onQuerySettingsUrl` and `onSettingsUpdate` events work together to enable the **Settings** menu item. Your handler for `onQuerySettingsUrl` returns the URL for the configuration page; after the configuration page closes, your handler for `onSettingsUpdate` accepts and saves the returned state. (This is the one case in which `onQuery` *doesn't* receive the response from the configuration page.)
+The `onQuerySettingsUrl` and `onSettingsUpdate` events work together to enable the **Settings** menu item.
+
+![Screenshots of locations of Settings menu item](images/ComposeExtension/compose-extension-settings-menu-item.png)
+
+Your handler for `onQuerySettingsUrl` returns the URL for the configuration page; after the configuration page closes, your handler for `onSettingsUpdate` accepts and saves the returned state. (This is the one case in which `onQuery` *doesn't* receive the response from the configuration page.)
 
 ## Receive and respond to queries
 
 Every request to your compose extension is done via an `Activity` object that is posted to your callback URL. The request contains information about the user command, such as ID and parameter values. The request also supplies metadata about the context in which your extension was invoked, including user and tenant ID, along with chat ID or channel and team IDs.
 
-### Receiving user requests
+### Receive user requests
 
 When a user performs a query, Microsoft Teams sends your service a standard Bot Framework activity. It should perform its logic for activity with type `invoke`.
 
@@ -236,7 +240,7 @@ The request parameters itself are found in the value object, which includes the 
 }
 ```
 
-### Responding to user requests
+### Respond to user requests
 
 When the user performs a query, Microsoft Teams issues a synchronous HTTP request to your service. At that point, your code has 5 seconds to provide an HTTP response to the request. During this time, your service can perform additional lookup, or any other business logic needed to serve the request.
 
@@ -343,7 +347,7 @@ The default query has the same structure as any regular user query, except with 
 }
 ```
 
-## Identifying the user
+## Identify the user
 
 Every request to your services includes the obfuscated ID of the user that performed the request, as well as the display name.
 
@@ -371,7 +375,7 @@ The sequence is as follows:
 
 Your service should verify that the authentication code received in step 6 matches the one from step 5.  This ensures that a malicious user does not try to spoof or compromise the sign-in flow.  This effectively "closes the loop" to finish the secure authentication sequence.
 
-### Responding with a sign-in action
+### Respond with a sign-in action
 
 To prompt an unauthenticated user to sign in, respond with a suggested action that includes the authentication URL.
 
@@ -396,13 +400,13 @@ To prompt an unauthenticated user to sign in, respond with a suggested action th
 
 >**Note:** For the sign-in experience to be hosted in a Teams pop-up, the domain portion of the URL must be in your app’s list of valid domains. (See [validDomains](schema#validdomains) in the manifest schema.)
 
-### Starting the sign-in flow
+### Start the sign-in flow
 
 Your sign-in experience should be responsive and fit within a popup window. It should integrate with the [Microsoft Teams JavaScript library](jslibrary), which uses message passing.
 
 As with other embedded experiences running inside Microsoft Teams, your code inside the window needs to first call `microsoftTeams.initialize()`. If your code performs an OAuth flow, you should pass the Teams user ID into your window, which also then gets passed to the OAuth sign-in URL.
 
-### Completing the sign-in flow
+### Complete the sign-in flow
 
 When the sign-in request completes and redirects back to your page, it should perform the following steps:
 
