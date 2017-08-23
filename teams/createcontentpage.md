@@ -23,4 +23,3 @@ You can enable team members to create and share links to items within your tab -
 ## Samples
 
 Check out our [sample tabs](samples.md) on GitHub.
-
