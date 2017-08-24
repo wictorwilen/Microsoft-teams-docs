@@ -101,7 +101,7 @@ In the app manifest, your command item is an object with the following structure
           "id": "searchCmd",
           "description": "Search Bing for information on the web",
           "title": "Search",
-          "initialRun": "true",
+          "initialRun": true,
           "parameters": [{
             "name": "searchKeyword",
             "description": "Enter your search keywords",
