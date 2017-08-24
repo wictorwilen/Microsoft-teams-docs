@@ -218,6 +218,7 @@ var button = new CardAction()
         "option": "opt1"
     },
     "timestamp": "2017-02-10T04:11:19.614Z",
+    "localTimestamp": "2017-02-09T21:11:19.614-07:00",
     "id": "f:6894910862892785420",
     "channelId": "msteams",
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",

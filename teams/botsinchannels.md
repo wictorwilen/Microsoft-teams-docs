@@ -1,4 +1,4 @@
-﻿# Bots in Channels
+# Bots in Channels
 
 Microsoft Teams allows users to bring bots into their channel conversations.  By adding a bot as a team member, all users of the team can take advantage of the bot functionality right in the channel conversation.  You can also access Teams-specific functionality within your bot like querying team information and @mentioning users.
 
@@ -167,6 +167,7 @@ session.send(generalMessage);
     "type": "message", 
     "text": "Hey <at>Larry Jin</at> check out this message", 
     "timestamp": "2016-10-29T00:51:05.9908157Z", 
+    "localTimestamp": "2016-10-28T17:51:05.9908157-07:00", 
     "serviceUrl": "https://skype.botframework.com", 
     "channelId": "msteams", 
     "from": { 

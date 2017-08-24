@@ -19,9 +19,12 @@ Depending on which scopes have been declared, your bot can receive messages in t
 For incoming messages, your bot will receive an [Activity](https://docs.botframework.com/en-us/core-concepts/reference/#activity) object, of type `message`.  While the Activity object may contain other types of information, like [channel events sent to your bot](botevents.md), the `message` type represents communication between bot and user.
 
 Your bot will recieve a payload that contains the user message `Text` as well as other information about the user, the source of the message and Teams information.  Of note:
-* `channelId` - the channel identifier will always be `msteams`
-* `from.id` - this is a unique and encrypted id for that user for your bot, and is suitable as a key should your app wish to store user data.  Note, though, that this is unique for your bot and cannot be directly used outside your bot instance in any meaningful way to identify that user.
-* `channelData.tenant.id` - this is the tenant id for the user
+
+* `timestamp` – This timestamp is in Coordinated Universal Time (UTC).
+* `localTimestamp` – This timestamp is in the time zone of the sender.
+* `channelId` – The channel identifier will always be `msteams`.
+* `from.id` – This is a unique and encrypted ID for that user for your bot and is suitable as a key should your app wish to store user data. Note, though, that this is unique for your bot and cannot be directly used outside your bot instance in any meaningful way to identify that user.
+* `channelData.tenant.id` – This is the tenant ID for the user.
 
 #### Full inbound Schema example
 
@@ -30,6 +33,7 @@ Your bot will recieve a payload that contains the user message `Text` as well as
     "type": "message",
     "id": "1485983408511",
     "timestamp": "2017-02-01T21:10:07.437Z",
+    "localTimestamp": "2017-02-01T14:10:07.437-07:00",
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",
     "channelId": "msteams",
     "from": {

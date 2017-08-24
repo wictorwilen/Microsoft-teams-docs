@@ -1,6 +1,11 @@
-# Microsoft Teams Developer Platform Changelog
+# Microsoft Teams developer platform changelog
 
-This changelog covers what's changed in the Microsoft Teams Developer platform and documentation, including updates to the APIs as well as new features and tools available to developers.
+This changelog covers what's changed in the Microsoft Teams developer platform and documentation, including updates to the APIs as well as new features and tools available to developers.
+
+## August 2017
+|**Category**|**Description**|**Link**|
+|-|-|-|
+|Bots|Added `localTimestamp`; similar to `timestamp` but uses the sender's time zone.|[Sending and receiving messages](botsconversation.md#receiving-messages)|
 
 ## July 2017
 |**Category**|**Description**|**Link**|

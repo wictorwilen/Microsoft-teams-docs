@@ -44,6 +44,7 @@ POST /v3/conversations/a%3A1pL6i0oY3C0K8oAj8/activities/1493070356924
 {
   "type": "message",
   "timestamp": "2017-04-24T21:46:00.9663655Z",
+  "localTimestamp": "2017-04-24T14:46:00.9663655-07:00",
   "serviceUrl": "https://callback.com",
   "channelId": "msteams",
   "from": {
@@ -76,11 +77,8 @@ POST /v3/conversations/a%3A1pL6i0oY3C0K8oAj8/activities/1493070356924
 
 >Coming soon!
 
-
 ## Deep linking
 
 To navigate the user to content within your tab, your message must include an attachment with a tap action. This tap action should be of type `OpenUrl` and have a value that follows the [Microsoft Teams deep linking format](deeplinks.md).
 
 >Note: if the deep link does not follow the Teams format, then clicking on the notification in the Feed will navigate the user first to the chat with the bot. From there, the user can engage the attachment’s tap action to navigate to an external website.
-
-

@@ -184,6 +184,7 @@ The request parameters itself are found in the value object, which includes the 
   },
   "type": "invoke",
   "timestamp": "2017-05-01T15:45:51.876Z",
+  "localTimestamp": "2017-05-01T08:45:51.876-07:00",
   "id": "f:622749630322482883",
   "channelId": "msteams",
   "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",
@@ -403,6 +404,7 @@ At this point, the window closes and control is passed to the Teams client. The 
     },
     "type": "invoke",
     "timestamp": "2017-04-26T05:18:25.629Z",
+    "localTimestamp": "2017-04-25T22:18:25.629-07:00",
     "entities": [{
         "locale": "en-US",
         "country": "US",
