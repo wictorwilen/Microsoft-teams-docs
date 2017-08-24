@@ -1,17 +1,18 @@
 # Microsoft Teams bot events
 
-Teams will send notifications to your bot for changes or events that happen in contexts where your bot is active.  You can use these events to trigger service logic, such as:
+Microsoft Teams sends notifications to your bot for changes or events that happen in contexts where your bot is active. You can use these events to trigger service logic, such as the following:
 
-* Trigger welcome message when your bot is added to a team.
-* Query and cache team information when the bot is added to a team.
-* Upated cached information on team membership or channel information.
-* Remove cached information for a team if the bot is removed.
+* Trigger a welcome message when your bot is added to a team
+* Query and cache team information when the bot is added to a team
+* Update cached information on team membership or channel information
+* Remove cached information for a team if the bot is removed
 
-All bot events are sent as an `Activity` object where `messageType` defines what information is in the `Activity` object. For messages of type `message`, see [Bot Conversation Overview](botsconversation.md).
+Each bot event is sent as an `Activity` object in which `messageType` defines what information is in the object. For messages of type `message`, see [Sending and receiving messages](botsconversation.md).
 
-Teams-specific events, usually triggered off the `conversationUpdate` type, will have additional Teams event information passed as part of the `channelData` object, and therefore your event handler must query the `channelData` payload for the Teams `eventType` and additional event-specific metadata.
+Teams-specific events, usually triggered off the `conversationUpdate` type, have additional Teams event information passed as part of the `channelData` object, and therefore your event handler must query the `channelData` payload for the Teams `eventType` and additional event-specific metadata.
 
-The following enumerate the events that your bot can receive and take action on:
+The following table lists the events that your bot can receive and take action on.
+
 |Type|Payload object|Teams `eventType` |Description|
 |---|---|---|---|
 | `conversationUpdate` |`membersAdded`| `teamMemberAdded`|[Bot or team member was added to team](botevents.md#team-member-or-bot-addition)|
@@ -20,22 +21,20 @@ The following enumerate the events that your bot can receive and take action on:
 | `conversationUpdate` | |`channelCreated`| In a team where bot is member, [a channel was created](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelRenamed`| In a team where bot is member, [a channel was renamed](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelDeleted`| In a team where bot is member, [a channel was deleted](botevents.md#channel-updates)|
-| _`contactRelationUpdate`_ | | | This [Bot Framework provided ActivityType](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#contactrelationupdate) is not directly supported in Microsoft Teams. |
-| _`deleteUserData`_ | | | This [Bot Framework provided ActivityType](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#deleteuserdata) is not directly supported in Microsoft Teams |
+| _`contactRelationUpdate`_ | | | This [Bot Framework–provided activity type](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#contactrelationupdate) is not directly supported in Microsoft Teams |
+| _`deleteUserData`_ | | | This [Bot Framework–provided activity type](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#deleteuserdata) is not directly supported in Microsoft Teams |
 
-# Activities
+## Team member or bot addition
 
-## Team member or Bot addition
-
-The [conversationUpdate](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#conversationUpdate) event is sent to your bot when it receives information on membership updates for teams where it has been added.  It will also receive an update when it has been added for the first time specifically for 1:1 conversations.  Note that the user information (`Id`) is unique for your bot, and may be cached for future use by your service (e.g. direct message a specific user.)
+The [conversationUpdate](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#conversationUpdate) event is sent to your bot when it receives information on membership updates for teams where it has been added. It will also receive an update when it has been added for the first time specifically for 1:1 conversations. Note that the user information (`Id`) is unique for your bot and can be cached for future use by your service (such as sending a message to a specific user).
 
 ### Bot or user added to a team
 
-The `conversationUpdate` event with the `membersAdded` object in the payload will be sent when either a bot is added to a team, or a new user is added to a team where a bot has been added. Teams also adds the `"eventType.teamMemberAdded"` in the `channelData` object.
+The `conversationUpdate` event with the `membersAdded` object in the payload is sent when either a bot is added to a team or a new user is added to a team where a bot has been added. Microsoft Teams also adds `eventType.teamMemberAdded` in the `channelData` object.
 
-Since this event is sent in both cases, you should parse out the `membersAdded` object to determine if the addition was a user or the bot itself.  For the latter, it is a best practice to send a Welcome Message to the channel to users can understand what features your bot provides.
+Because this event is sent in both cases, you should parse the `membersAdded` object to determine whether the addition was a user or the bot itself. For the latter, a best practice is to send a welcome message to the channel so users can understand the features your bot provides.
 
-#### Example code - checking to see if bot was the added member 
+#### Example code - checking whether bot was the added member 
 
 ##### .NET SDK
 
@@ -51,6 +50,7 @@ Since this event is sent in both cases, you should parse out the `membersAdded` 
 ```
 
 ##### Node.js
+
 ```javascript
 const builder = require('botbuilder');
 
@@ -75,6 +75,7 @@ bot.on('conversationUpdate', (msg) => {
 ```
 
 #### Schema example - bot added to team
+
 ```json
 {     
     "membersAdded": [         
@@ -113,14 +114,14 @@ bot.on('conversationUpdate', (msg) => {
 
 ### Bot added for personal (1:1) context only
 
-Your bot will receive a `conversationUpdate` with `membersAdded` when a users adds it directly for 1:1 chat.  In this case, the payload that your bot receives will not contain the `channelData.team` object.  You should use this as a filter in case you wish your bot to offer a different Welcome depending on personal or team addition.
+Your bot receives a `conversationUpdate` with `membersAdded` when a user adds it directly for 1:1 chat. In this case, the payload that your bot receives doesn't contain the `channelData.team` object. You should use this as a filter in case you want your bot to offer a different welcome depending on scope.
 
-## Team member or Bot removed
+## Team member or bot removed
 
-The `conversationUpdate` event with the `membersRemoved` object in the payload will be sent when either your bot is removed from a team, or a user is removed from a team where a bot has been added. Teams also adds the `"eventType.teamMemberRemoved"` in the `channelData` object.  Once again, you should parse the `membersRemoved` object for your bot id to determine who was removed.
+The `conversationUpdate` event with the `membersRemoved` object in the payload is sent when either your bot is removed from a team, or a user is removed from a team where a bot has been added. Microsoft Teams also adds `eventType.teamMemberRemoved` in the `channelData` object. As with the `membersAdded` object, you should parse the `membersRemoved` object for your bot ID to determine who was removed.
 
+#### Schema example - Team member removed
 
-#### Schema example - Team Member Removed
 ```json
 {     
     "membersRemoved": [         
@@ -160,11 +161,12 @@ The `conversationUpdate` event with the `membersRemoved` object in the payload w
 
 ## Team name updates
 
->Note: at this time, there is no functionality to query all team names, and team name is not returned in other payloads beside this event.
+>**Note:** At this time, there is no functionality to query all team names, and team name is not returned in other payloads beside this event.
 
-Your bot will be notified when the team it is in has been renamed.  It will receive a `conversationUpdate` event with  `"eventType.teamRenamed"` in the `channelData` object.  Please note that there are no notifications for team creation or deletion, since bots only exist as part of teams and have no visibility outside the scope in which they have been added.
+Your bot is notified when the team it is in has been renamed. It receives a `conversationUpdate` event with `eventType.teamRenamed` in the `channelData` object. Please note that there are no notifications for team creation or deletion, because bots exist only as part of teams and have no visibility outside the scope in which they have been added.
 
 #### Schema example - Team renamed
+
 ```json
 { 
     "type": "conversationUpdate", 
@@ -199,14 +201,16 @@ Your bot will be notified when the team it is in has been renamed.  It will rece
  
 ## Channel updates
 
-Your bot will be notified when a channel is created, renamed, or deleted, in a team where it has been added.  Once again, the `conversationUpdate` event will be received, and Teams-specific event identifier will be sent as part of the `channelData.eventType` object, where the channel data's  `channel.id` is the GUID for the channel, and `channel.name` contains the channel name itself.  
+Your bot is notified when a channel is created, renamed, or deleted in a team where it has been added. Again, the `conversationUpdate` event is received, and a Teams-specific event identifier is sent as part of the `channelData.eventType` object, where the channel data's  `channel.id` is the GUID for the channel, and `channel.name` contains the channel name itself.  
 
-The channel events are:
+The channel events are as follows:
+
 * **channelCreated** - a user adds a new channel to the team
 * **channelRenamed** - a user renames an existing channel
 * **channelDeleted** - a user removes a channel
 
 #### Full schema example (channelCreated)
+
 ```json
 {     
     "type": "conversationUpdate",     
@@ -242,7 +246,8 @@ The channel events are:
 } 
 ```
 
-#### Schema snippet - channelData for channelRenamed 
+#### Schema snippet - channelData for channelRenamed
+
 ```json
 ...
 "channelData": {         
@@ -261,7 +266,8 @@ The channel events are:
 ...
 ```
 
-#### Schema snippet - channelData for channelDeleted 
+#### Schema snippet - channelData for channelDeleted
+
 ```json     
 ...
 "channelData": {         
@@ -279,5 +285,3 @@ The channel events are:
 } 
 ...
 ```
-
-
