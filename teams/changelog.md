@@ -5,7 +5,7 @@ This changelog covers what's changed in the Microsoft Teams developer platform a
 ## August 2017
 |**Category**|**Description**|**Link**|
 |-|-|-|
-|Bots|Added `localTimestamp` to `clientInfo`; similar to the `timestamp` property, but uses the sender's time zone.|[Sending and receiving messages](botsconversation.md#receiving-messages)|
+|Bots|Added `localTimestamp`; similar to `timestamp` but uses the sender's time zone.|[Sending and receiving messages](botsconversation.md#receiving-messages)|
 
 ## July 2017
 |**Category**|**Description**|**Link**|
