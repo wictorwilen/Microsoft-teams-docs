@@ -84,6 +84,7 @@ bot.on('conversationUpdate', (msg) => {
     ],     
     "type": "conversationUpdate",
     "timestamp": "2017-02-23T19:38:35.312Z",
+    "localTimestamp": "2017-02-23T12:38:35.312-07:00",
     "id": "f:5f85c2ad",     
     "channelId": "msteams",     
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",     
@@ -128,7 +129,8 @@ The `conversationUpdate` event with the `membersRemoved` object in the payload w
         }     
     ],     
     "type": "conversationUpdate",     
-    "timestamp": "2017-02-23T19:37:06.96Z",     
+    "timestamp": "2017-02-23T19:37:06.96Z",
+    "localTimestamp": "2017-02-23T12:37:06.96-07:00",
     "id": "f:d8a6a4aa",     
     "channelId": "msteams",     
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",     
@@ -166,7 +168,8 @@ Your bot will be notified when the team it is in has been renamed.  It will rece
 ```json
 { 
     "type": "conversationUpdate", 
-    "timestamp": "2017-02-23T19:35:56.825Z", 
+    "timestamp": "2017-02-23T19:35:56.825Z",
+    "localTimestamp": "2017-02-23T12:35:56.825-07:00",
     "id": "f:1406033e", 
     "channelId": "msteams", 
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/", 
@@ -207,7 +210,8 @@ The channel events are:
 ```json
 {     
     "type": "conversationUpdate",     
-    "timestamp": "2017-02-23T19:34:07.478Z",     
+    "timestamp": "2017-02-23T19:34:07.478Z",
+    "localTimestamp": "2017-02-23T12:34:07.478-07:00",
     "id": "f:dd6ec311",     
     "channelId": "msteams",     
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",     
