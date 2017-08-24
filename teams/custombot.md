@@ -45,6 +45,7 @@ Currently, users must mention the custom bot for it to receive messages.
     "type": "message",
     "id": "1485983408511",
     "timestamp": "2017-02-01T21:10:07.437Z",
+    "localTimestamp": "2017-02-01T14:10:07.437-07:00",
     "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",
     "channelId": "msteams", 
     "from": {
