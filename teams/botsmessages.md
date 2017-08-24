@@ -1,23 +1,24 @@
 # Messages, cards, and actions
 
-A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel on which they're communicating posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly. 
+A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel on which they're communicating posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly.
 
-Most content sent between a user and your bot uses `messageType: message`.  For event-style messages, please review [Microsoft Teams bot events](botevents.md). Note that Speech is currently not supported.
+Most content sent between a user and your bot uses `messageType: message`. For event-style messages, please review [Microsoft Teams bot events](botevents.md). Note that Speech is currently not supported.
 
-For more information about core messaging functionality of the Bot Framework, please review [Send and receive messages](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages) in the Bot Framework documentation and see [BotBuilder samples](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards) on GitHub.
+For more information about core messaging functionality of the Bot Framework, please review [Create messages](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-create-messages) and [Send and receive messages](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages) in the Bot Framework documentation and see [Bot Builder samples](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards) on GitHub.
 
 ## Messages
-Most messages to and from your bot are of type `message`.  Your bot can send rich text, pictures and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
+
+Most messages to and from your bot are of type `message`. Your bot can send rich text, pictures and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
 
 | Format | From user to bot  | From bot to user |  Notes |                                                           
 |:-------|:-------|:------------|:-------|
-| Rich text | ✔ | ✔ |  |  
-
+| Rich text | ✔ | ✔ |  |
 | Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
 | Cards | ✘ | ✔ | Teams currently supports Hero, Thumbnail, and Office 365 Connector cards  |
 | Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face)  |
 
 ### Message format
+
 You can set the optional [TextFormat](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html) property to control how your message's text content will be rendered.
 
 Microsoft Teams supports the following formatting options:
@@ -134,7 +135,7 @@ Properties are the same as for the hero or thumbnail card.
 
 Buttons are shown stacked at the bottom of the card. Button text is always on a single line and will be truncated if the text exceeds the button width. Any additional buttons beyond the maximum number supported by the card will not be shown.
 
-## Card actions in teams
+## Card actions
 
 Teams supports the following activity ([`CardAction`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments#process-events-within-rich-cards)) types.
 
@@ -166,19 +167,17 @@ The `value` field must contain a full and properly formed URL.
 ### Action - messageBack
 
 >**New**
->
->This feature is available in [Public Developer Preview](publicpreview.md) only.
 
-This action type replaces `imBack` and `invoke`. With `messageBack`, you can create a fully customized action with the following properties:
+With `messageBack`, you can create a fully customized action with the following properties:
 
 | Property | Description |
 | --- | --- |
 | `title` | Appears as the button label. |
-| `displayText` | Echoed by the user into the chat stream when the action is performed. |
-| `value` | Sent to your bot when the action is performed. You can encode context for the action, such as unique identifiers. |
+| `displayText` | Optional. Echoed by the user into the chat stream when the action is performed. This text is *not* sent to your bot. |
+| `value` | Sent to your bot when the action is performed. You can encode context for the action, such as unique identifiers or a JSON object. |
 | `text` | Sent to your bot when the action is performed. Use this property to simplify bot development: Your code can check a single top-level property to dispatch bot logic. |
 
-The flexibility of `messageBack` means that your code can choose whether to leave a visible user message in the history, depending on the desired experience.
+The flexibility of `messageBack` means that your code can choose not to leave a visible user message in the history simply by not using `displayText`.
 
 ```json
 {
@@ -243,8 +242,6 @@ The `value` property can be either a serialized JSON string or a JSON object.
 ```
 
 ### Action - imBack
-
-> **Note:** We recommend that you use `messageBack` instead of `imBack`.
 
 This action triggers a return message to your bot, as if the user typed it in a normal chat message.  Thus, your user, and all other users if in a channel, will see that button response.
 
