@@ -36,7 +36,6 @@
 ### [Submission checklist](submissionchecklist.md)
 ## [Troubleshooting](troubleshooting.md)
 ## [Rate limits](ratelimiting.md)
-# [Custom bots](custombot.md)
 # [JavaScript library API reference](jslibrary.md)
 # [FAQ](faq.md)
 # [Features in Public Developer Preview](previewfeatures.md)

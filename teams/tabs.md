@@ -12,7 +12,7 @@ Microsoft Teams supports tabs in two different [scopes](teamsapps.md):
 
 Follow these steps to build a tab:
 
-*  [Design a great tab:](design.md#building-a-great-tab) While it's easy to adapt a web app to become a Microsoft Teams tab, it's worth considering which of your experiences and functionality will work most effectively. 
+*  [Design a great tab:](design.md#designing-a-great-tab) While it's easy to adapt a web app to become a Microsoft Teams tab, it's worth considering which of your experiences and functionality will work most effectively. 
 *  [Create the package:](createpackage.md) This package contains the manifest, which specifies attributes of your tab, as well as other app components you may provide as part of your Teams app experience.
 
 ### For Configurable Tabs
