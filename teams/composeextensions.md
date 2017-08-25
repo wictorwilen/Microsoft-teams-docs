@@ -1,6 +1,6 @@
 # Compose extensions (preview)
 
->**Important:** Compose extensions are available only in [Public Developer Preview](publicpreview.md). Additionally, many features in this document are under construction and are subject to change.
+>**Important:** Compose extensions are available only in [Public Developer Preview](publicpreview.md). Many details in this document are subject to change.
 >
 >**Note:** The term "compose extensions" is provisional and might change. Until this feature is complete, we recommend not using the term in any customer-facing UI or communications.
 
@@ -34,9 +34,9 @@ Record your bot’s app ID and app password—you will need to supply the app ID
 
 ### Update your app manifest
 
-As with bots and tabs, you update the [manifest](schema#composeextensions) of your app to include the compose extension properties. These properties govern how your compose extension appears and behaves in the Microsoft Teams client. Compose extensions are supported beginning with v1.0 of the manifest.
+As with bots and tabs, you update the [manifest](schema.md#composeextensions) of your app to include the compose extension properties. These properties govern how your compose extension appears and behaves in the Microsoft Teams client. Compose extensions are supported beginning with v1.0 of the manifest.
 
->**Note:** The `canUpdateConfiguration` property is not yet included in the manifest. However, you can still test compose extensions that use `canUpdateConfiguration` by sideloading them.
+>**Note:** The `canUpdateConfiguration` property is not yet included in the manifest schema. However, you can still test compose extensions that use `canUpdateConfiguration` by sideloading them.
 
 #### Declare your compose extension
 
@@ -152,7 +152,7 @@ A compose extension receives an `onQuery` event when anything happens in the com
 
 If your compose extension uses a configuration page, your handler for `onQuery` should first check for any stored configuration information; if the compose extension isn't configured, return a `config` response with a link to your configuration page. Be aware that the response from the configuration page is also handled by `onQuery`. (The sole exception is when the configuration page is called by the handler for `onQuerySettingsUrl`; see the following section.)
 
-If your compose extension requires authentication, check the user state information; if the user isn't signed in, follow the instructions in the [Authentication](composeextensions#authentication) section later in this topic.
+If your compose extension requires authentication, check the user state information; if the user isn't signed in, follow the instructions in the [Authentication](composeextensions.md#authentication) section later in this topic.
 
 Next, check whether `initialRun` is set; if so, take appropriate action, such as providing instructions or a list of responses.
 
@@ -172,19 +172,19 @@ Every request to your compose extension is done via an `Activity` object that is
 
 ### Receive user requests
 
-When a user performs a query, Microsoft Teams sends your service a standard Bot Framework activity. It should perform its logic for activity with type `invoke`.
+When a user performs a query, Microsoft Teams sends your service a standard Bot Framework `Activity` object. Your service should perform its logic for an `Activity` that has `type` set to `invoke` and `name` set to a supported `composeExtension` type, as shown in the following table.
 
 In addition to the standard bot activity properties, the payload contains the following request metadata:
 
 |Property name|Purpose|
 |---|---|
 |`type`| Type of request; must be `invoke`. |
-|`name`| Type of command that is issued to your service. Only one value is currently supported: `composeExtension/query` |
+|`name`| Type of command that is issued to your service. Currently the following types are supported: <br>`composeExtension/query` <br>`composeExtension/querySettingUrl` <br>`composeExtension/setting` |
 |`from.id`| ID of the user that sent the request. |
 |`from.name`| Name of the user that sent the request. |
 |`channelData.tenant.id`| Azure Active Directory tenant ID. |
-|`channelData.channel.id`| If the request was made in a channel, this is the channel ID. |
-|`channelData.team.id`| If the request was made in a channel, this is the team ID. |
+|`channelData.channel.id`| Channel ID (if the request was made in a channel). |
+|`channelData.team.id`| Team ID (if the request was made in a channel). |
 |`clientInfo`| Additional metadata about the client, such as locale/language and type of client. |
 
 The request parameters itself are found in the value object, which includes the following properties:
@@ -400,11 +400,11 @@ To prompt an unauthenticated user to sign in, respond with a suggested action th
 }
 ```
 
->**Note:** For the sign-in experience to be hosted in a Teams pop-up, the domain portion of the URL must be in your app’s list of valid domains. (See [validDomains](schema#validdomains) in the manifest schema.)
+>**Note:** For the sign-in experience to be hosted in a Teams pop-up, the domain portion of the URL must be in your app’s list of valid domains. (See [validDomains](schema.md#validdomains) in the manifest schema.)
 
 ### Start the sign-in flow
 
-Your sign-in experience should be responsive and fit within a popup window. It should integrate with the [Microsoft Teams JavaScript library](jslibrary), which uses message passing.
+Your sign-in experience should be responsive and fit within a popup window. It should integrate with the [Microsoft Teams JavaScript library](jslibrary.md), which uses message passing.
 
 As with other embedded experiences running inside Microsoft Teams, your code inside the window needs to first call `microsoftTeams.initialize()`. If your code performs an OAuth flow, you can pass the Teams user ID into your window, which then can pass it to the OAuth sign-in URL.
 
@@ -415,7 +415,7 @@ When the sign-in request completes and redirects back to your page, it should pe
 1.	Generate a security code. (This can be a random number.) You need to cache this code on your service, along with the credentials obtained through the sign-in flow (such as OAuth 2.0 tokens).
 2.	Call `microsoftTeams.authentication.notifySuccess` and pass the security code.
 
-At this point, the window closes and control is passed to the Teams client. The client now reissues the original user query, along with the security code in the `authenticationCode` property. Your code should use the security code to look up the credentials stored earlier to complete the authentication sequence. Your service can now complete the user request.
+At this point, the window closes and control is passed to the Teams client. The client now can reissue the original user query, along with the security code in the `state` property. Your code can use the security code to look up the credentials stored earlier to complete the authentication sequence and then complete the user request.
 
 #### Reissued request example
 
@@ -428,7 +428,7 @@ At this point, the window closes and control is passed to the Teams client. The 
             "name": "searchKeyword",
             "value": "lakers"
         }],
-        "authenticationCode": "12345",
+        "state": "12345",
         "queryOptions": {
             "skip": 0,
             "count": 25
