@@ -37,7 +37,7 @@ Pictures are sent by adding attachments to a message.  You can find more informa
 
 Pictures can be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
 
-### Cards 
+## Cards 
 
 Microsoft Teams supports the following cards which may have several properties and attachments. You can find information on how to use cards in the [.NET SDK](https://docs.botframework.com/en-us/csharp/builder/sdkreference/attachments.html#richcards) and [Node.js SDK](https://docs.botframework.com/en-us/node/builder/guides/examples/#demo-skype-calling) docs.
 
@@ -133,7 +133,7 @@ Properties are the same as for the hero or thumbnail card.
 
 >**Note:** Some combinations of list cards may not be supported yet on iOS and Android.
 
-## Buttons
+### Buttons
 
 Buttons are shown stacked at the bottom of the card. Button text is always on a single line and will be truncated if the text exceeds the button width. Any additional buttons beyond the maximum number supported by the card will not be shown.
 
