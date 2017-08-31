@@ -199,4 +199,4 @@ To verify that an `HttpPOST` action is working correctly, use your [custom incom
 
 >**Note:** Currently, we do not support users configuring your Connector externally via the **Connect to Office 365** button. Users must visit Microsoft Teams first to add a Connector.
 
-When your app is ready for submission, follow the process for [submitting your app to the Office Store](https://msdn.microsoft.com/en-us/microsoft-teams/submission).
+When your app is ready for submission, follow the process to [publish your app to the Office Store](https://msdn.microsoft.com/en-us/microsoft-teams/submission).
