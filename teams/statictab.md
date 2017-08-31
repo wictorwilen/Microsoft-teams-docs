@@ -1,25 +1,25 @@
-# Create a static tab
+# Create a static tab in Microsoft Teams
 
-A static tab is a [content page](createcontentpage.md) that is declared directly in your manifest and - unlike a configurable tab - does not require a 'configuration page' to set it up.
+A static tab is a [content page](createcontentpage.md) that is declared directly in your manifest and&mdash;unlike a configurable tab&mdash;does not require a configuration page.
 
-Currently, you can add one or more static tabs to your app's "personal scope" experience, accessed via the [app bar](teamsapps.md) or alongside your app's bot conversation.
+Currently, you can add one or more static tabs to your app's "personal scope" experience, accessed via the [app bar](teamsapps.md#app-bar-personal-scope) or alongside your app's bot conversation.
 
-![Static Tabs example](images/tabs_in_bot.PNG)
+![Static tabs example](images/tabs_in_bot.PNG)
 
 ## Creating tab content
 
-Content pages in Teams, regardless of scope or type, should follow [these guidelines](createcontentpage.md).
+Content pages in Teams, regardless of scope or type, should follow the guidelines in [Create a content page](createcontentpage.md).
 
 ## Adding your tabbed content to your app package
 
-Define your static tab experience in the [manifest file](schema.md) in the `staticTabs` object.  
+Define your static tab experience in the [staticTabs](schema.md#statictabs) block of the manifest.  
 
-For more information on creating your app package, see [here](createpackage.md)
+For more information on creating your app package, see [Create the package for your Microsoft Teams app](createpackage.md).
 
-#### Manifest snippet - static tabs
+#### Manifest example for a static tab
 
 ```json
-...
+&#8942;
 "staticTabs": [
   {
     "entityId": "TestAppAbout",
@@ -36,22 +36,19 @@ For more information on creating your app package, see [here](createpackage.md)
     "scopes": [ "personal" ]
   }
 ]
-...
+&#8942;
 ```
 
 <!-- TODO get this from sample app -->
 
 The `staticTabs` object allows you to specify one or more tabs, up to 16, with the following required elements:
 
-* `entityId` - this is a user-defined ID that uniquely identifies the tab.  This is analogous to the entityId used in [configurable tab deep linking](deeplinks.md).
-* `name` - the name shown on the tab
-* `contentUrl` - the content URL to show in the tab
-* `websiteUrl` - the URL to the full chrome content to display in the default browser
-* `scopes` - at this point, static tabs are only used in the `personal` context
+* `entityId`&emsp;A user-defined ID that uniquely identifies the tab; analogous to the `entityId` used in [deep links](deeplinks.md) to a configurable tab
+* `name`&emsp;The name shown on the tab
+* `contentUrl`&emsp;The content URL to show in the tab
+* `websiteUrl`&emsp;The URL to the full chrome content to display in the default browser
+* `scopes`&emsp;At this point, static tabs are used only in the `personal` context
 
 ## Add static tab URLs to validDomains
 
-All URLs you add in static tabs must be referenced in the [`validDomains`](schema.md#validdomains) section of the manifest.  Failure to do so may result in a blank tab.  Please note that while you may use wildcards for subdomains, make sure you appropriately scope for only the content you control and expect in the tab experience.  E.g. yourapp.onmicrosoft.com - good; *.onmicrosoft.com - bad
-
-
-
+All URLs you add in static tabs must be referenced in the [`validDomains`](schema.md#validdomains) section of the manifest. Failure to do so could result in a blank tab. Please note that although you can use wildcards for subdomains, be sure to appropriately scope for only the content you control and expect in the tab experience. For example, `yourapp.onmicrosoft.com` is good, but `*.onmicrosoft.com` is not.

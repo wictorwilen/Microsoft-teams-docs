@@ -1,4 +1,4 @@
-# Getting Started
+# Get started developing for Microsoft Teams
 
 Microsoft Teams is a service within Office 365. To get started developing extensions for Microsoft Teams, you'll first need an Office 365 commercial account. You'll then need to turn on the Microsoft Teams service for your Office 365 organization. Lastly, you'll need to turn on bots and enable sideloading of bots and tabs for testing.
 
@@ -57,5 +57,33 @@ For more information on sideloading, see [Sideloading your app in a team](sidelo
 We'll be rolling out extensibility features for developers to try before they roll out to end users. It's easy to opt in or out, on demand. See [Public Developer Preview](publicpreview.md) for more information.
 
 This is an optional feature and is not required for app development.
+
+## What's next?
+
+With those steps out of the way, you're ready to focus on creating your app.
+
+### Build your app's rich capabilities
+
+* [Learn about scopes](teamsapps.md)
+* [Design your app](design.md)
+* [Code](code.md) your app's capabilities
+  * [Tabs](tabs.md)
+  * [Bots](bots.md)
+  * [Connectors](connectors.md)
+  * [Compose extensions](composeextensions.md)
+  * [Activity feed integrations](activityfeed.md)
+
+### Package and test your app within Teams
+
+* [Create package](createpackage.md)
+* [Sideload](sideload.md) in Teams
+* [Test functionality](debugging.md)
+
+### Publish your app and drive engagement
+
+* [Register and publish](submission.md) to Office Store
+* Embed deep links on your website
+
+---
 
 > Running into problems? See the [troubleshooting guide](troubleshooting.md).

@@ -1,12 +1,12 @@
-# Bot APIs
+# Get context for your Microsoft Teams bot
 
 Your bot can access additional context about the team or chat, such as user profile.  This information can be used to enrich your bot's functionality and provide a more personalized experience.
 
->**Please note:** These Microsoft Teams–specific bot APIs are best accessed through our Bot Builder Extension.  For C#/.NET, download our [NuGet package](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams).  For Node.js development, you can install the [`botbuilder-teams` NPM package](https://www.npmjs.com/package/botbuilder-teams).  
+>**Note:** These Microsoft Teams&ndash;specific bot APIs are best accessed through our extensions for the Bot Builder SDK. For C#/.NET, download our [Microsoft.Bot.Connector.Teams](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams) NuGet package. For Node.js development, you can install the [botbuilder-teams](https://www.npmjs.com/package/botbuilder-teams) npm package.  
 
 ## Fetching the team roster
 
->**New:** You no longer need to include the tenant ID in the X-MsTeamsTenantId HTTP request header.
+>**New:** You no longer need to include the tenant ID in the `X-MsTeamsTenantId` HTTP request header.
 
 Your bot can query for the list of team members and their basic profiles, which includes Teams user IDs and Azure Active Directory  (Azure AD) information such as name and objectId. You can use this information to correlate user identities; for example, to check whether a user logged into a tab through Azure AD credentials is a member of the team.
 

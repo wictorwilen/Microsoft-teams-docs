@@ -6,17 +6,17 @@ In this page, you present options and gather information from the user about wha
 
 You must include the [Microsoft Teams Tab library](jslibrary.md) in your configuration page so that it can communicate with Microsoft Teams.
 
->**Note:** the example here is solely to illustrate the concept.  Your configuration page should have a clean UI that fits with the look and feel of the Microsoft Teams dialog in which it sits.
+>**Note:** The example here is solely to illustrate the concept. Your configuration page should have a clean UI that fits the appearance of the Microsoft Teams dialog box in which it appears.
 
-!["Screenshot of the configuration page for a simple example app, giving the user the option of which map type to select."](images/tab_configui.png)
+![Screenshot of the configuration page for a simple example app, giving the user the option of which map type to select.](images/tab_configui.png)
 
 ## Configuration page example
 
-The excerpt below shows an example configuration page.
+The following excerpt shows an example configuration page.
 
-In this case, the user is presented with two radio buttons, which represent a choice of two different resources. Selecting either radio button fires `onClick()`, which sets `microsoftTeams.settings.setValidityState(true)`, enabling the **Save** button.
+In this case, the user is presented with two option buttons, which represent a choice of two different resources. Selecting either button fires `onClick()`, which sets `microsoftTeams.settings.setValidityState(true)`, enabling the **Save** button.
 
-On save, the code determines which radio button was checked, and sets the various parameters of `microsoftTeams.settings.setSettings` accordingly. Finally, it calls `saveEvent.notifySuccess()` to specify that the content URL has successfully been determined.
+On save, the code determines which button was selected and sets the various parameters of `microsoftTeams.settings.setSettings` accordingly. Finally, it calls `saveEvent.notifySuccess()` to indicate that the content URL has successfully been determined.
 
 With this as a simple example, let's walk through the steps your configuration page needs to perform to load your tab content.
 
@@ -70,9 +70,9 @@ function onClick() {
 
 ## Prerequisites for your configuration page
 
-For your configuration page to display within Microsoft Teams, make sure it meets the [requirements for tab pages](prerequisites.md).
+For your configuration page to display within Microsoft Teams, ensure that it meets the [requirements for tab pages](prerequisites.md).
 
->In summary: you must host your page on a secure https:// endpoint, ensure your page permits itself to be iframed, include the Microsoft Teams tab library, and call microsoftTeams.initialize();
+>In summary: You must host your page on a secure HTTPS endpoint, ensure that your page permits itself to be iframed, include the Microsoft Teams JavaScript library, and call `microsoftTeams.initialize()`.
 
 ## Collecting user information 
 
@@ -80,7 +80,7 @@ Your configuration page needs to perform the following steps:
 
 ### Obtain context and authenticate
 
-If your page requires context about the user or environment, see [Get context information](getusercontext.md). If it needs to authenticate the user, see [Authenticating in your Microsoft Teams tab pages](auth.md).
+If your page requires context about the user or environment, see [Get context for your Microsoft Teams tab](getusercontext.md). If it needs to authenticate the user, see [Authenticate a user in your Microsoft Teams tab](auth.md).
 
 ### Determine when the user has specified all required information
  
@@ -90,27 +90,26 @@ By default, the **Save** button on the configuration dialog box is disabled. Whe
 
 Use `microsoftTeams.settings.setSettings({entityId, contentUrl, suggestedTabName, websiteUrl, removeUrl})` to specify the URL of the [content page](createcontentpage.md) Microsoft Teams should host in the tab. Things to keep in mind:
 
-* This call may be made at any time the configuration page is displayed, including before or after the user selects the **Save** button (see below).
+* This call can be made at any time the configuration page is displayed, including before or after the user selects the **Save** button (see below).
 * The `entityId` uniquely identifies the entity that is displayed in the tab.
   * Microsoft Teams uses this when creating [deep links to your tab](deeplinks.md).
   * You can also use it to help obtain context when [displaying your content page](createcontentpage.md) or when [updating or removing a tab](updateremove.md).
   * You can use the `contentUrl` as the `entityId` if you wish.
-* The `contentUrl` is a required field which specifies the URL of the content Microsoft Teams should host in the tab.
-  * Make sure you have added the `contentUrl` domain to the `validDomains` element in the tab manifest file. For more information, see [Microsoft Teams tab schema](schema.md) and [Redirecting across domains within a Microsoft Teams tab](crossdomain.md).
+* The `contentUrl` is a required field that specifies the URL of the content Microsoft Teams should host in the tab.
+  * Be sure you have added the `contentUrl` domain to the `validDomains` element in the tab manifest file. For more information, see [Microsoft Teams tab schema](schema.md) and [Redirecting across domains within a Microsoft Teams tab](crossdomain.md).
 *  The other parameters further customize how your tab works in Microsoft Teams:
 	* The optional `suggestedTabName` parameter sets the initial tab name. Users can rename the tab. The default value is the name specified in the manifest.
-	* The optional `websiteUrl` parameter sets where the user is taken if they click the **Go to website** button. Typically, this is a link to the same content as displayed on the tab, but within your main web app with its regular chrome and navigation.
+	* The optional `websiteUrl` parameter sets where the user is taken if they choose the **Go to website** button. Typically, this is a link to the same content as displayed on the tab, but within your main web app with its regular chrome and navigation.
 	* The optional `removeUrl` parameter sets the URL for your [removal options page](updateremove.md#removing-a-tab).
 
-### React when the user clicks the Save button
+### React when the user chooses the Save button
 
-Often you may not be able to determine the `entityId` or `contentUrl` immediately.  For example, you may first need create a new resource (a document or a task), and you only want to do this once the user selects **Save**. To be notified when the user selects **Save**, you must call
-`microsoftTeams.settings.registerOnSaveHandler(function(saveEvent) { /* ... */ })`. Once this is done, when the user selects **Save**, Microsoft Teams calls the save event handler you registered.
+Often you might not be able to determine the `entityId` or `contentUrl` immediately. For example, you might first need create a resource (a document or a task), and you want to do this only after the user selects **Save**. To be notified when the user selects **Save**, you must call `microsoftTeams.settings.registerOnSaveHandler(function(saveEvent) { /* ... */ })`. After this is done, when the user selects **Save**, Microsoft Teams calls the save event handler you registered.
 
 You can return the settings asynchronously if, for example, the user has requested a new resource which will take time for you to create. To do this, store `saveEvent` for later. If you do not notify the outcome within 30 seconds, Microsoft Teams terminates the operation and displays an error.
 
 ### Return success or failure result
 
-Finally, in your save handler registered previously, call `saveEvent.notifySuccess()` or `saveEvent.notifyFailure()` to notify Microsoft Teams on the outcome of the configuration. If you have no save handler registered, the outcome will immediately and implicitly be success.
+Finally, in your save handler registered previously, call `saveEvent.notifySuccess()` or `saveEvent.notifyFailure()` to inform Microsoft Teams on the outcome of the configuration. If you have no save handler registered, the outcome will immediately and implicitly be success.
 
-> Hitting problems?  See the [troubleshooting guide](troubleshooting.md).
+>Hitting problems? See the [troubleshooting guide](troubleshooting.md).

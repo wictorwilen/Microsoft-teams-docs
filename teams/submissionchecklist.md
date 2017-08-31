@@ -1,6 +1,6 @@
-# Submission and Manifest Metadata Checklist
+# Checklist for manifest metadata and Seller Dashboard submission
 
-The follow metadata is required in your manifest.json file and/or for Seller Dashboard submission:
+The follow metadata is required in your manifest.json file and for Seller Dashboard submission:
 
 |Data|Type|Size|Manifest|Seller Dashboard|Description|
 |---|---|---|---|---|---|

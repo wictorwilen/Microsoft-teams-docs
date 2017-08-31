@@ -1,12 +1,13 @@
-# Microsoft Teams manifest schema reference
+# Reference: Manifest schema for Microsoft Teams
 
 >**Note:** For help on migrating your v0.4 manifest to v1.0, see our [migration guide](schemamigrate.md).
 
 The Microsoft Teams manifest describes how the app integrates into the Microsoft Teams product. Your manifest must conform to the schema hosted at [`https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json`](https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json).  The following is an example with all extensibility options.
 
->**Tip** Download our sample [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started. Each package contains a template manifest with fake data and sample icons suitable for sideloading. These sample packages will not load as-is; you must customize them.
+>**Tip:** Download our sample [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started. Each package contains a template manifest with fake data and sample icons suitable for sideloading. These sample packages will not load as-is; you must customize them.
 
 ## Sample full schema
+
 ```json
 {
   "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json", 
@@ -123,16 +124,13 @@ The Microsoft Teams manifest describes how the app integrates into the Microsoft
 }
 ```
 
-> **Tip** Specify the schema at the beginning of your manifest to enable IntelliSense or similar support from your code editor:
-> 
-> `"$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",`
+>**Tip:** Specify the schema at the beginning of your manifest to enable IntelliSense or similar support from your code editor: `"$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",`
 
 The schema defines the following properties:
 
 ## ManifestVersion 
 
 **Required** - String
-
 
 The version of the manifest schema this manifest is using.  Should be "1.0".
 
@@ -171,7 +169,6 @@ The developer element specifies information about your company.  For apps submit
 |`privacyUrl`|String|2048|✔|The URL to the developer's privacy policy.|
 |`termsOfUseUrl`|String|2048|✔|The URL to the developer's terms of use.|
 
-
 ## name
 
 **Required**
@@ -182,7 +179,6 @@ This is the name of your app experience, displayed to users in the Teams experie
 |---|---|---|---|---|
 |`short`|String|30|✔|The short display name for the app.|
 |`full`|String|100||The full name of the app, used if the full app name exceeds 30 characters.|
-
 
 ## description
 
@@ -197,7 +193,7 @@ Please note that you should make your description accurately describes your expe
 |`short`|String|80|✔|A short description of your app experience, used when space is limited.|
 |`full`|String|4000*|✔|The full description of your app.|
 
->**Important** We currently have an issue with full descriptions longer than 256 characters.  You can use a longer description in your Seller Dashboard app submission.
+>**Important:** We currently have an issue with full descriptions longer than 256 characters. You can use a longer description in your Seller Dashboard app submission.
 
 ## icons
 
@@ -232,7 +228,6 @@ The object is an array with all elements of the type `object`.  This block is re
 |`canUpdateConfiguration`|Boolean|||A value indicating whether an instance of the tab's configuration can be updated by the user after creation.  Default: `true`|
 |`scopes`|Array of enum|1|✔|Currently, configurable tabs support only the `team` scope, which means it can be provisioned only to a channel.|
 
-
 ## staticTabs
 
 *Optional*
@@ -248,7 +243,6 @@ The object is an array (maximum of 16 elements) with all elements of the type `o
 |`contentUrl`|String|2048|✔|The URL that points to the entity UI to be displayed in the Teams canvas.  Must be HTTPS.|
 |`websiteUrl`|String|2048||The URL to point at if a user opts to view in a browser.|
 |`scopes`|Array of enum|1|✔|Currently, static tabs support only the `personal` scope, which means it can be provisioned only as part of the personal experience.|
-
 
 ## bots
 
@@ -276,13 +270,11 @@ You can provide an optional list of commands that your bot can recommend to user
 |`items.properties`|array of enum|2|✔|Specifies the scope for which the command list is valid.|
 |`items.commands`|array of objects|10|✔|An array of commands the bot supports:<br>`title`: the bot command name (string, 32)<br>`description`: a simple description or example of the command syntax and its argumenst (string, 128)|
 
-
 ## connectors
-
 
 *Optional*
 
->[Public Developer Preview only](publicpreview.md)
+>[Public Developer Preview](publicpreview.md) only
 
 The connectors block defines an Office 365 connector for the app.  
 
@@ -297,7 +289,7 @@ The object is an array (maximum of 1 element) with all elements of type `object`
 
 *Optional*
 
->[Public Developer Preview only](publicpreview.md)
+>[Public Developer Preview](publicpreview.md) only
 
 The composeExtension block defines a compose extension for the app.
 
@@ -310,6 +302,7 @@ The object is an array (maximum of 1 element) with all elements of type `object`
 |`commands`|Array of object|1|✔|Array of commands the compose extension supports|
 
 ### composeExtensions.commands
+
 Your compose extension should declare one or more commands. Each command appears in Microsoft Teams as a potential interaction from the UI-based entry point.
 
 Each command item is an object with the following structure:
@@ -325,7 +318,6 @@ Each command item is an object with the following structure:
 |`parameter.title`|String|32|✔|User-friendly title for the parameter.|
 |`parameter.description`|String|128||User-friendly string that describes this parameter’s purpose.|
 
-
 ## permissions
 
 *Optional*
@@ -334,7 +326,6 @@ The permissions array specifics which permissions the extensions are requesting,
 
 * `identity` - requires user identity information
 * `messageTeamMembers` - requires the permission to send direct messages to team members
-
 
 ## validDomains
 

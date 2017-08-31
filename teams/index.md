@@ -1,22 +1,23 @@
-# Overview of Microsoft Teams Developer Platform
+# Overview of the Microsoft Teams Developer Platform
 
 Microsoft Teams is a chat-based workspace in Office 365 that integrates with the apps and services teams use to get work done together.  The Microsoft Teams developer platform makes it easy for you to integrate your own service, whether you develop custom apps for your enterprise or SaaS applications for teams around the world.
 
-For the best and most extensible option for adding your service into Teams, create a Microsoft Teams app.  A Microsoft Teams app is a package of services that you host, that can be distributed through the Teams product or sideloaded by teams.
+For the best and most extensible option for adding your service into Teams, create a Microsoft Teams app.  A Microsoft Teams app is a package of services that you host and that can be distributed through the Teams product or sideloaded by teams.
 
-For quick one-off integration of your existing webhook, you can take advantage of our [Custom Bot](#custom-bots) feature.  This ad-hoc extensibility option allows you to simply set up webhooks / notifications in a specific team, with no additional coding required. 
+For quick one-off integration of your existing webhook, you can take advantage of our [custom bot](#custom-bots) feature. With this extensibility option, you can set up webhooks and notifications in a specific team, with no additional coding required.
 
-> Don't have Microsoft Teams? Get a free Office 365 developer subscription or activate it for your existing Office 365 account. [Here's how](setup.md).
+>Don't have Microsoft Teams? Get a free Office 365 developer subscription or activate it for your existing Office 365 account. [Here's how](setup.md).
 
 ## Apps in Microsoft Teams
 
-Apps in Microsoft Teams allow you to make your service available to users within Teams in contexts that make sense, all through one Teams app package that users can acquire through our in-product app gallery, via the Office Store, or sideloaded directly by your team.  Via this single package, your app can assist users:
+With apps in Microsoft Teams, you can make your service available to users within Teams in contexts that make sense, all through one Teams app package that users can acquire through our in-product app gallery, via the Office Store, or sideloaded directly by your team.  Via this single package, your app can assist users
+
 * via multiple **app scopes**, such as in team channels or personally via the user's "app bar"
 * via multiple **app capabilities**, such as bots in conversation or tabs in rich web views
 
 <!-- TODO: table of capabilities, screenshots of personal scope -->
 
-[Learn more about app scopes and where you can surface your app](teamsapps.md)
+[Learn more about app scopes and where you can surface your app](teamsapps.md).
 
 Here are the capabilities your app can leverage today.  You can offer all of them in the team scope, and most of them in the personal scope.
 
@@ -60,14 +61,14 @@ Office 365 Connectors are a great way to get useful information and content into
 
 You can integrate your service by posting rich Connector cards into custom incoming webhooks.
 
-[Get started with connectors.](connectors.md)
+[Get started with Connectors.](connectors.md)
 
-![Gallery of connectors](images/connector_example.png)
+![Gallery of Connectors](images/connector_example.png)
 <!-- TODO - update image to latest -->
 
 ## Custom bots
 
-Custom bots provide a convenient way for you to extend your team. You can easily get up and running with a bot that responds to messages within a team. You can use them for custom workflows and commands, such as kicking off a build or checking the latest set of live-site issues. Custom bots are an easy way of creating interactive bots without having to go through the full process of creating a bot via the Microsoft Bot Framework.  
+*Custom bots* provide a convenient way for you to extend your team. You can easily get up and running with a bot that responds to messages within a team. You can use them for custom workflows and commands, such as kicking off a build or checking the latest set of live-site issues. Custom bots are an easy way of creating interactive bots without having to go through the full process of creating a bot via the Microsoft Bot Framework.  
 
 [Get started with custom bots.](custombot.md)
 

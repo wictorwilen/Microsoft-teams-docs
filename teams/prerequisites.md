@@ -1,6 +1,6 @@
-# Requirements for Microsoft Teams tab pages
+# Requirements for tab pages in Microsoft Teams
 
->**Important:** Use of the Microsoft Teams tab SDK is subject to the [Terms of Use](https://aka.ms/bf-terms), [Privacy Statement](https://aka.ms/bf-privacy), and [Code of Conduct](https://aka.ms/bf-conduct) for the Microsoft Bot Framework (Preview).
+>**Important:** Use of the Microsoft Teams JavaScript library is subject to the [Terms of Use](https://aka.ms/bf-terms), [Privacy Statement](https://aka.ms/bf-privacy), and [Code of Conduct](https://aka.ms/bf-conduct) for the Microsoft Bot Framework (Preview).
 
 All tab content, including configuration, content, and tab-removal pages must meet the following requirements:
 
