@@ -1,4 +1,4 @@
-﻿# Bots in One-on-One conversations
+# Interact one-on-one (1:1) with a Microsoft Teams bot
 
 Microsoft Teams allows users to engage in direct conversations with bots built on the [Microsoft Bot Framework](https://docs.botframework.com/en-us/).  Users can find bots in the Bots Gallery, and add them to their Teams experience for 1:1 conversations.  Team owners and users with the appropriate permissions can also add bots as full team members (see [bots in channels](botsinchannels.md)), which not only makes them available in that team's channels, but for 1:1 chat for all of those users as well.
 
@@ -16,9 +16,9 @@ You can create the 1:1 chat with a user as long as you have the user’s unique 
 
 Because your bot is able to proactively message users, you should use this capability sparingly and consider the user experience. Make sure not to spam end users and send only the minimum amount of information and number of messages needed to complete your scenario.
 
-#### API Request
+#### API request
 
->**Note:** Make sure you authenticate and have a Bearer Token before creating a new conversation using the REST API
+>**Note:** Be sure that you authenticate and have a bearer token before creating a new conversation using the REST API.
 
 ```json
 POST /v3/conversations 
@@ -40,19 +40,19 @@ POST /v3/conversations
 }
 ```
 
-You must supply the user ID and the tenant ID.  If the call succeeds, the API will return with the following response object:
+You must supply the user ID and the tenant ID. If the call succeeds, the API returns with the following response object.
 
 ```json
 {
   "id":"a:1qhNLqpUtmuI6U35gzjsJn7uRnCkW8NiZALHfN8AMxdbprS1uta2aT-jytfIlsZR3UZeg3TsIONNInBHsdjzj3PtfHuhkxxvS1jZZ61UAbw8fIdXcNSJyTJm7YvHFOgxo"
 }
 ```
-This ID is the unique 1:1 chat's conversation ID.  Please store this value and reuse it for future interactions with the user.
 
+This ID is the 1:1 chat's unique conversation ID. Please store this value and reuse it for future interactions with the user.
 
-#### .NET SDK example
+#### .NET example
 
-Note: This sample uses the [new Microsoft Teams .NET SDK](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
+This example uses the [Microsoft.Bot.Connector.Teams](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams) NuGet package.
 
 ```csharp
 // Create or get existing chat conversation with user
@@ -75,7 +75,7 @@ await client.Conversations.SendToConversationAsync(newActivity, response.Id);
 
 #### Node SDK example
 
-Note: this sample uses [the Microsoft Teams Node.js SDK](https://www.npmjs.com/package/botbuilder-teams):
+This example uses the [botbuilder-teams](https://www.npmjs.com/package/botbuilder-teams) npm package.
 
 ```js
 var address = 
@@ -99,9 +99,8 @@ var address =
 bot.beginDialog(address, '/');
 ```
 
+## Best practice - Welcome message
 
-## Best Practice - Welcome message
-
-For bots that are added directly by a user, and not already part of any of the user's teams, it is a best practice to send a Welcome Message, to introduce it to all users of the team, and tell a bit about its functionality.  To do this, make sure your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object.
+For bots that are added directly by a user, and not already part of any of the user's teams, it is a best practice to send a welcome message to introduce it to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object.
 
 For more best practices, see our [design guidelines](design.md).

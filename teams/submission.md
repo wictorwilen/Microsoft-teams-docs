@@ -1,4 +1,4 @@
-# Submit your solutions to the Office Store
+# Publish your Microsoft Teams app to the Office Store
 
 >**Important: Your Microsoft Teams app *must* use the [latest schema](schema.md) and follow [current packaging guidelines](createpackage.md).**
 >

@@ -1,4 +1,4 @@
-# Microsoft Teams bot events
+# Handle bot events in Microsoft Teams
 
 Microsoft Teams sends notifications to your bot for changes or events that happen in contexts where your bot is active. You can use these events to trigger service logic, such as the following:
 

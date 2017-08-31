@@ -1,4 +1,4 @@
-# Submitting your Microsoft Teams app in the Seller Dashboard
+# Use the Seller Dashboard to submit your Microsoft Teams app
 
 For a general overview of the Microsoft Teams app submission flow, see [Submit your solutions to the Office Store](submission.md).
 

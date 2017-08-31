@@ -1,12 +1,19 @@
-# Microsoft Teams JavaScript library API reference
+# Reference: Microsoft Teams JavaScript library
 
-> Please note: Use of the Microsoft Teams tab SDK is subject to the [Terms of Use](https://aka.ms/bf-terms), [Privacy Statement](https://aka.ms/bf-privacy), and [Code of Conduct](https://aka.ms/bf-conduct) for the Microsoft Bot Framework (Preview).
+>**Important:** Use of the Microsoft Teams JavaScript library is subject to the [Terms of Use](https://aka.ms/bf-terms), [Privacy Statement](https://aka.ms/bf-privacy), and [Code of Conduct](https://aka.ms/bf-conduct) for the Microsoft Bot Framework (Preview).
 
-Your [configuration](createconfigpage.md), [content](createcontentpage.md), and [removal options](updateremove.md#removing-a-tab) pages must include the library hosted at: `https://statics.teams.microsoft.com/sdk/v1.0/js/MicrosoftTeams.min.js`.
+In your tab pages, include the library hosted at `https://statics.teams.microsoft.com/sdk/v1.0/js/MicrosoftTeams.min.js`.
+
+For more information on specific kinds of tab pages, see the following:
+
+* [Configuration](createconfigpage.md)
+* [Content](createcontentpage.md)
+* [Removal options](updateremove.md#removing-a-tab)
+* [Static tab](statictab.md)
 
 >**Tip:** For developers using TypeScript, Microsoft Teams provides a definition file at `https://statics.teams.microsoft.com/sdk/v1.0/types/MicrosoftTeams.d.ts`. Use this to enable IntelliSense or similar support from your code editor as well as compile-type type checking as part of your build.
 >
->**Note:** This source for this library is available at [https://github.com/OfficeDev/microsoft-teams-library-js](https://github.com/OfficeDev/microsoft-teams-library-js).
+>**Note:** The source code for this library is available in the [OfficeDev/microsoft-teams-library-js](https://github.com/OfficeDev/microsoft-teams-library-js) repo on GitHub.
 
 ## `microsoftTeams`
 This is the root namespace for the JavaScript SDK.

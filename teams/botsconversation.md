@@ -1,24 +1,25 @@
-﻿# Sending and receiving messages
+# Send and receive messages with a Microsoft Teams bot
 
 Bots in Microsoft Teams allow sending messages in either personal conversations with a single user or a group conversation in a Teams channel.
 
->Note: bots in private group chats are currently not supported.
+>**Note:** Bots in private group chats are currently not supported.
 
 ## Conversation basics
 
-Basic conversation is handled through the Bot Framework Connector, a single REST API to enable your bot to communicate with Teams and other channels.  The Bot Framework SDKs provide easy access to this API, and provides additional functionality to manage conversation flow and state, and simple ways to incorporate cognitive services such as natural language processing (NLP).
+Basic conversation is handled through the Bot Framework Connector, a single REST API to enable your bot to communicate with Teams and other channels. The Bot Framework SDKs provide easy access to this API, and provides additional functionality to manage conversation flow and state, and simple ways to incorporate cognitive services such as natural language processing (NLP).
 
 For further review on the types of bot interaction supported by the Bot Framework and therefore Microsoft Teams, please review the Bot Framework documentation on [conversation flow](https://docs.microsoft.com/en-us/bot-framework/bot-design-conversation-flow) principals and related concepts in the [.NET SDK](https://docs.microsoft.com/en-us/bot-framework/dotnet/) and [Node.js SDK](https://docs.microsoft.com/en-us/bot-framework/nodejs/) documentation.
 
 ### Receiving messages
 
 Depending on which scopes have been declared, your bot can receive messages in the following contexts:
+
 * 1:1 chat - Users can interact in a private conversation with a bot by simply selecting the added bot in the chat history, or typing its name or app ID in the To: box on a new chat.
 * Channels - A bot can be @mentioned in a channel if it has been added to the team.  Note that additional replies to a bot in a channel require @mentioning the bot - it will not respond to replies where it is not @mentioned.
 
-For incoming messages, your bot will receive an [Activity](https://docs.botframework.com/en-us/core-concepts/reference/#activity) object, of type `message`.  While the Activity object may contain other types of information, like [channel events sent to your bot](botevents.md), the `message` type represents communication between bot and user.
+For incoming messages, your bot will receive an [Activity](https://docs.botframework.com/en-us/core-concepts/reference/#activity) object, of type `message`.  Altough the `Activity` object can contain other types of information, like [channel events sent to your bot](botevents.md), the `message` type represents communication between bot and user.
 
-Your bot will recieve a payload that contains the user message `Text` as well as other information about the user, the source of the message and Teams information.  Of note:
+Your bot recieves a payload that contains the user message `Text` as well as other information about the user, the source of the message, and Teams information. Of note:
 
 * `timestamp` – This timestamp is in Coordinated Universal Time (UTC).
 * `localTimestamp` – This timestamp is in the time zone of the sender.
@@ -26,7 +27,7 @@ Your bot will recieve a payload that contains the user message `Text` as well as
 * `from.id` – This is a unique and encrypted ID for that user for your bot and is suitable as a key should your app wish to store user data. Note, though, that this is unique for your bot and cannot be directly used outside your bot instance in any meaningful way to identify that user.
 * `channelData.tenant.id` – This is the tenant ID for the user.
 
-#### Full inbound Schema example
+#### Full inbound schema example
 
 ```json
 {
@@ -64,11 +65,11 @@ Your bot will recieve a payload that contains the user message `Text` as well as
     }
 }
 ```
->Note: the text field for inbound messages sometimes contains @ mentions. Make sure to properly check and strip those. For more info see the mentions section [here](botsinchannels.md)
+>**Note:** The text field for inbound messages sometimes contains @ mentions. Be sure to properly check and strip those. For more information, see the mentions section [here](botsinchannels.md)
 
 ### Teams channel data
 
-Teams-specific information is sent and received in the `channelData` object. A typical channelData in an activity sent to your bot will contain the following information:
+Teams-specific information is sent and received in the `channelData` object. A typical channelData in an activity sent to your bot contains the following information:
 
 * `eventType` - Teams event type - passed only in cases of [channel modification events](botevents.md).
 * `tenant.id` - the Azure ActiveDirectory tenant id.  This is passed in all contexts.
@@ -79,9 +80,9 @@ Teams-specific information is sent and received in the `channelData` object. A t
     - `id` - the GUID for the channel.
     - `name` - the channel name, passed only in cases of [channel modification events](botevents.md). 
 
->**Note:** the payload also contains `channelData.teamsTeamId` and `channelData.teamsChannelId` properties for backwards compatibility.  These should be considered deprecated.
+>**Note:** The payload also contains `channelData.teamsTeamId` and `channelData.teamsChannelId` properties for backward compatibility. These should be considered deprecated.
 
-Please note that `channelData` should be used as the definitive information for team and channel Ids, for your use in cacheing and utilizing as key local storage.
+Please note that `channelData` should be used as the definitive information for team and channel IDs, for your use in caching and utilizing as key local storage.
 
 #### Example channelData object (channelCreated event)
 
@@ -101,9 +102,9 @@ Please note that `channelData` should be used as the definitive information for 
 }
 ```
 
-#### .NET SDK sample
+#### .NET example
 
-The Teams .NET SDK provides a specialized TeamsChannelData object, which exposes properties to access Teams-specific information.
+The Teams .NET NuGet package provides a specialized `TeamsChannelData` object, which exposes properties to access Teams-specific information.
 
 ```csharp
 TeamsChannelData channelData = activity.GetChannelData<TeamsChannelData>();
@@ -112,23 +113,23 @@ string tenantId = channelData.Tenant.Id;
 
 ## Replying to messages
 
-In order to reply to an existing message, call the `ReplyToActivity()` in [C#](https://docs.botframework.com/en-us/csharp/builder/sdkreference/routing.html#replying) or `session.send` in [Node.JS](https://docs.botframework.com/en-us/node/builder/chat/session/#sending-messages).  The Bot Framework SDK handles all the details.
+To reply to an existing message, call `ReplyToActivity()` in [C#](https://docs.botframework.com/en-us/csharp/builder/sdkreference/routing.html#replying) or `session.send` in [Node.JS](https://docs.botframework.com/en-us/node/builder/chat/session/#sending-messages).  The Bot Framework SDK handles all the details.
 
 If you choose to use the REST API, you can also call the `/conversations/{conversationId}/activities/{activityId}` [endpoint](https://docs.botframework.com/en-us/restapi/connector/#/Conversations).  
 
-The message content itself can contain simple text or some of the Bot Framework-supplied [cards and action types](botsmessages.md).
+The message content itself can contain simple text or some of the Bot Framework&ndash;supplied [cards and action types](botsmessages.md).
 
-Please note that in your outbound schema, you should always use the same `serviceUrl` as the one you received.
+Please note that in your outbound schema you should always use the same `serviceUrl` as the one you received.
 
 ## Updating messages 
 
->Note: This feature is available in [Public Developer Preview](publicpreview.md) only.
+>**Note:** This feature is available in [Public Developer Preview](publicpreview.md) only.
 
 Rather than have your messages be static snapshots of data, your bot can now dynamically update messages inline after sending them to users. You can use dynamic message updates for scenarios such as poll updates, modifying available actions after a button press, or any other asynchronous state change.
 
 The new message need not match the original in type. For instance, if the original message contained an attachment, the new message can be a simple text message.
 
->Note: Currently, you can only update content sent in single-attachment messages and carousels. Posting updates to messages with multiple attachments in list layout will be supported soon.
+>**Note:** Currently, you can update only content sent in single-attachment messages and carousels. Posting updates to messages with multiple attachments in list layout will be supported soon.
 
 ### REST API
 
@@ -142,7 +143,7 @@ PUT /v3/conversations/19%3Aja0cu120i1jod12j%40skype.net/activities/012ujdo0128
 }
 ```
 
-### .NET SDK example
+### .NET example
 
 You can use the `UpdateActivityAsync` method in the Bot Framework SDK to update an existing message.
 
@@ -160,7 +161,7 @@ public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
 }
 ```
 
-### Node SDK example
+### Node.js example
 
 You can use the `session.connector.update` method in the Bot Framework SDK to update an existing message.
 
@@ -186,11 +187,12 @@ function sendCardUpdate(bot, session, originalMessage, address) {
 
 ## Creating a new conversation
 
-You can create a new 1:1 conversation with a user or start a new reply chain in a channel for your team bot.  This allows you to message your user(s) without having them first initiate contact with your bot.  For more information see:
+You can create a new 1:1 conversation with a user or start a new reply chain in a channel for your team bot. This allows you to message your user or users without having them first initiate contact with your bot. For more information, see the following topics:
+
 * [Creating a new 1:1 conversation](bots1on1.md#starting-a-11-conversation)
 * [Creating a new channel conversation](botsinchannels.md#creating-new-channel-conversation)
 
 ## Deleting messages
 
-At this point, there is no way for you to delete messages via your bot.  You can update content in your message per above, but at this point there is no platform support to delete messages from users or your bot.
+At this point, there is no way for you to delete messages via your bot. You can update content in your message per above, but there is no platform support to delete messages from users or your bot.
 

@@ -1,4 +1,4 @@
-# Custom Bots
+# Custom bots in Microsoft Teams
 
 If you've integrated with outgoing webhooks or slash commands in other chat platforms, you can now easily bring those integrations over to Microsoft Teams via Custom Bots.  Custom bots are an easy way of extending your team with Teams interactivity without having to go through the full process of creating a bot via the Microsoft Bot Framework.  You can use them for custom workflows and commands, such as kicking off a build or checking the latest set of livesite issues. With custom bots, too, you have effective way of ensuring your service is accessible only by authorized users, as the shared secret used by your custom bot will only be scoped to the team in which it has been added.
 
@@ -6,11 +6,11 @@ If you've integrated with outgoing webhooks or slash commands in other chat plat
 
 To create a custom bot, click View Team and then navigate to the Bots tab.
 
-!["View team"](images/tab_view_team.png)
+![View team](images/tab_view_team.png)
 
 Click on the Create a custom bot link at the bottom of the page.
  
-!["Create a custom bot entry point"](images/sideloadentrypoint.png)
+![Create a custom bot entry point](images/sideloadentrypoint.png)
 
 In the dialog, you can configure how your bot appears in channels:
 * **Name** is what will show up as the bot’s title and is also how users will @mention the bot
@@ -18,16 +18,15 @@ In the dialog, you can configure how your bot appears in channels:
 * **Description** is a detailed string that what will show up in the profile card and in the team-level App dashboard
 * **Avatar** is the optional display picture of the custom bot
 
-!["Create a custom bot dialog"](images/createcustombot.png)
+![Create a custom bot dialog](images/createcustombot.png)
  
 Upon clicking Create, the custom bot will be available in the team – it will not be available in any other team. The next dialog will then display the shared secret that you can use to authenticate calls from Microsoft Teams. **Make sure to copy this value in a secure location. You will not be able to retrieve it again without recreating the custom bot.**
  
-!["Custom bot shared secret"](images/custombotsharedsecret.png)
+![Custom bot shared secret](images/custombotsharedsecret.png)
 
 ## Interacting with the custom bot
 
 Once you add a custom bot to the team, it looks and behaves just like a regular bot, so it’s easy for users to interact with them. They listen to messages that @mention the bot name and can respond with rich messages, including images and cards.
-
 
 ## Receiving and replying to messages
 
@@ -40,6 +39,7 @@ You can optionally use the existing Bot Framework client SDKs to simplify parsin
 Currently, users must mention the custom bot for it to receive messages.
 
 #### Example inbound message
+
 ```json
 {
     "type": "message",
@@ -101,7 +101,6 @@ Your code should always verify the HMAC signature included in the request:
 2.	To compute the hash, provide the byte array of the shared secret.
 3.	Convert the hash to a String using UTF8 encoding.
 4.	Compare the string value of the generated hash with the value provided in the HTTP request.
-
 
 #### Code example (C#)
 ```csharp
@@ -239,6 +238,7 @@ As with regular bots, replies from your custom bot will appear in the same reply
 Your custom bot will need to reply asynchronously to the HTTP request from Microsoft Teams. It will have 5 seconds to reply to the message before the connection is terminated.
 
 #### Example reply message
+
 ```json
 {
     "type": "message",
@@ -256,6 +256,6 @@ Your custom bot will need to reply asynchronously to the HTTP request from Micro
 
 For sample code illustrating a custom bot, please see our sample located [here](https://github.com/OfficeDev/microsoft-teams-sample-custombot)
 
-## Turn your custom bot into an App for Microsoft Teams
+## Turn your custom bot into an app for Microsoft Teams
 
 If you’re ready to share your custom bot with others or make it publicly available, you can submit your bot to Microsoft Teams for consideration in the bot gallery. Click [here](https://aka.ms/microsoftteamsdeveloperpreviewinterestform) to learn more.

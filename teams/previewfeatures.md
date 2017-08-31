@@ -1,8 +1,8 @@
-# Features in Public Developer Preview for Microsoft Teams
+# Features in the Public Developer Preview for Microsoft Teams
 
-The following are available to users of the Public Developer Preview ring. See [here](publicpreview.md) for more information on enabling it for your development tenant.
+The following are available to users of the Public Developer Preview ring. See [What is the Public Developer Preview for Microsoft Teams?](publicpreview.md) for more information on enabling it for your development tenant.
 
-Preview features as of August 25, 2017:
+The following features are available in the Public Developer Preview as of August 25, 2017.
 
 ## Apps in Microsoft Teams
 
@@ -24,6 +24,6 @@ App notifications allow apps to send messages using the Bot Framework without ha
 
 Actionable connectors use the new Actionable Message card type within Microsoft Teams that allow users to interact with connector cards. Learn more [here](connectors.md). 
  
-## Bot message update
+## Bot message updates
 
 Bot messages can be updated after they have been delivered, enabling apps to always show up-to-date state in their messages as new information becomes available. Learn more [here](botsconversation.md#updating-messages).

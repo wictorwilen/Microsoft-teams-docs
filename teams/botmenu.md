@@ -1,4 +1,4 @@
-# Bot menus
+# Add a bot menu in Microsoft Teams
 
 To aid discovery and to help educate users about your bot’s functionality, you can now add menus that surface whenever the user interacts with your bot. The menu will show the command text and also provide help text, such as a usage example or description of the command’s purpose.
 

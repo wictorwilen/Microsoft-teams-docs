@@ -1,4 +1,4 @@
-# Messages, cards, and actions
+# Reference: Messages, cards, and actions in Microsoft Teams
 
 A conversation is a series of messages sent between your bot and one or more users. Each message is an `Activity` object. When a user sends a message, the channel on which they're communicating posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly.
 
