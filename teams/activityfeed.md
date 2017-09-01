@@ -1,4 +1,4 @@
-# Notify your users through the activity feed in Microsoft Teams
+# Notify users through the activity feed in Microsoft Teams
 
 >**Note:** Activity feed support is available only in the [Public Developer Preview](publicpreview.md). Additionally, many features in this document are under construction and subject to change.
 
@@ -11,7 +11,7 @@ If your app posts cards and other messages into a channel, they'll automatically
 
 >**Note:** The following features are coming soon to the Public Developer Preview.
 
-Additionally, you can also send personal (1:1 chat) messages into the feed as preview cards summarizing your app's activity. You can construct the message such that clicking on the card navigates the user straight to the message or object that triggered the notification, such as an entity in a tab. This allows the user to see the full content of the activity.
+Additionally, you can also send personal (1:1 chat) messages into the feed as preview cards summarizing your app's activity. You can construct the message such that choosing the card navigates the user straight to the message or object that triggered the notification, such as an entity in a tab. This allows the user to see the full content of the activity.
 
 ## Sending content to the activity feed
 
@@ -24,7 +24,7 @@ When constructing your message, the following fields should be populated so that
 <br>
 ![Activity feed example](images/ActivityFeed/activity_feed.png)
 
-In addition to simply appearing in the feed, your app can also encode a deep link URL to an entity, such as your app’s tab. This drives user engagement to your app’s tab by allowing one-click navigation to that tab’s content.
+In addition to simply appearing in the feed, your app can also encode a deep link URL to an entity, such as your app’s tab. This drives user engagement to your app’s tab by allowing "one-click" navigation to that tab’s content.
 
 #### REST API sample
 
@@ -70,16 +70,8 @@ POST /v3/conversations/a%3A1pL6i0oY3C0K8oAj8/activities/1493070356924
 }
 ```
 
-#### .NET SDK sample
-
->Coming soon!
-
-#### Node SDK sample
-
->Coming soon!
-
 ## Deep linking
 
-To navigate the user to content within your tab, your message must include an attachment with a tap action. This tap action should be of type `OpenUrl` and have a value that follows the [Microsoft Teams deep linking format](deeplinks.md).
+To navigate the user to content within your tab, your message must include an attachment with a tap action. This tap action should be of type `OpenUrl` and have a value that follows the Microsoft Teams [deep links](deeplinks.md) format.
 
->**Note:** If the deep link does not follow the Teams format, clicking the notification in the feed navigates the user first to the chat with the bot. From there, the user can engage the attachment’s tap action to navigate to an external website.
+>**Note:** If the deep link does not follow the Teams format, choosing the notification in the feed navigates the user first to the chat with the bot. From there, the user can engage the attachment’s tap action to navigate to an external website.
