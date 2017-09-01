@@ -22,24 +22,24 @@ Developing a bot that works in channels uses much of the same functionality from
 
 For a bot in a channel, in addition to the [regular message schema](https://docs.botframework.com/en-us/core-concepts/reference/#activity), your bot also receives the following properties:
 
-* `channelData` - see [below](#teams-channel-data).
-* `conversationData.id` - this value is the reply chain ID, consisting of channel ID plus the ID of the first message in the reply chain. 
-* `conversationData.isGroup` - this value is set to `true` for bot messages in channels
-* `entities` - this object can contain one or more Mention objects (see [below](#mentions))
+* `channelData`&emsp;See [Teams channel data](botsconversation.md#teams-channel-data)
+* `conversationData.id`&emsp;The reply chain ID, consisting of channel ID plus the ID of the first message in the reply chain
+* `conversationData.isGroup`&emsp;Set to `true` for bot messages in channels
+* `entities`&emsp;Can contain one or more mentions (see [Mentions](#mentions))
 
 ### Replying to messages
 
-To reply to an existing message, call `ReplyToActivity()` in [C#](https://docs.botframework.com/en-us/csharp/builder/sdkreference/routing.html#replying) or `session.send` in [Node.JS](https://docs.botframework.com/en-us/node/builder/chat/session/#sending-messages).  The Bot Builder SDK handles all the details.
+To reply to an existing message, call [`ReplyToActivity`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-connector#send-a-reply) in .NET or [`session.send`](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-use-default-message-handler) in Node.js. The Bot Builder SDK handles all the details.
 
-If you choose to use the REST API, you can also call the [`/conversations/{conversationId}/activities/{activityId}`](https://docs.botframework.com/en-us/restapi/connector/#/Conversations) endpoint.
+If you choose to use the REST API, you can also call the [`/conversations/{conversationId}/activities/{activityId}`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages#send-the-reply) endpoint.
 
-Note that replying to a message in a channel shows as a reply to the initiating reply chain. The `conversationId` contains the channel and the top level message id. Although the Bot Framework takes care of the details, you may cache that `conversationId` for future replies to that conversation thread as needed.
+Note that replying to a message in a channel shows as a reply to the initiating reply chain. The `conversationId` contains the channel and the top level message ID. Although the Bot Framework takes care of the details, you can cache that `conversationId` for future replies to that conversation thread as needed.
 
 ### Creating new channel conversation
 
-Your team-added bot can post into a channel to create a new reply chain. With the Bot Builder SDK, call  `CreateConversation()` for [C#](https://docs.botframework.com/en-us/csharp/builder/sdkreference/routing.html#conversationmultiple) or utilize Proactive Messaging techniques (`bot.send()` and `bot.beginDialog()`) in [Node.JS](https://docs.botframework.com/en-us/node/builder/chat/UniversalBot/#proactive-messaging).  
+Your team-added bot can post into a channel to create a new reply chain. With the Bot Builder SDK, call [`CreateConversation`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-connector#start-a-conversation) for .NET or use [proactive messages](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-proactive-messages) (`bot.send` and `bot.beginDialog`) in Node.js.
 
-Alternatively, you can issue a POST request to the [`/conversations/{conversationId}/activities/`](https://docs.botframework.com/en-us/restapi/connector/#!/Conversations/Conversations_SendToConversation) resource.
+Alternatively, you can issue a POST request to the [`/conversations/{conversationId}/activities/`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages#send-message) resource.
 
 **Note:** At this point, bots in Microsoft Teams cannot initiate one-to-many or group conversations.
 
@@ -60,25 +60,25 @@ ConversationParameters conversationParams = new ConversationParameters(
 var result = await connector.Conversations.CreateConversationAsync(conversationParams);
 ```
 
-### Best practice - Welcome message
+### Best practice: Welcome message
 
-When your bot is first added to the team, it is a best practice to send a welcome message to the team to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object. Note that you must ensure that the `memberAdded` ID is the bot ID itself, b because the same event is sent when a new user is added to a team. See [Team member or Bot addition](botevents.md#team-member-or-bot-addition) for more details.
+When your bot is first added to the team, it is a best practice to send a welcome message to the team to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object. Be sure that the `memberAdded` ID is the bot ID itself, because the same event is sent when a new user is added to a team. See [Team member or bot addition](botevents.md#team-member-or-bot-addition) for more details.
 
-You might also want to send a 1:1 message to each member of the team when the bot is added. To do this, you could [query the team roster](botapis.md#fetching-the-team-roster) and send each user a [direct message](bots1on1.md#starting-a-11-conversation).
+You might also want to send a 1:1 message to each member of the team when the bot is added. To do this, you could [fetch the team roster](botapis.md#fetching-the-team-roster) and send each user a [direct message](bots1on1.md#starting-a-11-conversation).
 
 For more best practices, see our [design guidelines](design.md).
 
 ## Mentions
 
-Bots in a channel respond only when they are @mentioned in a message. That means every message received by a bot in a channel contains its own name, and you must ensure that your message parsing handles that case. In addition, bots can parse out other users @mentioned and @mention users as part of their messages.
+Bots in a channel respond only when they are mentioned ("@_botname_") in a message. That means every message received by a bot in a channel contains its own name, and you must ensure that your message parsing handles that case. In addition, bots can parse out other users mentioned and mention users as part of their messages.
 
 ### Retrieving mentions
 
-Mentions are returned in the `entities` object in payload and contain both the unique ID of the user and, in most cases, the name of user mentioned. You can retrieve all mentions in the message by calling the `GetMentions()` function in the Bot Builder SDK for .NET.  This should return an array of `Mentioned` objects.
+Mentions are returned in the `entities` object in payload and contain both the unique ID of the user and, in most cases, the name of user mentioned. You can retrieve all mentions in the message by calling the `GetMentions` function in the Bot Builder SDK for .NET, which returns an array of `Mentioned` objects.
 
 All messages that your bot receives have the name of the bot in the channel and should accomodate that in its message parsing.
 
-#### .NET xample code - check for and strip @bot mention
+#### .NET example code: Check for and strip @bot mention
 
 ```csharp
 Mention[] m = sourceMessage.GetMentions();
@@ -96,9 +96,9 @@ for (int i = 0;i < m.Length;i++)
 }
 ```
 
->**Note:** You can also use the Teams extension function `GetTextWithoutMentions()`, which strips out all mentions, including the bot.
+>**Note:** You can also use the Teams extension function `GetTextWithoutMentions`, which strips out all mentions, including the bot.
 
-#### Node.js sample code - check for and strip @bot mention
+#### Node.js example code: Check for and strip @bot mention
 
 ```javascript
 var text = message.text;
@@ -111,18 +111,18 @@ if (message.entities) {
     text = text.trim();
 }
 ```
->**Note:** You can also use the Teams extension function `getTextWithoutMentions()`, which strips out all mentions, including the bot.
+>**Note:** You can also use the Teams extension function `getTextWithoutMentions`, which strips out all mentions, including the bot.
 
 ### Constructing mentions
 
-Your bot can @mention other users in messages posted into channels. To do this, your message must do the following:
+Your bot can mention other users in messages posted into channels. To do this, your message must do the following:
 
 * Include `<at>@username</at>` in the message text
 * Include the `mention` object inside the entities collection
 
-The Teams extensions for the Bot Builder SDK provide functionality to easily accomodate this.
+The [Teams extensions for the Bot Builder SDK](https://msdn.microsoft.com/en-us/microsoft-teams/code#microsoft-teams-extensions-for-the-bot-builder-sdk) provide functionality to easily accomodate this.
 
->**Note**: At this time, team and channel @mentions are not supported.
+>**Note**: At this time, team and channel mentions are not supported.
 
 #### .NET example
 
@@ -160,7 +160,7 @@ var generalMessage = mentionedMsg.routeReplyToGeneralChannel();
 session.send(generalMessage);
 ```
 
-#### Schema example - outgoing message with user @mentioned
+#### Schema example: Outgoing message with user mentioned
 
 ```json
 { 
