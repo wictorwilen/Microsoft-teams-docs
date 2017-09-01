@@ -39,14 +39,14 @@ Pictures can be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animate
 
 ## Cards 
 
-Microsoft Teams supports the following cards which may have several properties and attachments. You can find information on how to use cards in the [.NET SDK](https://docs.botframework.com/en-us/csharp/builder/sdkreference/attachments.html#richcards) and [Node.js SDK](https://docs.botframework.com/en-us/node/builder/guides/examples/#demo-skype-calling) docs.
+Microsoft Teams supports the following cards, which may have several properties and attachments. You can find information on how to use cards in the [.NET SDK](https://docs.botframework.com/en-us/csharp/builder/sdkreference/attachments.html#richcards) and [Node.js SDK](https://docs.botframework.com/en-us/node/builder/guides/examples/#demo-skype-calling) docs.
 
 * Hero card
 * Thumbnail card
-* Office 365 Connector card (Note: Office 365 Connectors do not properly render in iOS)
 
 Supported with modifications:
-* Sign-in card—the `signin` action is not supported.  You can replace the button action with `openUrl` to get the desired result.
+* Office 365 Connector card&mdash;the `OpenUri`, `HttpPost`, and `ActionCard` actions and the `heroImage` field are not currently supported, and Office 365 Connectors do not render properly in iOS.
+* Sign-in card&mdash;the `signin` action is not supported. You can replace the button action with `openUrl` to get the desired result.
 
 Not supported:
 * Receipt card
@@ -111,13 +111,15 @@ The Office 365 Connector card provides a more flexible layout with multiple sect
 
 Please review the [card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) documentation for details about all the supported properties.
 
+>**Note:** Actions (`OpenUri`, `HttpPost`, and `ActionCard`) and the `heroImage` field are not currently supported for the O365ConnectorCard class.
+
 You can use the O365ConnectorCard class in the Bot Builder SDK Microsoft Teams extensions packages ([.NET](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams)/[Node.js](https://www.npmjs.com/package/botbuilder-teams)) to send this card from your bot.
 
 ### Carousel layout
 
 The [carousel layout](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments) can be used to show a carousel of cards, with associated action buttons.
 
->**Note:** A carousel can display a maximum of 7 cards per message.
+>**Note:** A carousel can display a maximum of 10 cards per message.
 
 ![Example of a carousel of cards](images/Cards/carousel.png)
 
@@ -127,11 +129,13 @@ Properties are the same as for the hero or thumbnail card.
 
 The list layout can be used to show a vertically stacked list of cards.
 
+>**Note:** A list can display a maximum of 10 cards per message.
+
 ![Example of a list of cards](images/Cards/list.png)
 
 Properties are the same as for the hero or thumbnail card.
 
->**Note:** Some combinations of list cards may not be supported yet on iOS and Android.
+>**Note:** Some combinations of list cards are not yet supported on iOS and Android.
 
 ### Buttons
 
