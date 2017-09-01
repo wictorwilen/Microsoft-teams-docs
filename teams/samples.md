@@ -10,18 +10,18 @@ These code samples show you the capabilities of Microsoft Teams apps and various
 
 We recommend the following common prequisites for running our sample experiences:
 
-* [An Office 365 account with access to Microsoft Teams, with sideloading enabled](setup.md).
+* [An Office 365 account with access to Microsoft Teams, with sideloading enabled](setup.md)
 * For Node.js:
     * [Visual Studio Code](https://code.visualstudio.com/)
     * [Node.js](https://nodejs.org/en/download/)
 * For .NET/C#:
-    * Visual Studio. You can download the [Community](https://www.visualstudio.com/free-developer-offers/) version for free.
+    * Visual Studio (you can download the [Community](https://www.visualstudio.com/free-developer-offers/) version for free)
 * For samples with bots: [Bot Framework Emulator](https://docs.microsoft.com/en-us/bot-framework/debug-bots-emulator)
 * [Git command line tool](https://git-scm.com/downloads) or [Git for Windows](https://git-for-windows.github.io/)
 * Tunneling software like [ngrok](https://ngrok.com/download)
 
-
 ## Getting samples
+
 Microsoft hosts much of its sample code in GitHub, a web-based Git repository hosting service. If you’re not familiar with Git or GitHub, we recommend that you review the [Git documentation](https://git-scm.com/doc) and follow the [Hello World](https://guides.github.com/activities/hello-world/) project in GitHub Guides.
 
 To download our samples from GitHub:
@@ -39,7 +39,7 @@ We provide a packages.json file that lists all required packages for a sample. S
 
 ### For .NET/C# samples
 
-Our .NET samples provide a Visual Studio solution that contains all required libraries.
+Each of our .NET samples includes a Visual Studio solution file that contains all required libraries.
 
 ### For other samples
 
@@ -55,7 +55,7 @@ For Microsoft Teams app projects, we provide a representative app package (.zip)
 
 #### Node.js projects
 
-For Node.js projects, we provide a Visual Studio Code "launch.json" configuration file, which contains profiles for running in the Bot Emulator (for projects with bots) and for running within Teams. These profiles set default environment variables for you to edit with your own values, such as the following:
+For Node.js projects, we provide a Visual Studio Code configuration file (launch.json), which contains profiles for running in the Bot Emulator (for projects with bots) and for running within Teams. These profiles set default environment variables for you to edit with your own values, such as the following:
 
 * `MICROSOFT_APP_ID`&emsp;Set to your registered Bot Framework bot ID (or blank for the Emulator configuration)
 * `MICROSOFT_APP_PASSWORD`&emsp;Set to your registered Bot Framework bot ID (or blank for the Emulator configuration)
@@ -73,4 +73,4 @@ For .NET/C# projects, we leverage the web.config file to host environment variab
 
 ### Running and debugging
 
-For general information on running and debugging our samples, see [Run and Debug your Microsoft Teams app](debugging.md).
+For general information on running and debugging our samples, see [Run and debug your Microsoft Teams app](debugging.md).
