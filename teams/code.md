@@ -1,6 +1,6 @@
 # Code your Microsoft Teams app
 
-Because Microsoft Teams apps are composed web services, you can use any web-programming technology. For tabs, we provide a JavaScript library. For bots and compose extensions, we recommend you use either C# or Typescript to take advantage of our [SDK extensions](#microsoft-teams-extensions-for-the-bot-builder-sdks) for .NET and Node.js.
+Because Microsoft Teams apps are composed web services, you can use any web-programming technology. For tabs, we provide a JavaScript library. For bots and compose extensions, we recommend you use either C# or Typescript to take advantage of our [SDK extensions](#microsoft-teams-extensions-for-the-bot-builder-sdk) for .NET and Node.js.
 
 ## Coding your tab
 
