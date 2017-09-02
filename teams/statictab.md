@@ -19,7 +19,7 @@ For more information on creating your app package, see [Create the package for y
 #### Manifest example for a static tab
 
 ```json
-&#8942;
+⋮
 "staticTabs": [
   {
     "entityId": "TestAppAbout",
@@ -36,7 +36,7 @@ For more information on creating your app package, see [Create the package for y
     "scopes": [ "personal" ]
   }
 ]
-&#8942;
+⋮
 ```
 
 <!-- TODO get this from sample app -->
