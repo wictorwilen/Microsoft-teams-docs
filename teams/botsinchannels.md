@@ -35,9 +35,9 @@ If you choose to use the REST API, you can also call the [`/conversations/{conve
 
 Note that replying to a message in a channel shows as a reply to the initiating reply chain. The `conversationId` contains the channel and the top level message ID. Although the Bot Framework takes care of the details, you can cache that `conversationId` for future replies to that conversation thread as needed.
 
-### Creating new channel conversation
+### Creating a channel conversation
 
-Your team-added bot can post into a channel to create a new reply chain. With the Bot Builder SDK, call [`CreateConversation`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-connector#start-a-conversation) for .NET or use [proactive messages](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-proactive-messages) (`bot.send` and `bot.beginDialog`) in Node.js.
+Your team-added bot can post into a channel to create a reply chain. With the Bot Builder SDK, call [`CreateConversation`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-connector#start-a-conversation) for .NET or use [proactive messages](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-proactive-messages) (`bot.send` and `bot.beginDialog`) in Node.js.
 
 Alternatively, you can issue a POST request to the [`/conversations/{conversationId}/activities/`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages#send-message) resource.
 
@@ -62,7 +62,7 @@ var result = await connector.Conversations.CreateConversationAsync(conversationP
 
 ### Best practice: Welcome message
 
-When your bot is first added to the team, it is a best practice to send a welcome message to the team to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object. Be sure that the `memberAdded` ID is the bot ID itself, because the same event is sent when a new user is added to a team. See [Team member or bot addition](botevents.md#team-member-or-bot-addition) for more details.
+When your bot is first added to the team, it is a best practice to send a welcome message to the team to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object. Be sure that the `memberAdded` ID is the bot ID itself, because the same event is sent when a user is added to a team. See [Team member or bot addition](botevents.md#team-member-or-bot-addition) for more details.
 
 You might also want to send a 1:1 message to each member of the team when the bot is added. To do this, you could [fetch the team roster](botapis.md#fetching-the-team-roster) and send each user a [direct message](bots1on1.md#starting-a-11-conversation).
 
@@ -151,7 +151,7 @@ var toMention: builder.IIdentity = {
     id: userId
 };
 
-// Create a new message and add mention to it
+// Create a message and add mention to it
 var msg = new teams.TeamsMessage(session).text(teams.TeamsMessage.getTenantId(session.message));
 var mentionedMsg = msg.addMentionToText(toMention);
 
