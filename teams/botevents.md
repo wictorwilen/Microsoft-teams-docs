@@ -21,12 +21,12 @@ The following table lists the events that your bot can receive and take action o
 | `conversationUpdate` | |`channelCreated`| In a team where bot is member, [a channel was created](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelRenamed`| In a team where bot is member, [a channel was renamed](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelDeleted`| In a team where bot is member, [a channel was deleted](botevents.md#channel-updates)|
-| _`contactRelationUpdate`_ | | | This [Bot Framework–provided activity type](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#contactrelationupdate) is not directly supported in Microsoft Teams |
-| _`deleteUserData`_ | | | This [Bot Framework–provided activity type](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#deleteuserdata) is not directly supported in Microsoft Teams |
+| _`contactRelationUpdate`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#contactrelationupdate) is not directly supported in Microsoft Teams |
+| _`deleteUserData`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#deleteuserdata) is not directly supported in Microsoft Teams |
 
 ## Team member or bot addition
 
-The [conversationUpdate](https://docs.botframework.com/en-us/csharp/builder/sdkreference/activities.html#conversationUpdate) event is sent to your bot when it receives information on membership updates for teams where it has been added. It will also receive an update when it has been added for the first time specifically for 1:1 conversations. Note that the user information (`Id`) is unique for your bot and can be cached for future use by your service (such as sending a message to a specific user).
+The [`conversationUpdate`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#conversationupdate) event is sent to your bot when it receives information on membership updates for teams where it has been added. It also receives an update when it has been added for the first time specifically for 1:1 conversations. Note that the user information (`Id`) is unique for your bot and can be cached for future use by your service (such as sending a message to a specific user).
 
 ### Bot or user added to a team
 
@@ -34,9 +34,9 @@ The `conversationUpdate` event with the `membersAdded` object in the payload is 
 
 Because this event is sent in both cases, you should parse the `membersAdded` object to determine whether the addition was a user or the bot itself. For the latter, a best practice is to send a welcome message to the channel so users can understand the features your bot provides.
 
-#### Example code - checking whether bot was the added member 
+#### Example code: Checking whether bot was the added member 
 
-##### .NET SDK
+##### .NET
 
 ```csharp
     for (int i = 0; i < sourceMessage.MembersAdded.Count; i++)
@@ -74,7 +74,7 @@ bot.on('conversationUpdate', (msg) => {
 });
 ```
 
-#### Schema example - bot added to team
+#### Schema example: Bot added to team
 
 ```json
 {     
@@ -120,7 +120,7 @@ Your bot receives a `conversationUpdate` with `membersAdded` when a user adds it
 
 The `conversationUpdate` event with the `membersRemoved` object in the payload is sent when either your bot is removed from a team, or a user is removed from a team where a bot has been added. Microsoft Teams also adds `eventType.teamMemberRemoved` in the `channelData` object. As with the `membersAdded` object, you should parse the `membersRemoved` object for your bot ID to determine who was removed.
 
-#### Schema example - Team member removed
+#### Schema example: Team member removed
 
 ```json
 {     
@@ -161,11 +161,11 @@ The `conversationUpdate` event with the `membersRemoved` object in the payload i
 
 ## Team name updates
 
->**Note:** At this time, there is no functionality to query all team names, and team name is not returned in other payloads beside this event.
+>**Note:** At this time, there is no functionality to query all team names, and team name is not returned in payloads from other events.
 
 Your bot is notified when the team it is in has been renamed. It receives a `conversationUpdate` event with `eventType.teamRenamed` in the `channelData` object. Please note that there are no notifications for team creation or deletion, because bots exist only as part of teams and have no visibility outside the scope in which they have been added.
 
-#### Schema example - Team renamed
+#### Schema example: Team renamed
 
 ```json
 { 
@@ -205,11 +205,11 @@ Your bot is notified when a channel is created, renamed, or deleted in a team wh
 
 The channel events are as follows:
 
-* **channelCreated** - a user adds a new channel to the team
-* **channelRenamed** - a user renames an existing channel
-* **channelDeleted** - a user removes a channel
+* **channelCreated**&emsp;A user adds a new channel to the team
+* **channelRenamed**&emsp;A user renames an existing channel
+* **channelDeleted**&emsp;A user removes a channel
 
-#### Full schema example (channelCreated)
+#### Full schema example: channelCreated
 
 ```json
 {     
@@ -246,10 +246,10 @@ The channel events are as follows:
 } 
 ```
 
-#### Schema snippet - channelData for channelRenamed
+#### Schema excerpt: channelData for channelRenamed
 
 ```json
-...
+⋮
 "channelData": {         
     "channel": {             
         "id": "19:6d97d816470f481dbcda38244b98689a@thread.skype",             
@@ -263,13 +263,13 @@ The channel events are as follows:
         "id": "72f988bf-86f1-41af-91ab-2d7cd011db47"         
     }     
 } 
-...
+⋮
 ```
 
-#### Schema snippet - channelData for channelDeleted
+#### Schema excerpt: channelData for channelDeleted
 
 ```json     
-...
+⋮
 "channelData": {         
     "channel": {             
         "id": "19:6d97d816470f481dbcda38244b98689a@thread.skype",               
@@ -283,5 +283,5 @@ The channel events are as follows:
         "id": "72f988bf-86f1-41af-91ab-2d7cd011db47"         
     }     
 } 
-...
+⋮
 ```
