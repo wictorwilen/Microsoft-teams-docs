@@ -16,6 +16,10 @@ No prerequisites or additional development accounts are needed to start building
 
 ## Bots
 
+### How can my bot access the ID of a user in a 1:1 chat?
+
+To can obtain the profile information of the user who is chatting with your bot, see [Fetching user profile in 1:1 chat](https://msdn.microsoft.com/en-us/microsoft-teams/botapis#fetching-user-profile-in-11-chat). (The process is almost identical to [Fetching the team roster](https://msdn.microsoft.com/en-us/microsoft-teams/botapis#fetching-the-team-roster).)
+
 ### How can my bot access or listen to all messages in a channel?
 
 Bots in channels receive messages only when they are explicitly @mentioned. There is no way to grant your bot access to conversations in which they are not mentioned.
