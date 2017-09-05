@@ -191,7 +191,7 @@ After you sideload the app, open the Connectors list from any channel. Scroll to
 
 You can now launch the configuration experience. Be aware that this flow occurs entirely within Microsoft Teams through a pop-up window. Currently, this behavior differs from the configuration experience in Connectors that we created; we are working on unifying the experiences.
 
-To verify that an `HttpPOST` action is working correctly, use your [custom incoming webhook](#setting-up-a-custom-incoming-webhook). (Until you publish your app, your Connector doesn't receive callbacks.)
+To verify that an `HttpPOST` action is working correctly, use your [custom incoming webhook](#setting-up-a-custom-incoming-webhook).
 
 ## Publishing your app
 
