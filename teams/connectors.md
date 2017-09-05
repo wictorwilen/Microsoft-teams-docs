@@ -135,8 +135,6 @@ With Microsoft Teams apps, you can distribute your registered Connector as part 
 
 To distribute your Connector, you need to register by using the [Connectors Developer Dashboard](https://go.microsoft.com/fwlink/?LinkID=780623). To have your Connector work in Microsoft Teams, select **Microsoft Teams** under **Enable this integration for**.
 
->**Note:** Before your Connector can receive callbacks for actionable messages, you must register it *and* publish the app.
-
 <img alt="Screenshot of enabling the Connector for Microsoft Teams" src="images/Connectors/connector_developer_portal.png" height="185" width="336">
 
 You can download the auto-generated Teams app manifest from the portal. The following manifest.json file contains the basic elements needed to test and submit your app.
