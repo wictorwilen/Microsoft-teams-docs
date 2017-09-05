@@ -21,7 +21,9 @@ You have two options for posting messages via Connectors:
 - Set up a custom incoming webhook if you want an integration just for your team.
 - Register a Connector and submit it as a Microsoft Teams app if you want others to use it.
 
-Both options involve posting a simple JSON payload to an HTTP webhook to create the [Connector message](https://docs.microsoft.com/en-us/outlook/actionable-messages/get-started) within Microsoft Teams. You can also use the markup to include rich actions, such as text entry, multi-select, or picking a date and time. The code that generates the card and posts to the incoming webhook API can be running on any hosted service.
+Both options involve posting a simple JSON payload to an HTTP webhook to create the Connector message within Microsoft Teams. (For more details, see [Get started with actionable messages in Office 365](https://docs.microsoft.com/en-us/outlook/actionable-messages/get-started).)
+
+You can also use the markup to include rich inputs, such as text entry, multi-select, or picking a date and time. The code that generates the card and posts to the incoming webhook API can be running on any hosted service.
 
 #### Example Connector message
 
@@ -102,11 +104,11 @@ Both options involve posting a simple JSON payload to an HTTP webhook to create 
 }
 ```
 
-This produces the following card in the channel.
+This message produces the following card in the channel.
 
 ![Screenshot of a Connector card](images/Connectors/connector_message.png)
 
-For full details on the available options on cards, see [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) in the Outlook Dev Center.
+For more information on the available options for Connector cards, see [Office 365 Connector card](botsmessages.md#office-365-connector-card).
 
 ## Setting up a custom incoming webhook
 
