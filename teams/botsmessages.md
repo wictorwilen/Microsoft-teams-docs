@@ -11,7 +11,7 @@ For more information about core messaging functionality of the Bot Framework, pl
 Most messages to and from your bot are of type `message`. Your bot can send rich text, pictures and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
 
 | Format | From user to bot  | From bot to user |  Notes |
-|:-------|:-------|:------------|:-------|
+| --- | --- | --- | --- |
 | Rich text | ✔ | ✔ |  |
 | Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
 | Cards | ✘ | ✔ | Teams currently supports hero, thumbnail, and Office 365 Connector cards |
@@ -24,7 +24,7 @@ You can set the optional [`TextFormat`](https://docs.microsoft.com/en-us/bot-fra
 Microsoft Teams supports the following formatting options:
 
 | TextFormat value | Description |
-|:----------------------|:------------------|
+| --- | --- |
 | plain | The text should be treated as raw text with no formatting applied at all |
 | markdown | The text should be treated as Markdown formatting and rendered on the channel as appropriate; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
 | xml | The text is simple XML markup; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
@@ -44,8 +44,9 @@ We recommend that you specify the height and width of each image by using XML. I
 
 ## Cards 
 
-Microsoft Teams supports the following cards, which may have several properties and attachments. You can find information on how to use cards in the [.NET SDK](https://docs.botframework.com/en-us/csharp/builder/sdkreference/attachments.html#richcards) and [Node.js SDK](https://docs.botframework.com/en-us/node/builder/guides/examples/#demo-skype-calling) docs.
+Microsoft Teams supports rich cards, which can have several properties and attachments.
 
+Supported:
 * Hero card
 * Thumbnail card
 
@@ -63,7 +64,13 @@ Additionally, we support the following layouts:
 
 Both layouts support hero and thumbnail cards.
 
->**Note:** Botbuilder has a good repository of card samples: [Node](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards), [C#](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/cards-RichCards)
+You can find information on how to use cards in the documentation for the Bot Builder SDK. Code samples are in the Microsoft/BotBuilder-Samples repository on GitHub:
+* .NET
+  * [Add rich card attachments to messages](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments)
+  * [Rich cards sample code](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/cards-RichCards)
+* Node.js
+  * [Add rich card attachments to messages](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-send-rich-cards)
+  * [Rich cards sample code](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards)
 
 ### Inline card images
 
@@ -74,7 +81,7 @@ Images are scaled up or down in size while maintaining the aspect ratio to cover
 Images must be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
 
 | Property | Type  | Description |                                                           
-|:-------|:-------|:------------|
+| --- | --- | --- |
 | url | URL | HTTPS URL to the image |
 | alt | String | Accessible description of the image |
 
@@ -85,12 +92,12 @@ The [hero card](https://docs.botframework.com/en-us/csharp/builder/sdkreference/
 ![Example of a hero card](images/Cards/hero.png)
 
 | Property | Type  | Description |                                                           
-|:-------|:-------|:------------|
+| --- | --- | --- |
 | title | Rich text | Title of the card. Maximum 2 lines; formatting not currently supported |
 | subtitle | Rich text | Subtitle of the card. Maximum 2 lines; formatting not currently supported |
 | text | Rich text | Text appears just below the subtitle; see [Message format](#message-format) for formatting options |
-| images: [] | Array of images | Image displayed at top of card. Aspect ratio 16:9 |
-| buttons: [] | Array of action objects | Set of actions applicable to the current card. Maximum 6. |
+| images | Array of images | Image displayed at top of card. Aspect ratio 16:9 |
+| buttons | Array of action objects | Set of actions applicable to the current card. Maximum 6 |
 | tap | Action object | This action will be activated when the user taps on the card itself |
 
 ### Thumbnail card
@@ -100,12 +107,12 @@ The [thumbnail card](https://docs.botframework.com/en-us/csharp/builder/sdkrefer
 ![Example of a thumbnail card](images/Cards/thumbnail.png)
 
 | Property | Type  | Description |                                                           
-|:-------|:-------|:------------|
+| --- | --- | --- |
 | title | Rich text | Title of the card. Maximum 2 lines; formatting not currently supported |
 | subtitle | Rich text | Subtitle of the card. Maximum 2 lines; formatting not currently supported |
 | text | Rich text | Text appears just below the subtitle; see [Message format](#message-format) for formatting options |
-| images: [] | Array of images | Image displayed at top of card. Aspect ratio 1:1 (square) |
-| buttons: [] | Array of action objects | Set of actions applicable to the current card. Maximum 6. |
+| images | Array of images | Image displayed at top of card. Aspect ratio 1:1 (square) |
+| buttons | Array of action objects | Set of actions applicable to the current card. Maximum 6 |
 | tap | Action object | This action will be activated when the user taps on the card itself |
 
 ### Office 365 Connector card
@@ -116,11 +123,11 @@ The Office 365 Connector card provides a more flexible layout with multiple sect
 
 ![Example of an Office 365 Connector card](images/Cards/o365connector.png)
 
-Please review the [card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) documentation for details about all the supported properties.
+See the [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) for details about card fields and actions. Teams currently does not support the following:
+* Fields: `heroImage`
+* Actions: `HttpPOST` and `ActionCard`
 
->**Note:** The `HttpPost` and `ActionCard` actions and the `heroImage` field are not currently supported for the O365ConnectorCard class.
-
-You can use the O365ConnectorCard class in the Bot Builder SDK Microsoft Teams extensions packages ([.NET](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams)/[Node.js](https://www.npmjs.com/package/botbuilder-teams)) to send this card from your bot.
+You can use the O365ConnectorCard class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send this card from your bot.
 
 ### Carousel layout
 
@@ -156,11 +163,11 @@ Teams supports the following activity ([`CardAction`](https://docs.microsoft.com
 | --- | --- |
 | `openUrl` | Opens a URL in the built-in browser. |
 | `messageBack` | Sends a message and payload to the bot (from the user who clicked the button or tapped the card) and sends a separate message to the chat stream. |
-| `imBack `| Sends a message to the bot (from the user who clicked the button or tapped the card). This message (from user to bot) is visible to all conversation participants. |
+| `imBack`| Sends a message to the bot (from the user who clicked the button or tapped the card). This message (from user to bot) is visible to all conversation participants. |
 | `invoke` | Sends a message and payload to the bot (from the user who clicked the button or tapped the card). This message is not visible. |
 
 >**Notes**
->* Teams does not support `postBack`, `signin`, or other `CardAction` types.
+>* Teams does not support `CardAction` types not listed in the preceding table.
 >* Teams does not support the `SuggestedActions` property.
 
 ### openUrl
