@@ -157,7 +157,7 @@ To reply to an existing message, call [`ReplyToActivity`](https://docs.microsoft
 
 If you choose to use the REST API, you can also call the [`/conversations/{conversationId}/activities/{activityId}`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages#send-the-reply) endpoint.  
 
-The message content itself can contain simple text or some of the Bot Framework&ndash;supplied [cards](botsmessages.md#cards) and [card actions](botsmessages.md#card-actions).
+The message content itself can contain simple text or some of the Bot Framework&ndash;supplied [cards and card actions](teams-bots-cards.md).
 
 Please note that in your outbound schema you should always use the same `serviceUrl` as the one you received.
 
