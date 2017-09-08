@@ -122,6 +122,7 @@ Teams supports the following activity ([`CardAction`](https://docs.microsoft.com
 >**Notes**
 >* Teams does not support `CardAction` types not listed in the preceding table.
 >* Teams does not support the `SuggestedActions` property.
+>* Be aware that these actions differ from actions for Office 365 Connector cards.
 
 ### openUrl
 
