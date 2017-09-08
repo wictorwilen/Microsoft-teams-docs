@@ -2,6 +2,13 @@
 
 This changelog covers what's changed in the Microsoft Teams developer platform and documentation, including updates to the APIs as well as new features and tools available to developers.
 
+## September 2017
+
+| **Category** | **Description** | **Link** |
+| --- | --- | --- |
+| Bots | Moved information about messages from former "Messages, cards, and actions" topic. | [Send and receive messages](botsconversation.md) |
+| Bots | Moved information about cards and card actions from former "Messages, cards, and actions" topic. | [Use cards and card actions](teams-bots-cards.md) |
+
 ## August 2017
 
 | **Category** | **Description** | **Link** |
