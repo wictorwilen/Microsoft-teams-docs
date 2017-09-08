@@ -1,4 +1,4 @@
-# Use cards and card actions in a Microsoft Teams bot
+# Add cards and card actions in a Microsoft Teams bot
 
 A *card* is a user-interface (UI) container for short or related pieces of information. Microsoft Teams supports rich cards, which can have multiple properties and attachments.
 
