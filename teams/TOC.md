@@ -30,7 +30,7 @@
 ## [Send and receive messages](botsconversation.md)
 ## [Interact in 1:1 chat](bots1on1.md)
 ## [Interact in channels](botsinchannels.md)
-## [Messages, cards, and actions](botsmessages.md)
+## [Add cards and card actions](teams-bots-cards.md)
 ## [Respond to events](botevents.md)
 ## [Get context for your bot](botapis.md)
 ## [Test your bot](botsadd.md)
