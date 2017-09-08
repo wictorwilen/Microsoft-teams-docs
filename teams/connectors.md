@@ -125,8 +125,6 @@ This message produces the following card in the channel.
 
 ![Screenshot of a Connector card](images/Connectors/connector_message.png)
 
-For more information on the available options for Connector cards, see [Office 365 Connector card](botsmessages.md#office-365-connector-card).
-
 ## Setting up a custom incoming webhook
 
 Follow these steps to see how to send a simple card to a Connector.
