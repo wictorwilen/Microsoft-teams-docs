@@ -2,7 +2,7 @@
 
 Office 365 Connectors are a great way to push your app's rich content into Microsoft Teams. Any user can connect a team to services like Trello, GitHub, Bing News, or Twitter and get notified of the team's activity in that service. From tracking a team's progress in Trello to following important hashtags in Twitter, Office 365 Connectors help your team to stay in sync and get more done. You can even add rich actions to your content so that users can complete tasks right within the channel.
 
->**New:** With Microsoft Teams apps, you can add your existing Office 365 Connector or build a new one to include in Microsoft Teams.  See [Build your own Connector](https://docs.microsoft.com/en-us/outlook/actionable-messages/connectors-dev-dashboard#build-your-own-connector) for more information.
+>**New:** With Microsoft Teams apps, you can add your existing Office 365 Connector or build a new one to include in Microsoft Teams.  See [Build your own Connector](https://docs.microsoft.com/en-us/outlook/actionable-messages/connectors-dev-dashboard#build-your-own-connector) for more information. 
 
 ## Accessing Office 365 Connectors from Microsoft Teams
 
@@ -13,6 +13,20 @@ In Microsoft Teams, choose the **More options** (**&#8943;**) button next to the
 In the list, choose **Add** for the Connector you want to use.
 
 ![Screenshot of a dialog box showing a list of available Connectors, with a button for adding each one](images/connector_list.png)
+
+## Using Office 365 Connector cards in Microsoft Teams
+
+The Office 365 Connector card provides a flexible layout with multiple sections, images, and fields.
+
+>**Note:** An Office 365 Connector card can display a maximum of 10 sections. Any additional sections do not appear.
+
+![Example of an Office 365 Connector card](images/Cards/o365connector.png)
+
+See the [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) for details about card fields and actions. Teams currently does not support the following:
+* Fields: `heroImage`
+* Actions: `HttpPOST` and `ActionCard`
+
+You can use the O365ConnectorCard class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send this card from your bot.
 
 ## Creating messages through Office 365 Connectors
 
