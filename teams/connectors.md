@@ -2,7 +2,7 @@
 
 Office 365 Connectors are a great way to push your app's rich content into Microsoft Teams. Any user can connect a team to services like Trello, GitHub, Bing News, or Twitter and get notified of the team's activity in that service. From tracking a team's progress in Trello to following important hashtags in Twitter, Office 365 Connectors help your team to stay in sync and get more done. You can even add rich actions to your content so that users can complete tasks right within the channel.
 
->**New:** With Microsoft Teams apps, you can add your existing Office 365 Connector or build a new one to include in Microsoft Teams.  See [Build your own Connector](https://docs.microsoft.com/en-us/outlook/actionable-messages/connectors-dev-dashboard#build-your-own-connector) for more information.
+>**New:** With Microsoft Teams apps, you can add your existing Office 365 Connector or build a new one to include in Microsoft Teams.  See [Build your own Connector](https://docs.microsoft.com/en-us/outlook/actionable-messages/connectors-dev-dashboard#build-your-own-connector) for more information. 
 
 ## Accessing Office 365 Connectors from Microsoft Teams
 
@@ -14,6 +14,23 @@ In the list, choose **Add** for the Connector you want to use.
 
 ![Screenshot of a dialog box showing a list of available Connectors, with a button for adding each one](images/connector_list.png)
 
+For more examples, see [Accessing Office 365 Connectors from Microsoft Teams](https://docs.microsoft.com/en-us/outlook/actionable-messages/#accessing-office-365-connectors-from-microsoft-teams).
+
+## Using Office 365 Connector cards in Microsoft Teams
+
+The Office 365 Connector card provides a flexible layout with multiple sections, images, and fields.
+
+>**Note:** An Office 365 Connector card can display a maximum of 10 sections. Any additional sections do not appear.
+
+![Example of an Office 365 Connector card](images/Cards/o365connector.png)
+
+See the [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) for details about card fields and actions. Teams currently does not support the following:
+
+* Fields: `heroImage`
+* Actions: `HttpPOST` and `ActionCard`
+
+You can use the `O365ConnectorCard` class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send this card from your bot.
+
 ## Creating messages through Office 365 Connectors
 
 You have two options for posting messages via Connectors:
@@ -21,7 +38,9 @@ You have two options for posting messages via Connectors:
 - Set up a custom incoming webhook if you want an integration just for your team.
 - Register a Connector and submit it as a Microsoft Teams app if you want others to use it.
 
-Both options involve posting a simple JSON payload to an HTTP webhook to create the [Connector message](https://docs.microsoft.com/en-us/outlook/actionable-messages/get-started) within Microsoft Teams. You can also use the markup to include rich actions, such as text entry, multi-select, or picking a date and time. The code that generates the card and posts to the incoming webhook API can be running on any hosted service.
+Both options involve posting a simple JSON payload to an HTTP webhook to create the Connector message within Microsoft Teams. (For more details, see [Get started with actionable messages in Office 365](https://docs.microsoft.com/en-us/outlook/actionable-messages/get-started).)
+
+You can also use the markup to include rich inputs, such as text entry, multi-select, or picking a date and time. The code that generates the card and posts to the incoming webhook API can be running on any hosted service.
 
 #### Example Connector message
 
@@ -102,11 +121,9 @@ Both options involve posting a simple JSON payload to an HTTP webhook to create 
 }
 ```
 
-This produces the following card in the channel.
+This message produces the following card in the channel.
 
 ![Screenshot of a Connector card](images/Connectors/connector_message.png)
-
-For full details on the available options on cards, see [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) in the Outlook Dev Center.
 
 ## Setting up a custom incoming webhook
 
@@ -134,8 +151,6 @@ The following steps use [cURL](https://curl.haxx.se/). We assume that you have t
 With Microsoft Teams apps, you can distribute your registered Connector as part of your app package. Whether as a standalone solution, or one of several [capabilities](index.md#apps-in-microsoft-teams) that your experience enables in Teams, you can [package](createpackage.md) and [publish](submission.md) your Connector as part of your Office Store submission, or you can provide it to users directly for sideloading within Teams.
 
 To distribute your Connector, you need to register by using the [Connectors Developer Dashboard](https://go.microsoft.com/fwlink/?LinkID=780623). To have your Connector work in Microsoft Teams, select **Microsoft Teams** under **Enable this integration for**.
-
->**Note:** Before your Connector can receive callbacks for actionable messages, you must register it *and* publish the app.
 
 <img alt="Screenshot of enabling the Connector for Microsoft Teams" src="images/Connectors/connector_developer_portal.png" height="185" width="336">
 
@@ -193,7 +208,7 @@ After you sideload the app, open the Connectors list from any channel. Scroll to
 
 You can now launch the configuration experience. Be aware that this flow occurs entirely within Microsoft Teams through a pop-up window. Currently, this behavior differs from the configuration experience in Connectors that we created; we are working on unifying the experiences.
 
-To verify that an `HttpPOST` action is working correctly, use your [custom incoming webhook](#setting-up-a-custom-incoming-webhook). (Until you publish your app, your Connector doesn't receive callbacks.)
+To verify that an `HttpPOST` action is working correctly, use your [custom incoming webhook](#setting-up-a-custom-incoming-webhook).
 
 ## Publishing your app
 

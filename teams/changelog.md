@@ -2,12 +2,19 @@
 
 This changelog covers what's changed in the Microsoft Teams developer platform and documentation, including updates to the APIs as well as new features and tools available to developers.
 
+## September 2017
+
+| **Category** | **Description** | **Link** |
+| --- | --- | --- |
+| Bots | Moved information about messages from former "Messages, cards, and actions" topic. | [Send and receive messages](botsconversation.md) |
+| Bots | Moved information about cards and card actions from former "Messages, cards, and actions" topic. | [Use cards and card actions](teams-bots-cards.md) |
+
 ## August 2017
 
 | **Category** | **Description** | **Link** |
 | --- | --- | --- |
 | All | Updated table of contents (to enhance discoverability) and topic titles (to enhance search results). | All topics |
-| Bots | Added new card action `messageBack`. | [Card actions](botsmessages.md#card-actions) |
+| Bots | Added new card action `messageBack`. | [Card actions](teams-bots-cards.md#card-actions) |
 | Bots | Added `localTimestamp`; similar to `timestamp` but uses the sender's time zone. | [Receiving messages](botsconversation.md#receiving-messages) |
 | Compose extensions | Added section on handling events, including `onQuery` and new events `onQuerySettingsUrl` and `onSettingsUpdate`. | [Add event handlers](composeextensions.md#add-event-handlers) |
 

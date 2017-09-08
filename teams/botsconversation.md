@@ -1,23 +1,61 @@
 # Send and receive messages with a Microsoft Teams bot
 
-Bots in Microsoft Teams allow sending messages in either personal conversations with a single user or a group conversation in a Teams channel.
+A conversation is a series of messages sent between your bot and one or more users. Bots in Microsoft Teams allow sending messages in either personal conversations with a single user (also known as one-on-one or 1:1 chats) or a group conversation in a Teams channel.
 
 >**Note:** Bots in private group chats are currently not supported.
 
 ## Conversation basics
 
+Each message is an `Activity` object. When a user sends a message, the channel on which she or he is communicating posts the message to your bot (web service). Your bot examines the message to determine its type and responds accordingly.
+
+Most content sent between a user and your bot uses `messageType: message`. (For event-style messages, see [Handle bot events in Microsoft Teams](botevents.md). Speech is currently not supported.)
+
 Basic conversation is handled through the Bot Framework Connector, a single REST API to enable your bot to communicate with Teams and other channels. The Bot Builder SDK provides easy access to this API, additional functionality to manage conversation flow and state, and simple ways to incorporate cognitive services such as natural language processing (NLP).
 
-For further review on the types of bot interaction supported by the Bot Framework and therefore Microsoft Teams, please review the Bot Framework documentation on [conversation flow](https://docs.microsoft.com/en-us/bot-framework/bot-design-conversation-flow) and related concepts in the documentation for [the Bot Builder SDK for .NET](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-concepts) and [the Bot Builder SDK for Node.js](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-concepts).
+Your bot can send rich text, pictures, and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
 
-### Receiving messages
+| Format | From user to bot  | From bot to user |  Notes |
+| --- | --- | --- | --- |
+| Rich text | ✔ | ✔ |  |
+| Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
+| Cards | ✘ | ✔ | Teams currently supports hero, thumbnail, and Office 365 Connector cards |
+| Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face) |
 
-Depending on which scopes have been declared, your bot can receive messages in the following contexts:
+For more information on the types of bot interaction supported by the Bot Framework and therefore Microsoft Teams, see the Bot Framework documentation on [conversation flow](https://docs.microsoft.com/en-us/bot-framework/bot-design-conversation-flow) and related concepts in the documentation for [the Bot Builder SDK for .NET](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-concepts) and [the Bot Builder SDK for Node.js](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-concepts).
 
-* 1:1 chat &ndash; Users can interact in a private conversation with a bot by simply selecting the added bot in the chat history, or typing its name or app ID in the To: box on a new chat.
-* Channels &ndash; A bot can be mentioned ("@_botname_") in a channel if it has been added to the team. Note that additional replies to a bot in a channel require mentioning the bot&mdash;it will not respond to replies where it is not mentioned.
+## Message format
 
-For incoming messages, your bot receives an [`Activity`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-activities) object of type `message`. Altough the `Activity` object can contain other types of information, like [channel events sent to your bot](botevents.md), the `message` type represents communication between bot and user.
+You can set the optional [`TextFormat`](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) property to control how your message's text content is rendered.
+
+Microsoft Teams supports the following formatting options:
+
+| TextFormat value | Description |
+| --- | --- |
+| plain | The text should be treated as raw text with no formatting applied at all |
+| markdown | The text should be treated as Markdown formatting and rendered on the channel as appropriate; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
+| xml | The text is simple XML markup; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
+
+>**Note:** On hero and thumbnail cards, message format is supported only on the text property. Formatting is not supported on the title and subtitle properties at this time.
+
+## Picture messages
+
+Pictures are sent by adding attachments to a message.  You can find more information on attachments in the [Bot Framework documentation](https://docs.botframework.com/en-us/core-concepts/attachments/).
+
+Pictures can be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
+
+We recommend that you specify the height and width of each image by using XML. If you use Markdown, the image size defaults to 256×256. For example:
+
+* Use `<img src="http://aka.ms/Fo983c" alt="Duck on a rock" height="150" width="223"></img>`
+* Don't use `![Duck on a rock](http://aka.ms/Fo983c)`
+
+## Receiving messages
+
+Depending on which scopes are declared, your bot can receive messages in the following contexts:
+
+* **1:1 chat**&emsp;Users can interact in a private conversation with a bot by simply selecting the added bot in the chat history, or typing its name or app ID in the To: box on a new chat.
+* **Channels**&emsp;A bot can be mentioned ("@_botname_") in a channel if it has been added to the team. Note that additional replies to a bot in a channel require mentioning the bot&mdash;it will not respond to replies where it is not mentioned.
+
+For incoming messages, your bot receives an [`Activity`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-activities) object of type `message`. Altough the `Activity` object can contain other types of information, like [channel updates](botevents.md#channel-updates) sent to your bot, the `message` type represents communication between bot and user.
 
 Your bot receives a payload that contains the user message `Text` as well as other information about the user, the source of the message, and Teams information. Of note:
 
@@ -69,7 +107,7 @@ Your bot receives a payload that contains the user message `Text` as well as oth
 ```
 >**Note:** The text field for inbound messages sometimes contains mentions. Be sure to properly check and strip those. For more information, see [Mentions](botsinchannels.md#mentions).
 
-### Teams channel data
+## Teams channel data
 
 Teams-specific information is sent and received in the `channelData` object. A typical channelData in an activity sent to your bot contains the following information:
 
@@ -119,7 +157,7 @@ To reply to an existing message, call [`ReplyToActivity`](https://docs.microsoft
 
 If you choose to use the REST API, you can also call the [`/conversations/{conversationId}/activities/{activityId}`](https://docs.microsoft.com/en-us/bot-framework/rest-api/bot-framework-rest-connector-send-and-receive-messages#send-the-reply) endpoint.  
 
-The message content itself can contain simple text or some of the Bot Framework&ndash;supplied [cards](botsmessages.md#cards) and [card actions](botsmessages.md#card-actions).
+The message content itself can contain simple text or some of the Bot Framework&ndash;supplied [cards and card actions](teams-bots-cards.md).
 
 Please note that in your outbound schema you should always use the same `serviceUrl` as the one you received.
 
