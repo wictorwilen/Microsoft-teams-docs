@@ -3,25 +3,25 @@
 A *card* is a user-interface (UI) container for short or related pieces of information. Microsoft Teams supports rich cards, which can have multiple properties and attachments.
 
 Supported by Microsoft Teams:
-* Hero card
-* Thumbnail card
+* [Hero card](teams-bots-cards.md#hero-card)
+* [Thumbnail card](teams-bots-cards.md#thumbnail-card)
 
 Supported with modifications:
-* Office 365 Connector card&mdash;the `HttpPost` and `ActionCard` actions and the `heroImage` field are not currently supported, and Office 365 Connectors do not render properly in iOS.
+* [Office 365 Connector card](connectors.md#using-office-365-connector-cards-in-microsoft-teams)&mdash;the `HttpPost` and `ActionCard` actions and the `heroImage` field are not currently supported, and Office 365 Connectors do not render properly in iOS.
 * Sign-in card&mdash;the `signin` action is not supported. You can replace the button action with `openUrl` to get the desired result.
 
 Not supported:
 * Adaptive card
 * Receipt card
-* Media cards (Animation card, Audio card, and Video card)
+* Media cards (animation card, audio card, and video card)
 
-Additionally, we support the following layouts:
+Additionally, Teams supports the following layouts:
 * Horizontal carousel layout
 * Vertical list layout
 
 Both layouts support hero and thumbnail cards.
 
-You can find information on how to use cards in the documentation for the Bot Builder SDK. Code samples are in the Microsoft/BotBuilder-Samples repository on GitHub:
+You can find information on how to use cards in the documentation for the Bot Builder SDK. Code samples are in the Microsoft/BotBuilder-Samples repository on GitHub.
 * .NET
   * [Add rich card attachments to messages](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-add-rich-card-attachments)
   * [Rich cards sample code](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/cards-RichCards)
@@ -76,15 +76,7 @@ The [thumbnail card](https://docs.botframework.com/en-us/csharp/builder/sdkrefer
 
 The Office 365 Connector card provides a more flexible layout with multiple sections, images, and fields.
 
->**Note:** An Office 365 Connector card can display a maximum of 10 sections. Any additional sections do not appear.
-
-![Example of an Office 365 Connector card](images/Cards/o365connector.png)
-
-See the [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) for details about card fields and actions. Teams currently does not support the following:
-* Fields: `heroImage`
-* Actions: `HttpPOST` and `ActionCard`
-
-You can use the O365ConnectorCard class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send this card from your bot.
+For more information, see [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams).
 
 ## Card layouts
 
@@ -162,7 +154,7 @@ The flexibility of `messageBack` means that your code can choose not to leave a 
 
 ```json
 {
-  ...
+  ⋮
   "buttons": [
     {
     "type": "messageBack",
