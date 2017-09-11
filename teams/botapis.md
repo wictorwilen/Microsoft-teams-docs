@@ -44,20 +44,20 @@ Response body
 
 #### .NET example
 
-Call `GetTeamsConversationMembersAsync()` using `Team.Id` obtained from `channelData` to return a list of user IDs.
+Call `GetTeamsConversationMembersAsync` using `Conversation.Id` to return a list of user IDs.
 
 ```csharp
 // Fetch the members in the current conversation
-var connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-var members = await connector.Conversations.GetTeamsConversationMembersAsync(activity.Conversation.Id);
+var connector = new ConnectorClient(new Uri(context.Activity.ServiceUrl));
+var members = await connector.Conversations.GetTeamsConversationMembersAsync(context.Activity.Conversation.Id);
 
 // Concatenate information about all the members into a string
 var sb = new StringBuilder();
 foreach (var member in members)
 {
     sb.AppendFormat(
-        "GivenName = {0}, Surname = {1}, Email = {2}, UserPrincipalName = {3}, AADObjectId = {4}, TeamsMemberId = {5}",
-        member.GivenName, member.Surname, member.Email, member.UserPrincipalName, member.ObjectId, member.Id);
+        "GivenName = {0}, TeamsMemberId = {1}",
+        member.Name, member.Id);
     
     sb.AppendLine();
 }
@@ -66,11 +66,11 @@ foreach (var member in members)
 await context.PostAsync($"People in this conversation: {sb.ToString()}");
 ```
 
->Note: GetTeamsConversationMembersAsync(teamId, tenantId) override is now deprecated. You should migrate your code to use GetTeamsConversationMembersAsync(teamId).
+>**Note:** The `GetTeamsConversationMembersAsync(teamId, tenantId)` override is now obsolete. You should migrate your code to use `IConversations.GetConversationMembersAsync(conversationId)` and then use `AsTeamsChannelAccount` to get the extended properties.
 
 #### Node.js example
 
-The following example uses the new [Microsoft Bot Builder SDK Teams Extensions](https://www.npmjs.com/package/botbuilder-teams) for Node.js.
+The following example uses the [Microsoft Teams extensions for the Bot Builder SDK for Node.js](https://www.npmjs.com/package/botbuilder-teams).
 
 ```js
 var conversationId = session.message.address.conversation.id;
@@ -92,15 +92,15 @@ var conversationId = session.message.address.conversation.id;
 
 You can also make the same API call for any 1:1 chat to obtain the profile information of the user chatting with your bot.
 
-The API call and SDK methods are identical to fetching team roster, as is the response object. The only different is that you pass the 1:1 `conversationId` instead of the `teamId`.
+The API call and SDK methods are identical to fetching the team roster, as is the response object. The only difference is that you pass the 1:1 `conversationId` instead of the `teamId`.
 
 ## Fetching the list of channels in a team
 
 Your bot can query the list of channels in a team.
 
->Note: Right now, the default General channel is returned with `null` as the name to allow for localization.
->
->Also note: The channel ID for General always matchs the team ID.
+>**Notes**
+>* Right now, the name of the default General channel is returned as `null` to allow for localization.>
+>* The channel ID for the General channel always matchs the team ID.
 
 #### REST API example
 
@@ -129,7 +129,7 @@ Response body
 
 #### .NET example
 
-The following example uses the `FetchChannelList` call from the new [Microsoft Teams .NET SDK](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
+The following example uses the `FetchChannelList` call from the [Microsoft Teams extensions for the Bot Builder SDK for .NET](https://www.nuget.org/packages/Microsoft.Bot.Connector.Teams):
 
 ```csharp
 ConversationList channels = client.GetTeamsConnectorClient().Teams.FetchChannelList(activity.GetChannelData<TeamsChannelData>().Team.Id);
@@ -137,7 +137,7 @@ ConversationList channels = client.GetTeamsConnectorClient().Teams.FetchChannelL
 
 #### Node.js example
 
-The following example uses `fetchChannelList` call from the new [Microsoft Bot Builder SDK Teams Extensions](https://www.npmjs.com/package/botbuilder-teams) for Node.js.
+The following example uses `fetchChannelList` call from the [Microsoft Teams extensions for the Bot Builder SDK for Node.js](https://www.npmjs.com/package/botbuilder-teams).
 
 ```javascript
 var teamId = session.message.sourceEvent.team.id;
