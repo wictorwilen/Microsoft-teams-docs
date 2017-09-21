@@ -1,4 +1,3 @@
-﻿
 # Submit your questions, bugs, feature requests, and contributions (Microsoft Teams developer platform)
 
 >Hitting a problem? Have you looked at the [troubleshooting guide](troubleshooting.md)?
@@ -13,7 +12,7 @@ The Microsoft Team product team responds to the developer community across sever
 
 - **Sample application bugs:** If you find a bug in one of our samples, open an issue on GitHub. Be sure to describe the steps to reproduce the bug.
 
-- **Feature requests:** If our platform doesn't empower you to what you need, please make your features suggestions on the [Microsoft Teams feedback portal on UserVoice](https://aka.ms/microsoftteamsplatformsuggestions).
+- **Feature requests:** If our platform doesn't empower you to do what you need, please make your features suggestions on the [Microsoft Teams feedback portal on UserVoice](https://aka.ms/microsoftteamsplatformsuggestions).
 
 - **Contributions:** We accept pull requests against the Microsoft Teams JavaScript library, documentation, and samples. If you'd like to contribute, please see the contributor's guide in each repo.
   * https://github.com/OfficeDev/microsoft-teams-library-js
