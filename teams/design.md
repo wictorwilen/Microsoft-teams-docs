@@ -16,7 +16,7 @@ Use static tabs for your single-user experience. For example, if your service is
 
 ### Scope and focus the user experience
 
-Once configured, configurable tabs should drill down to the relevant context and not let the user navigate outside of it within the tab. For example, the Power BI tab doesn't enable the user navigate to other Power BI reports in situ. However, like many tabs based on an existing web app, it does enable the **Go to website** button that launches the report in the main Power BI website.
+Once configured, configurable tabs should drill down to the relevant context and not let the user navigate outside of it within the tab. For example, the Power BI tab doesn't enable the user navigate to other Power BI reports in site. However, like many tabs based on an existing web app, it does enable the **Go to website** button that launches the report in the main Power BI website.
 
 ### Integrate with the Microsoft Teams user experience
 
