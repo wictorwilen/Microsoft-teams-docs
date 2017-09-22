@@ -1,6 +1,8 @@
 # Get started with Office 365 Connectors for Microsoft Teams
 
-Office 365 Connectors are a great way to push your app's rich content into Microsoft Teams. Any user can connect a team to services like Trello, GitHub, Bing News, or Twitter and get notified of the team's activity in that service. From tracking a team's progress in Trello to following important hashtags in Twitter, Office 365 Connectors help your team to stay in sync and get more done. You can even add rich actions to your content so that users can complete tasks right within the channel.
+Office 365 Connectors are a great way to push your app's rich content into Microsoft Teams. Any user can connect a team to services like Trello, GitHub, Bing News, or Twitter and get notified of the team's activity in that service. From tracking a team's progress in Trello to following important hashtags in Twitter, Office 365 Connectors help your team to stay in sync and get more done.
+
+You can even add actions to your content, turning them into *actionable messages*, so that users can complete tasks directly in the channel. (To learn more about actionable messages in general, see [Actionable messages in Outlook, Office 365 Groups, and Microsoft Teams](https://docs.microsoft.com/en-us/outlook/actionable-messages/).)
 
 >**New:** With Microsoft Teams apps, you can add your existing Office 365 Connector or build a new one to include in Microsoft Teams.  See [Build your own Connector](https://docs.microsoft.com/en-us/outlook/actionable-messages/connectors-dev-dashboard#build-your-own-connector) for more information. 
 
@@ -18,18 +20,30 @@ For more examples, see [Accessing Office 365 Connectors from Microsoft Teams](ht
 
 ## Using Office 365 Connector cards in Microsoft Teams
 
-The Office 365 Connector card provides a flexible layout with multiple sections, images, and fields.
+The Office 365 Connector card provides a flexible layout with multiple sections, fields, images, and actions.
 
->**Note:** An Office 365 Connector card can display a maximum of 10 sections. Any additional sections do not appear.
+Each Connector card can display a maximum of 10 sections; each section can contain a maximum of 5 images and 5 actions.
 
-![Example of an Office 365 Connector card](images/Cards/o365connector.png)
+>**Note:** Any additional sections, images, or actions in a message do not appear.
 
-See the [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) for details about card fields and actions. Teams currently does not support the following:
+All text fields support Markdown and HTML formatting. You can control which sections use Markdown or HTML by setting the `markdown` property in a message. By default, `markdown` is set to `true`; if you want to use HTML instead, set `markdown` to `false`.
 
-* Fields: `heroImage`
-* Actions: `HttpPOST` and `ActionCard`
+If you specify the `themeColor` property, it overrides the `accentColor` property in the app manifest.
 
-You can use the `O365ConnectorCard` class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send this card from your bot.
+To specify the rendering style for `activityImage`, you can set `activityImage` as follows.
+
+| Value | Description |
+| --- | --- |
+| `avatar` | Default; `activityImage` will be cropped as a circle |
+| `article` | `activityImage` will be displayed as a rectangle and retain its aspect ratio |
+
+For all other details about Connector card properties, see the **[Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference)**. The only Connector card properties that Microsoft Teams does not currently support are as follows:
+
+* `heroImage`
+* `hideOriginalBody`
+* `startGroup`
+
+If you are using .NET and C# or Node.js, you can use the `O365ConnectorCard` class in the [Microsoft Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to send Connector cards from your bot.
 
 ## Creating messages through Office 365 Connectors
 
@@ -125,6 +139,37 @@ This message produces the following card in the channel.
 
 ![Screenshot of a Connector card](images/Connectors/connector_message.png)
 
+## Creating actionable messages
+
+The example in the preceding section includes three visible buttons on the card. Each button is defined in the `potentialAction` property of the message by using `ActionCard` actions, each containing an input type: a text field, a date picker, or a multichoice list. Each `ActionCard` action has an associated action&mdash;in the example, `HttpPOST`.
+
+Connector cards support three types of actions:
+
+* `ActionCard`&emsp;Presents one or more input types and associated actions
+* `HttpPOST`&emsp;Sends a POST request to a URL
+* `OpenUri`&emsp;Opens a URI in a separate browser or app; optionally targets different URIs based on operating systems
+
+(A fourth action, `ViewAction`, is still supported but no longer needed; use `OpenUri` instead.)
+
+The `ActionCard` action supports three input types:
+
+* `TextInput`&emsp;A single-line or multiline text field with an optional length limit
+* `DateInput`&emsp;A date selector with an optional time selector
+* `MultichoiceInput`&emsp;A enumerated list of choices offering either a single selection or multiple selections
+
+`MultichoiceInput` supports a `style` property that controls whether the list initially appears fully expanded. The default value of `style` depends on the value of `isMultiSelect`.
+
+| `isMultiSelect` | `style` default |
+| --- | --- |
+| `false` or not specified | `compact` |
+| `true` | `expanded` |
+
+If you want a multiselect list initially displayed in the compact style, you must specify both `"isMultiSelect": true` and `"style": true`.
+
+>**Note:** Specifying `compact` for the `style` property in Microsoft Teams is the same as specifying `normal` for the `style` property in Microsoft Outlook.
+
+For all other details about Connector card actions, see **[Actions](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference#actions)** in the actionable message card reference.
+
 ## Setting up a custom incoming webhook
 
 Follow these steps to see how to send a simple card to a Connector.
@@ -154,7 +199,14 @@ To distribute your Connector, you need to register by using the [Connectors Deve
 
 <img alt="Screenshot of enabling the Connector for Microsoft Teams" src="images/Connectors/connector_developer_portal.png" height="185" width="336">
 
-You can download the auto-generated Teams app manifest from the portal. The following manifest.json file contains the basic elements needed to test and submit your app.
+>**Important:** After you choose **Save** in the Connectors Developer Dashboard, your Connector is registered. Do not choose **Publish to Store** (which appears after you choose **Save**); if you want to publish your Connector in the Office Store, follow the instructions in [Publish your Microsoft Teams app to the Office Store](submission.md).
+
+You can download the auto-generated Teams app manifest from the portal. Before you can use it to test or publish your app, though, you must do the following:
+
+* Include two icons, following the instructions in [Icons](createpackage.md#icons).
+* Modify the `icons` portion of the manifest to refer to the file names of the icons instead of URLs.
+
+The following manifest.json file contains the basic elements needed to test and submit your app.
 
 >**Note:** Replace `id` and `connectorId` in the following example with the GUID of your Connector.
 
@@ -178,8 +230,8 @@ You can download the auto-generated Teams app manifest from the portal. The foll
     "short": "This is a small sample app we made for you!"
   },
   "icons": {
-    "outline": "https://outlook.office.com/connectors/Content/Images/IncomingWebhook.jpg",
-    "color": "https://outlook.office.com/connectors/Content/Images/IncomingWebhook.jpg"
+    "outline": "sampleapp-outline.png",
+    "color": "sampleapp-color.png"
   },
   "connectors": [
     {
@@ -200,7 +252,7 @@ You can download the auto-generated Teams app manifest from the portal. The foll
 
 ## Testing your Connector
 
-To test your Connector, sideload it to a team as you would with any other app. You can create a .zip package using the manifest file from the Connectors Developer Dashboard.
+To test your Connector, sideload it to a team as you would with any other app. You can create a .zip package using the manifest file from the Connectors Developer Dashboard (modified as directed in the preceding section) and the two icon files.
 
 After you sideload the app, open the Connectors list from any channel. Scroll to the bottom to see your app in the **Sideloaded** section.
 
