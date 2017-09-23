@@ -163,8 +163,6 @@ Please note that in your outbound schema you should always use the same `service
 
 ## Updating messages 
 
->**Note:** This feature is available in [Public Developer Preview](publicpreview.md) only.
-
 Rather than have your messages be static snapshots of data, your bot can now dynamically update messages inline after sending them to users. You can use dynamic message updates for scenarios such as poll updates, modifying available actions after a button press, or any other asynchronous state change.
 
 The new message need not match the original in type. For instance, if the original message contained an attachment, the new message can be a simple text message.
