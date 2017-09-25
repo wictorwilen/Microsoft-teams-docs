@@ -60,13 +60,19 @@ ConversationParameters conversationParams = new ConversationParameters(
 var result = await connector.Conversations.CreateConversationAsync(conversationParams);
 ```
 
-### Best practice: Welcome message
+### Best practice: Welcome messages in teams
 
 When your bot is first added to the team, it is a best practice to send a welcome message to the team to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object. Be sure that the `memberAdded` ID is the bot ID itself, because the same event is sent when a user is added to a team. See [Team member or bot addition](botevents.md#team-member-or-bot-addition) for more details.
 
 You might also want to send a 1:1 message to each member of the team when the bot is added. To do this, you could [fetch the team roster](botapis.md#fetching-the-team-roster) and send each user a [direct message](bots1on1.md#starting-a-11-conversation).
 
-For more best practices, see our [design guidelines](design.md).
+We recommend that your bot *not* send a welcome message in the following situations:
+
+* Your bot is added to a channel (as compared to being added to a team)
+* A channel is renamed
+* A team member is added to a channel
+
+>For more best practices, see our [design guidelines](design.md).
 
 ## Mentions
 

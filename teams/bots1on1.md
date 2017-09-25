@@ -99,8 +99,10 @@ var address =
 bot.beginDialog(address, '/');
 ```
 
-## Best practice: Welcome message
+## Best practice: Welcome messages in 1:1 conversations
 
-For bots that are added directly by a user, and not already part of any of the user's teams, it is a best practice to send a welcome message to introduce it to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object.
+For bots that are added directly by a user, and not already part of any of the user's teams, it is a best practice to send a welcome message to the General channel to introduce the bot to all users of the team and tell a bit about its functionality. To do this, ensure that your bot responds to the `conversationUpdate` message, with the `teamsAddMembers` eventType in the `channelData` object.
 
-For more best practices, see our [design guidelines](design.md).
+Your bot should proactively send a welcome message to a 1:1 chat the first time (and only the first time) a user initiates a 1:1 chat with your bot. (This recommendation does not apply to first-time contacts in a channel.)
+
+>For more best practices, see our [design guidelines](design.md).
