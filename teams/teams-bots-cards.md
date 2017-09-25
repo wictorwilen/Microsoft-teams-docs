@@ -7,7 +7,7 @@ Supported by Microsoft Teams:
 * [Thumbnail card](teams-bots-cards.md#thumbnail-card)
 
 Supported with modifications:
-* [Office 365 Connector card](connectors.md#using-office-365-connector-cards-in-microsoft-teams)&mdash;the `HttpPost` and `ActionCard` actions and the `heroImage` field are not currently supported, and Office 365 Connectors do not render properly in iOS.
+* [Office 365 Connector card](connectors.md#using-office-365-connector-cards-in-microsoft-teams)&mdash;the `heroImage`, `hideOriginalBody`, and `startGroup` properties are not currently supported, and Office 365 Connectors do not render properly in iOS.
 * Sign-in card&mdash;the `signin` action is not supported. You can replace the button action with `openUrl` to get the desired result.
 
 Not supported:
