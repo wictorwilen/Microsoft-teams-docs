@@ -32,7 +32,7 @@ The [`conversationUpdate`](https://docs.microsoft.com/en-us/bot-framework/dotnet
 
 The `conversationUpdate` event with the `membersAdded` object in the payload is sent when either a bot is added to a team or a new user is added to a team where a bot has been added. Microsoft Teams also adds `eventType.teamMemberAdded` in the `channelData` object.
 
-Because this event is sent in both cases, you should parse the `membersAdded` object to determine whether the addition was a user or the bot itself. For the latter, a best practice is to send a (welcome message)[botsinchannels.md#best-practice-welcome-messages-in-teams] to the channel so users can understand the features your bot provides.
+Because this event is sent in both cases, you should parse the `membersAdded` object to determine whether the addition was a user or the bot itself. For the latter, a best practice is to send a [welcome message](botsinchannels.md#best-practice-welcome-messages-in-teams) to the channel so users can understand the features your bot provides.
 
 #### Example code: Checking whether bot was the added member 
 
