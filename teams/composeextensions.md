@@ -94,8 +94,8 @@ In the app manifest, your command item is an object with the following structure
     "full": "Find Bing search results and share them with your team members."
   },
   "icons": {
-    "outline": "zlVaaEoG.jpg",
-    "color": "zlVaaEoG.jpg"
+    "outline": "bing-outline.jpg",
+    "color": "bing-color.jpg"
   },
   "accentColor": "#ff6a00",
   "composeExtensions": [
