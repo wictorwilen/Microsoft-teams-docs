@@ -15,11 +15,11 @@ Basic conversation is handled through the Bot Framework Connector, a single REST
 Your bot can send rich text, pictures, and cards. Users can send rich text and pictures to your bot. You can specify the type of content your bot can handle in the Microsoft Teams settings page for your bot.
 
 | Format | From user to bot  | From bot to user |  Notes |
-| --- | --- | --- | --- |
+| --- | :---: | :---: | --- |
 | Rich text | ✔ | ✔ |  |
 | Pictures | ✔ | ✔ | Maximum 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF not officially supported |
-| Cards | ✘ | ✔ | Teams currently supports hero, thumbnail, and Office 365 Connector cards |
-| Emojis | ✘ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face) |
+| Cards | ✖ | ✔ | Teams currently supports hero, thumbnail, and Office 365 Connector cards |
+| Emojis | ✖ | ✔ | Teams currently supports emojis via UTF-16 (such as U+1F600 for grinning face) |
 
 For more information on the types of bot interaction supported by the Bot Framework and therefore Microsoft Teams, see the Bot Framework documentation on [conversation flow](https://docs.microsoft.com/en-us/bot-framework/bot-design-conversation-flow) and related concepts in the documentation for [the Bot Builder SDK for .NET](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-concepts) and [the Bot Builder SDK for Node.js](https://docs.microsoft.com/en-us/bot-framework/nodejs/bot-builder-nodejs-concepts).
 
