@@ -1,5 +1,6 @@
 {
   "build_entry_point": "docs",
+  "need_preview_pull_request": true,
   "need_generate_pdf": false,
   "need_generate_intellisense": false,
   "docsets_to_publish": [
@@ -19,7 +20,7 @@
     }
   ],
   "notification_subscribers": [
-    "ajmay@microsoft.com"
+    "v-damage@microsoft.com"
   ],
   "branches_to_filter": [],
   "skip_source_output_uploading": false,
