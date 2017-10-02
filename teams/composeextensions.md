@@ -195,7 +195,7 @@ The request parameters itself are found in the value object, which includes the 
 | `parameters` | Array of parameters. Each parameter object contains the parameter name, along with the parameter value provided by the user. |
 | `queryOptions` | Pagination parameters: <br>`skip`: skip count for this query <br>`count`: number of elements to return |
 
->**Note:** You should authenticate any request to your service. See [Messages, cards, and actions](https://msdn.microsoft.com/en-us/microsoft-teams/botsmessages) for more detailed documentation on receiving messages from the Bot Framework.
+>**Note:** You should authenticate any request to your service. See [Receiving messages](botsconversation.md#receiving-messages) for more detailed documentation on receiving messages from the Bot Framework.
 
 #### Request example
 
@@ -264,7 +264,7 @@ We support the following attachment types:
 * Hero card
 * Office 365 Connector card
 
-For full documentation on the thumbnail and hero card types, see [Messages, cards, and actions](https://msdn.microsoft.com/en-us/microsoft-teams/botsmessages). For additional documentation regarding the Office 365 Connector card, see [Actionable message card reference](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference) in the Outlook Dev Center.
+For full documentation on the thumbnail and hero card types, see [Add cards and card actions](https://msdn.microsoft.com/en-us/microsoft-teams/teams-bots-cards). For additional documentation regarding the Office 365 Connector card, see [Using Office 365 Connector cards](connectors.md#using-office-365-connector-cards-in-microsoft-teams).
 
 The result list is displayed in the Microsoft Teams UI with a preview of each item. The preview is generated in one of two ways:
 
@@ -346,7 +346,7 @@ The default query has the same structure as any regular user query, except with 
       "count": 25
     }
   },
-...
+  ⋮
 }
 ```
 
