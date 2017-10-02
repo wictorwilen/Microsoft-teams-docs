@@ -6,6 +6,7 @@ This changelog covers what's changed in the Microsoft Teams developer platform a
 
 | **Category** | **Description** | **Link** |
 | --- | --- | --- |
+| Bots | Added details about Markdown and XML formatting in messages | [Formatting text content](botsconversation.md#formatting-text-content) |
 | Connectors | Added information about actionable messages and the `activityImageType` property | [Office 365 Connectors](connectors.md) |
 | Bots | Moved information about messages from former "Messages, cards, and actions" topic. | [Send and receive messages](botsconversation.md) |
 | Bots | Moved information about cards and card actions from former "Messages, cards, and actions" topic. | [Use cards and card actions](teams-bots-cards.md) |

@@ -32,14 +32,162 @@ Microsoft Teams supports the following formatting options:
 | TextFormat value | Description |
 | --- | --- |
 | plain | The text should be treated as raw text with no formatting applied at all |
-| markdown | The text should be treated as Markdown formatting and rendered on the channel as appropriate; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
-| xml | The text is simple XML markup; see [Message text and format](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-create-messages#message-text-and-format) for supported styles |
+| markdown | The text should be treated as Markdown formatting and rendered on the channel as appropriate; see [Formatting text content](#formatting-text-content) for supported styles |
+| xml | The text is simple XML markup; see [Formatting text content](#formatting-text-content) for supported styles |
 
->**Note:** On hero and thumbnail cards, message format is supported only on the text property. Formatting is not supported on the title and subtitle properties at this time.
+## Formatting text content
+
+Microsoft Teams supports a subset of Markdown and XML (HTML) formatting tags.
+
+Currently, the following limitations apply:
+
+* Text-only messages do not support table formatting
+* Rich cards support formatting in the text property only, not in the title or subtitle properties
+* Rich cards do not support Markdown or table formatting
+
+### Cross-platform support
+
+To ensure that your formatting works across all platforms supported by Microsoft Teams, be aware that some styles are not currently supported across all platforms.
+
+| Style                     | Text-only messages | Rich cards (XML only) |
+| ---                       | :---: | :---: |
+| bold                      | ✔ | ✖ |
+| italic                    | ✔ | ✔ |
+| header (levels 1&ndash;3) | ✖ | ✔ |
+| strikethrough             | ✖ | ✔ |
+| horizontal rule           | ✖ | ✖ |
+| unordered list            | ✖ | ✔ |
+| ordered list              | ✖ | ✔ |
+| preformatted text         | ✔ | ✔ |
+| blockquote                | ✔ | ✔ |
+| hyperlink                 | ✔ | ✔ |
+| image link                | ✔ | ✖ |
+
+>**Note:** Currently, Connector cards support no formatting across all platforms. See [Cards](botsconversation.md#cards) in the next section for more detail.
+
+### Support by individual platform
+
+Support for text formatting varies by type of message and by platform.
+
+#### Text-only messages
+
+| Style                     | Desktop | iOS | Android | 
+| ---                       | :---: | :---: | :---: |
+| bold                      | ✔ | ✔ | ✔ |
+| italic                    | ✔ | ✔ | ✔ |
+| header (levels 1&ndash;3) | ✖ | ✖ | ✖ |
+| strikethrough             | ✔ | ✔ | ✖ |
+| horizontal rule           | ✖ | ✖ | ✖ |
+| unordered list            | ✔ | ✖ | ✖ |
+| ordered list              | ✔ | ✖ | ✖ |
+| preformatted text         | ✔ | ✔ | ✔ |
+| blockquote                | ✔ | ✔ | ✔ |
+| hyperlink                 | ✔ | ✔ | ✔ |
+| image link                | ✔ | ✔ | ✔ |
+
+#### Cards
+
+<table>
+	<tr>
+		<td></td>
+		<th colspan="3">Rich cards (XML only)</th>
+		<th colspan="3">Connector cards (markdown)</th>
+		<th colspan="3">Connector cards (XML)</th>
+	</tr>
+	<tr>
+		<th>Style</th>
+		<td>Desktop</td><td>iOS</td><td>Android</td>
+		<td>Desktop</td><td>iOS</td><td>Android</td>
+		<td>Desktop</td><td>iOS</td><td>Android</td>
+	</tr>
+	<tr>
+		<td>bold</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✔</td>
+	</tr>
+	<tr>
+		<td>italic</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔*</td><td align="center">✖</td><td align="center">✔*</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✔</td>
+	</tr>
+	<tr>
+		<td>header (levels 1&ndash;3)</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>strikethrough</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✖</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>horizontal rule</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>unordered list</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>ordered list</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>preformatted text</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>blockquote</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>hyperlink</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✔</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✔</td><td align="center">✖</td>
+	</tr>
+	<tr>
+		<td>image link</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+		<td align="center">✔</td><td align="center">✖</td><td align="center">✖</td>
+	</tr>
+</table>
+
+\*Renders as bold
+
+### Examples of text formatting
+
+| Style | Example | Markdown | XML (HTML) |
+| --- | --- | --- | --- |
+| bold | **text** | `**text**` | `<strong>text</strong>` |
+| italic | *text* | `*text*` | `<em>text</em>` |
+| header (levels 1&ndash;3) | **Text** | `### Text` | `<h3>Text</h3>` |
+| strikethrough | ~~text~~ | `~~text~~` | `<strike>text</strike>` |
+| unordered list | <ul><li>text</li><li>text</li></ul> | `* text`<br>`* text` | `<ul><li>text</li><li>text</li></ul>` |
+| ordered list | <ol><li>text</li><li>text</li></ol> | `1. text`<br>`2. text` | `<ol><li>text</li><li>text</li></ol>` |
+| preformatted text | `text` | `` `text` `` | `<pre>text</pre>` |
+| blockquote | <blockquote>text</blockquote> | `>text` | `<blockquote>text</blockquote>` |
+| hyperlink | [Bing](https://www.bing.com/) | `[Bing](https://www.bing.com/)` | `<a href="https://www.bing.com/">Bing</a>` |
+| image link | <img src="http://aka.ms/Fo983c" alt="Duck on a rock"></img> | `![Duck on a rock](http://aka.ms/Fo983c)` | `<img src="http://aka.ms/Fo983c" alt="Duck on a rock"></img>` |
 
 ## Picture messages
 
-Pictures are sent by adding attachments to a message.  You can find more information on attachments in the [Bot Framework documentation](https://docs.botframework.com/en-us/core-concepts/attachments/).
+Pictures are sent by adding attachments to a message. You can find more information on attachments in the [Bot Framework documentation](https://docs.botframework.com/en-us/core-concepts/attachments/).
 
 Pictures can be at most 1024×1024 and 1 MB in PNG, JPEG, or GIF format; animated GIF is not officially supported.
 
