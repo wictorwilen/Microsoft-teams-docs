@@ -7,7 +7,7 @@ Supported by Microsoft Teams:
 * [Thumbnail card](teams-bots-cards.md#thumbnail-card)
 
 Supported with modifications:
-* [Office 365 Connector card](connectors.md#using-office-365-connector-cards-in-microsoft-teams)&mdash;the `heroImage`, `hideOriginalBody`, and `startGroup` properties are not currently supported, and Office 365 Connectors do not render properly in iOS.
+* [Office 365 Connector card](#office-365-connector-card)&mdash;the `heroImage`, `hideOriginalBody`, and `startGroup` properties are not currently supported, and Office 365 Connectors do not render properly in iOS.
 * Sign-in card&mdash;the `signin` action is not supported. You can replace the button action with `openUrl` to get the desired result.
 
 Not supported:
@@ -76,7 +76,7 @@ The [thumbnail card](https://docs.botframework.com/en-us/csharp/builder/sdkrefer
 
 The Office 365 Connector card provides a more flexible layout with multiple sections, images, and fields.
 
-Most of the information you need about Connector cards is in [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams).
+Most of the information you need about Connector cards is in [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams), including details on actionable messages.
 
 One important difference between using Connector cards from a Connector and using Connector cards in your bot is the handling of card actions:
 
