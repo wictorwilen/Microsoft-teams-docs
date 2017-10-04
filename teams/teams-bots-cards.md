@@ -76,7 +76,14 @@ The [thumbnail card](https://docs.botframework.com/en-us/csharp/builder/sdkrefer
 
 The Office 365 Connector card provides a more flexible layout with multiple sections, images, and fields.
 
-For more information, see [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams).
+Most of the information you need about Connector cards is in [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams).
+
+One important difference between using Connector cards from a Connector and using Connector cards in your bot is the handling of card actions:
+
+* For a Connector, the endpoint receives the card payload via HTTP POST.
+* For a bot, the `HttpPOST` action triggers an `invoke` action that sends only the action ID and body to the bot.
+
+To use Connector cards in your bot, we recommend using the `O365ConnectorCard` class in the [Teams extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) for .NET or Node.js. You can simplify handling of the `HttpPOST` action by using the `onO365ConnectorCardAction` method.
 
 ## Card layouts
 
