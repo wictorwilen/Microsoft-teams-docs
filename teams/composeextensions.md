@@ -1,10 +1,6 @@
-# Preview: Get started with compose extensions for Microsoft Teams
+# Get started with compose extensions for Microsoft Teams
 
->**Important:** Compose extensions are available only in [Public Developer Preview](publicpreview.md). Many details in this document are subject to change.
->
->**Note:** The term "compose extensions" is provisional and might change. Until this feature is complete, we recommend not using the term in any customer-facing UI or communications.
-
-Compose extensions are a powerful new way for users to engage with your app within Microsoft Teams. With this capability, users can query for information from your service and post that information, in the form of rich cards, right into the channel conversation.
+Compose extensions are a powerful way for users to engage with your app within Microsoft Teams. With this capability, users can query for information from your service and post that information, in the form of rich cards, right into the channel conversation.
 
 ![Example of compose extension card](images/ComposeExtension/CEExample.png)
 
@@ -17,6 +13,8 @@ How would you use compose extensions? Here are a few possibilities:
 * Usage charts and reports
 * Images and media content
 * Sales opportunities and leads
+
+>**Note:** If your app includes a compose extension and you publish the app to the Office Store, the compose extension appears in the **Messaging** category of the **Discover apps** experience in Teams. To avoid confusion, we recommend not using the term "compose extension" in any customer-facing UI or communications.
 
 ## Add a compose extension to your app
 
