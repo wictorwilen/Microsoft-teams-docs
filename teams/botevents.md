@@ -6,6 +6,7 @@ Microsoft Teams sends notifications to your bot for changes or events that happe
 * Query and cache team information when the bot is added to a team
 * Update cached information on team membership or channel information
 * Remove cached information for a team if the bot is removed
+* When a bot message is liked by a user
 
 Each bot event is sent as an `Activity` object in which `messageType` defines what information is in the object. For messages of type `message`, see [Sending and receiving messages](botsconversation.md).
 
@@ -21,6 +22,8 @@ The following table lists the events that your bot can receive and take action o
 | `conversationUpdate` | |`channelCreated`| In a team where bot is member, [a channel was created](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelRenamed`| In a team where bot is member, [a channel was renamed](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelDeleted`| In a team where bot is member, [a channel was deleted](botevents.md#channel-updates)|
+| `messageReaction` |`reactionsAdded`|| [A user reacts to a bot message](botevents.md#reactions)|
+| `messageReaction` |`reactionsRemoved`|| [A user removes his or her reaction to a bot message](botevents.md#reactions)|
 | _`contactRelationUpdate`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#contactrelationupdate) is not directly supported in Microsoft Teams |
 | _`deleteUserData`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#deleteuserdata) is not directly supported in Microsoft Teams |
 
@@ -284,4 +287,87 @@ The channel events are as follows:
     }     
 } 
 ⋮
+```
+
+## Reactions
+The `messageReaction` event is sent when a user reacts or removes his or her reaction to a message which was originally sent by your bot. `replyToId` contains the ID of the specific message.
+
+#### Schema example: A user likes a message
+```json
+{
+    "reactionsAdded": [
+        {
+            "type": "like"
+        }
+    ],
+    "type": "messageReaction",
+    "timestamp": "2017-10-16T18:45:41.943Z",
+    "id": "f:9f78d1f3",
+    "channelId": "msteams",
+    "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",
+    "from": {
+        "id": "29:1I9Is_Sx0O-Iy2rQ7Xz1lcaPKlO9eqmBRTBuW6XzkFtcjqxTjPaCMij8BVMdBcL9L_RwWNJyAHFQb0TRzXgyQvA",
+        "aadObjectId": "c33aafc4-646d-4543-9d4c-abd28e4d2110"
+    },
+    "conversation": {
+        "isGroup": true,
+        "id": "19:3629591d4b774aa08cb0887902eee7c1@thread.skype"
+    },
+    "recipient": {
+        "id": "28:f5d48856-5b42-41a0-8c3a-c5f944b679b0",
+        "name": "SongsuggesterLocal"
+    },
+    "channelData": {
+        "channel": {
+            "id": "19:3629591d4b774aa08cb0887902eee7c1@thread.skype"
+        },
+        "team": {
+            "id": "19:efa9296d959346209fea44151c742e73@thread.skype"
+        },
+        "tenant": {
+            "id": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        }
+    },
+    "replyToId": "1:19uJ8TZA1cZcms7-2HLOW3pWRF4nSWEoVnRqc0DPa_kY"
+}
+```
+
+#### Schema example: A user unlikes a message
+```json
+{
+    "reactionsRemoved": [
+        {
+            "type": "like"
+        }
+    ],
+    "type": "messageReaction",
+    "timestamp": "2017-10-16T18:45:41.943Z",
+    "id": "f:9f78d1f3",
+    "channelId": "msteams",
+    "serviceUrl": "https://smba.trafficmanager.net/amer-client-ss.msg/",
+    "from": {
+        "id": "29:1I9Is_Sx0O-Iy2rQ7Xz1lcaPKlO9eqmBRTBuW6XzkFtcjqxTjPaCMij8BVMdBcL9L_RwWNJyAHFQb0TRzXgyQvA",
+        "aadObjectId": "c33aafc4-646d-4543-9d4c-abd28e4d2110"
+    },
+    "conversation": {
+        "isGroup": true,
+        "id": "19:3629591d4b774aa08cb0887902eee7c1@thread.skype"
+    },
+    "recipient": {
+        "id": "28:f5d48856-5b42-41a0-8c3a-c5f944b679b0",
+        "name": "SongsuggesterLocal"
+    },
+    "channelData": {
+        "channel": {
+            "id": "19:3629591d4b774aa08cb0887902eee7c1@thread.skype"
+        },
+        "team": {
+            "id": "19:efa9296d959346209fea44151c742e73@thread.skype"
+        },
+        "tenant": {
+            "id": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        }
+    },
+    "replyToId": "1:19uJ8TZA1cZcms7-2HLOW3pWRF4nSWEoVnRqc0DPa_kY"
+}
 ```
