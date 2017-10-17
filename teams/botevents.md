@@ -22,7 +22,7 @@ The following table lists the events that your bot can receive and take action o
 | `conversationUpdate` | |`channelCreated`| In a team where bot is member, [a channel was created](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelRenamed`| In a team where bot is member, [a channel was renamed](botevents.md#channel-updates)|
 | `conversationUpdate` | |`channelDeleted`| In a team where bot is member, [a channel was deleted](botevents.md#channel-updates)|
-| `messageReaction` |`reactionsAdded`|| [A user reacts to a bot message](botevents.md#reactions)|
+| `messageReaction` |`reactionsAdded`|| [A user adds his or her reaction to a bot message](botevents.md#reactions)|
 | `messageReaction` |`reactionsRemoved`|| [A user removes his or her reaction to a bot message](botevents.md#reactions)|
 | _`contactRelationUpdate`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#contactrelationupdate) is not directly supported in Microsoft Teams |
 | _`deleteUserData`_ | | | This [Bot Framework–provided activity type](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-activities#deleteuserdata) is not directly supported in Microsoft Teams |
@@ -290,7 +290,7 @@ The channel events are as follows:
 ```
 
 ## Reactions
-The `messageReaction` event is sent when a user reacts or removes his or her reaction to a message which was originally sent by your bot. `replyToId` contains the ID of the specific message.
+The `messageReaction` event is sent when a user adds or removes his or her reaction to a message which was originally sent by your bot. `replyToId` contains the ID of the specific message.
 
 #### Schema example: A user likes a message
 ```json
