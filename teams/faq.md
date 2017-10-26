@@ -6,7 +6,7 @@
 
 Tabs are web content that you build and deploy, so you can use any technology you want.  
 
-Because bots must be built with the Bot Framework, we recommend you use one of the languages supported by the Bot Builder SDK: .NET/C# or Node.js. Although the Bot Framework also provides REST APIs usable by any language you choose, the SDK provides additional functionality and helper functions to simplify the development process.
+Because bots must be built with the Bot Framework, we recommend you use one of the languages supported by the Bot Builder SDK: .NET/C# or Node.js. Although the Bot Framework also provides REST APIs usable by any language you choose, the SDK provides additional functionality and helper functions to simplify the development process. To create Node.js projects there is a [Yeoman generator for Microsoft Teams apps](https://www.npmjs.com/package/generator-teams) that will scaffold all necessary code and definition files. 
 
 We also provide Teams-specific .NET and Node.js [extensions for the Bot Builder SDK](code.md#microsoft-teams-extensions-for-the-bot-builder-sdk) to make integration with the Teams platform even easier.
 
