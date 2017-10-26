@@ -4,7 +4,7 @@ Because Microsoft Teams apps are composed web services, you can use any web-prog
 
 ## Building Microsoft Teams apps with node.js
 
-If you prefer building your Microsoft Teams app using node.js and TypeScript you can scaffold your project strucutre using the [Teams Yeoman generator](https://www.npmjs.com/package/generator-teams). The generated project supports Tabs, Bots, Compose Extensions and Connectors.
+If you prefer building your Microsoft Teams app using node.js and TypeScript, you can create a functional "skeleton app" using the [Teams Yeoman generator](https://www.npmjs.com/package/generator-teams). The generated project supports Tabs, Bots, Compose Extensions and Connectors.
 
 ## Coding your tab
 
