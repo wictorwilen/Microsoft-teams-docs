@@ -78,6 +78,8 @@ The Office 365 Connector card provides a more flexible layout with multiple sect
 
 Most of the information you need about Connector cards is in [Using Office 365 Connector cards in Microsoft Teams](connectors.md#using-office-365-connector-cards-in-microsoft-teams), including details on actionable messages.
 
+>**Note:** Office 365 Connector cards function properly on Microsoft Teams mobile apps with one exception: actionable messages (more specifically, [ActionCard actions](https://docs.microsoft.com/en-us/outlook/actionable-messages/card-reference#actioncard-action) do not function properly. Support for actionable messages will be fully supported in the mobile apps very soon.
+
 One important difference between using Connector cards from a Connector and using Connector cards in your bot is the handling of card actions:
 
 * For a Connector, the endpoint receives the card payload via HTTP POST.
