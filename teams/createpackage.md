@@ -8,7 +8,7 @@ A Teams app package is a .zip file containing:
 
 >**Tip:** Download our [Simple Bot Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/SimpleBotPackage.zip) or [Full App Package](https://github.com/OfficeDev/Microsoft-teams-docs/blob/master/teams/FullAppPackage.zip) to get started. Each package contains a template manifest with fake data and sample icons suitable for sideloading. These sample packages will not load as-is; you must customize them.
 
->**Tip 2**: If you would rather not handcraft the manifest.json file, and you're programming in TypeScript/Node.JS, consider using the [Microsoft Teams app Yeoman generator](https://www.npmjs.com/package/generator-teams). It will guide you through a wizard and create the manifest and code for a fully functional skeleton app to get started. The generated project solution includes Gulp tasks that automatically builds the manifest and project.
+>**Tip 2**: If you would rather not handcraft the manifest.json file, and you're programming in TypeScript/Node.JS, consider using the [Microsoft Teams app Yeoman generator](https://www.npmjs.com/package/generator-teams). It will guide you through a wizard and create the manifest and code for a fully functional "skeleton app" to get started. The generated project solution includes Gulp tasks that automatically builds the manifest and project.
 
 ## Creating a manifest
 
